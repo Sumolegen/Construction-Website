@@ -8,6 +8,7 @@ import JourneyPreview from "../Components/sections/JourneyPreview";
 import RecognitionPreview from "../Components/sections/RecognitionPreview";
 import BlogPreview from "../Components/sections/BlogPreview";
 import CTAPreview from "../Components/sections/CTAPreview";
+import ContactPreview from "@/Components/sections/ContactPreview";
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
       <RecognitionPreview />
       <BlogPreview />
       <CTAPreview />
+      <ContactPreview />
     </main>
   );
 }
