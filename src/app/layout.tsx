@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Header from "../Components/layout/Header";
+import Footer from "../Components/layout/Footer";
 
 export const metadata: Metadata = {
   title: "Daya Constructions & Structural Consultants",
   description:
-    "Daya Constructions & Structural Consultants — Construction, structural design, consultancy, restoration and rehabilitation services.",
+    "Daya Constructions & Structural Consultants — Construction, structural design, consultancy, restoration, rehabilitation and project management.",
 };
 
 export default function RootLayout({
@@ -14,7 +16,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <Header />
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }

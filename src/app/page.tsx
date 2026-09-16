@@ -1,7 +1,11 @@
+import HomeHero from "../Components/sections/HomeHero";
+import AboutPreview from "../Components/sections/AboutPreview";
+
 export default function Home() {
   return (
     <main>
-      <h1>Daya Constructions & Structural Consultants</h1>
+      <HomeHero />
+      <AboutPreview />
     </main>
   );
 }
