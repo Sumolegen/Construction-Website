@@ -5,6 +5,7 @@ import ProjectsPreview from "@/Components/sections/ProjectsPreview";
 import ExpertisePreview from "@/Components/sections/ExpertisePreview";
 import WhyDayaPreview from "../Components/sections/WhyDayaPreview";
 import JourneyPreview from "../Components/sections/JourneyPreview";
+import RecognitionPreview from "../Components/sections/RecognitionPreview";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
       <ExpertisePreview />
       <WhyDayaPreview />
       <JourneyPreview />
+      <RecognitionPreview />
     </main>
   );
 }
