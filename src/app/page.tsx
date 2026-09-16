@@ -4,6 +4,7 @@ import ServicesPreview from "@/Components/sections/ServicesPreview";
 import ProjectsPreview from "@/Components/sections/ProjectsPreview";
 import ExpertisePreview from "@/Components/sections/ExpertisePreview";
 import WhyDayaPreview from "../Components/sections/WhyDayaPreview";
+import JourneyPreview from "../Components/sections/JourneyPreview";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <ProjectsPreview />
       <ExpertisePreview />
       <WhyDayaPreview />
+      <JourneyPreview />
     </main>
   );
 }
