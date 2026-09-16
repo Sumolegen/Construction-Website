@@ -7,6 +7,7 @@ import WhyDayaPreview from "../Components/sections/WhyDayaPreview";
 import JourneyPreview from "../Components/sections/JourneyPreview";
 import RecognitionPreview from "../Components/sections/RecognitionPreview";
 import BlogPreview from "../Components/sections/BlogPreview";
+import CTAPreview from "../Components/sections/CTAPreview";
 
 export default function Home() {
   return (
@@ -20,6 +21,7 @@ export default function Home() {
       <JourneyPreview />
       <RecognitionPreview />
       <BlogPreview />
+      <CTAPreview />
     </main>
   );
 }
