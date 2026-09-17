@@ -82,7 +82,7 @@ export default function TeamPage() {
         <Container>
           <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
             <div className="lg:col-span-5">
-              <div className="aspect-[4/5] bg-gray-200">
+              <div className="aspect-4/5 bg-gray-200">
                 <div className="flex h-full items-center justify-center">
                   <span className="text-sm font-medium uppercase tracking-[0.2em] text-gray-400">
                     Founder Image
