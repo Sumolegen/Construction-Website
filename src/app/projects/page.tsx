@@ -89,7 +89,7 @@ export default function ProjectsPage() {
 
             {/* Featured Project */}
             <article className="group">
-              <div className="relative aspect-[16/8] overflow-hidden bg-gray-200">
+              <div className="relative aspect-16/8 overflow-hidden bg-gray-200">
                 <div className="absolute inset-0 flex items-center justify-center">
                   <span className="text-sm font-medium uppercase tracking-[0.2em] text-gray-400">
                     Featured Project Image
@@ -122,7 +122,7 @@ export default function ProjectsPage() {
             <div className="grid gap-8 md:grid-cols-2">
               {projects.slice(1).map((project) => (
                 <article key={project.number} className="group">
-                  <div className="relative aspect-[4/3] overflow-hidden bg-gray-200">
+                  <div className="relative aspect-4/3 overflow-hidden bg-gray-200">
                     <div className="absolute inset-0 flex items-center justify-center">
                       <span className="text-sm font-medium uppercase tracking-[0.2em] text-gray-400">
                         Project Image
