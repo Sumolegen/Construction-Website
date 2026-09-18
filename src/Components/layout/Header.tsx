@@ -13,6 +13,7 @@ const navigation = [
   { name: "Industries", href: "/industries" },
   { name: "Team", href: "/team" },
   { name: "Awards", href: "/awards" },
+  { name: "Blog", href: "/blog" },
 ];
 
 export default function Header() {
@@ -23,6 +24,7 @@ export default function Header() {
     <header className="sticky top-0 z-50 border-b border-gray-200 bg-white/95 backdrop-blur-md">
       <Container>
         <div className="flex h-20 items-center justify-between">
+
           {/* Logo */}
           <Link
             href="/"
@@ -123,6 +125,7 @@ export default function Header() {
         >
           <nav className="border-t border-gray-200 py-5">
             <div className="flex flex-col">
+
               {navigation.map((item) => {
                 const isActive = pathname === item.href;
 
@@ -152,6 +155,7 @@ export default function Header() {
                 );
               })}
 
+              {/* Mobile Contact Button */}
               <Link
                 href="/contact"
                 onClick={() => setIsMenuOpen(false)}
@@ -163,6 +167,7 @@ export default function Header() {
               >
                 Contact Us
               </Link>
+
             </div>
           </nav>
         </div>
