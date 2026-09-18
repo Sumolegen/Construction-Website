@@ -1,23 +1,28 @@
 @import "tailwindcss";
 
 /* =========================================================
-   DAYA CONSTRUCTIONS
+   DAYA CONSTRUCTIONS & STRUCTURAL CONSULTANTS
    GLOBAL DESIGN SYSTEM
    ========================================================= */
 
+/* =========================================================
+   ROOT
+   ========================================================= */
+
 :root {
-  /* =======================================================
+  /* -------------------------------------------------------
      FONTS
-     ======================================================= */
+     ------------------------------------------------------- */
 
   --font-primary: var(--font-josefin-sans);
   --font-body: var(--font-inter);
 
-  /* =======================================================
-     GRAYSCALE ONLY
-     ======================================================= */
+  /* -------------------------------------------------------
+     GRAYSCALE PALETTE
+     ------------------------------------------------------- */
 
   --black: #111111;
+
   --gray-950: #171717;
   --gray-900: #1f1f1f;
   --gray-800: #2b2b2b;
@@ -29,34 +34,37 @@
   --gray-200: #e5e5e5;
   --gray-100: #f5f5f5;
   --gray-50: #fafafa;
+
   --white: #ffffff;
 
-  /* =======================================================
+  /* -------------------------------------------------------
      SITE COLORS
-     ======================================================= */
+     ------------------------------------------------------- */
 
   --background: var(--white);
   --foreground: var(--gray-950);
 
-  /* =======================================================
+  /* -------------------------------------------------------
      TYPOGRAPHY SCALE
-     ======================================================= */
+     ------------------------------------------------------- */
 
-  --font-size-display: clamp(3.5rem, 8vw, 6.5rem);
-  --font-size-h1: clamp(3rem, 6vw, 5rem);
-  --font-size-h2: clamp(2.25rem, 4vw, 4rem);
-  --font-size-h3: 2rem;
-  --font-size-h4: 1.5rem;
+  --font-size-display: clamp(2.75rem, 6vw, 5.25rem);
+  --font-size-h1: clamp(2.5rem, 5vw, 4.25rem);
+  --font-size-h2: clamp(2rem, 3.5vw, 3.25rem);
 
-  --font-size-body-lg: 1.125rem;
-  --font-size-body: 1rem;
-  --font-size-body-sm: 0.875rem;
-  --font-size-label: 0.6875rem;
-  --font-size-button: 0.875rem;
+  --font-size-h3: 1.75rem;
+  --font-size-h4: 1.35rem;
+
+  --font-size-body-lg: 1.05rem;
+  --font-size-body: 0.95rem;
+  --font-size-body-sm: 0.825rem;
+
+  --font-size-label: 0.625rem;
+  --font-size-button: 0.8rem;
 }
 
 /* =========================================================
-   RESET
+   GLOBAL RESET
    ========================================================= */
 
 *,
@@ -66,12 +74,23 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  margin: 0;
+  padding: 0;
   background: var(--background);
+  color: var(--foreground);
+
+  scroll-behavior: smooth;
+
+  scrollbar-width: thin;
+  scrollbar-color: var(--gray-400) var(--gray-100);
 }
 
 body {
   margin: 0;
+  padding: 0;
+
+  min-height: 100vh;
+
   background: var(--background);
   color: var(--foreground);
 
@@ -138,7 +157,7 @@ ol {
    ========================================================= */
 
 /* ---------------------------------------------------------
-   Display
+   DISPLAY
    --------------------------------------------------------- */
 
 .text-display {
@@ -150,7 +169,7 @@ ol {
 }
 
 /* ---------------------------------------------------------
-   Heading 1
+   H1
    --------------------------------------------------------- */
 
 .text-h1 {
@@ -162,7 +181,7 @@ ol {
 }
 
 /* ---------------------------------------------------------
-   Heading 2
+   H2
    --------------------------------------------------------- */
 
 .text-h2 {
@@ -174,7 +193,7 @@ ol {
 }
 
 /* ---------------------------------------------------------
-   Heading 3
+   H3
    --------------------------------------------------------- */
 
 .text-h3 {
@@ -186,7 +205,7 @@ ol {
 }
 
 /* ---------------------------------------------------------
-   Heading 4
+   H4
    --------------------------------------------------------- */
 
 .text-h4 {
@@ -198,7 +217,7 @@ ol {
 }
 
 /* ---------------------------------------------------------
-   Body Large
+   BODY LARGE
    --------------------------------------------------------- */
 
 .text-body-lg {
@@ -208,7 +227,7 @@ ol {
 }
 
 /* ---------------------------------------------------------
-   Body
+   BODY
    --------------------------------------------------------- */
 
 .text-body {
@@ -218,7 +237,7 @@ ol {
 }
 
 /* ---------------------------------------------------------
-   Body Small
+   BODY SMALL
    --------------------------------------------------------- */
 
 .text-body-sm {
@@ -228,7 +247,7 @@ ol {
 }
 
 /* ---------------------------------------------------------
-   Labels / Eyebrows
+   LABEL
    --------------------------------------------------------- */
 
 .text-label {
@@ -241,7 +260,7 @@ ol {
 }
 
 /* ---------------------------------------------------------
-   Buttons
+   BUTTON
    --------------------------------------------------------- */
 
 .text-button {
@@ -252,7 +271,7 @@ ol {
 }
 
 /* =========================================================
-   TEXT COLORS
+   COMMON TEXT COLORS
    ========================================================= */
 
 .text-primary {
@@ -276,7 +295,7 @@ ol {
 }
 
 /* =========================================================
-   BACKGROUND COLORS
+   COMMON BACKGROUNDS
    ========================================================= */
 
 .bg-page {
@@ -300,7 +319,7 @@ ol {
 }
 
 /* =========================================================
-   BORDERS
+   COMMON BORDERS
    ========================================================= */
 
 .border-default {
@@ -350,11 +369,6 @@ ol {
    SCROLLBAR
    ========================================================= */
 
-html {
-  scrollbar-width: thin;
-  scrollbar-color: var(--gray-400) var(--gray-100);
-}
-
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
@@ -374,25 +388,16 @@ html {
 }
 
 /* =========================================================
-   SMOOTH INTERACTIONS
+   GLOBAL LINKS & BUTTONS
    ========================================================= */
 
 a,
 button {
-  transition-property:
-    color,
-    background-color,
-    border-color,
-    opacity,
-    transform,
-    box-shadow;
-  transition-timing-function: ease;
-  transition-duration: 300ms;
+  -webkit-tap-highlight-color: transparent;
 }
 
 /* =========================================================
    ARCHITECTURAL GRID
-   Reusable grayscale background pattern
    ========================================================= */
 
 .architectural-grid {
@@ -412,10 +417,50 @@ button {
 }
 
 /* =========================================================
+   DARK ARCHITECTURAL GRID
+   ========================================================= */
+
+.architectural-grid-dark {
+  background-image:
+    linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.07) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.07) 1px,
+      transparent 1px
+    );
+
+  background-size: 72px 72px;
+}
+
+/* =========================================================
    SMALL ARCHITECTURAL GRID
    ========================================================= */
 
 .architectural-grid-small {
+  background-image:
+    linear-gradient(
+      to right,
+      rgba(17, 17, 17, 0.05) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(17, 17, 17, 0.05) 1px,
+      transparent 1px
+    );
+
+  background-size: 48px 48px;
+}
+
+/* =========================================================
+   DARK SMALL GRID
+   ========================================================= */
+
+.architectural-grid-small-dark {
   background-image:
     linear-gradient(
       to right,
@@ -432,7 +477,7 @@ button {
 }
 
 /* =========================================================
-   CONTAINER HELPERS
+   SECTION SPACING
    ========================================================= */
 
 .section-space {
@@ -455,23 +500,35 @@ button {
 }
 
 /* =========================================================
-   HORIZONTAL LINE
+   HORIZONTAL LINES
    ========================================================= */
 
 .line {
-  height: 1px;
   width: 100%;
-  background: var(--gray-200);
+  height: 1px;
+  background-color: var(--gray-200);
+}
+
+.line-light {
+  width: 100%;
+  height: 1px;
+  background-color: var(--gray-100);
+}
+
+.line-medium {
+  width: 100%;
+  height: 1px;
+  background-color: var(--gray-300);
 }
 
 .line-dark {
-  height: 1px;
   width: 100%;
-  background: var(--gray-950);
+  height: 1px;
+  background-color: var(--gray-950);
 }
 
 /* =========================================================
-   HOVER IMAGE EFFECT
+   IMAGE HOVER
    ========================================================= */
 
 .image-hover {
@@ -486,6 +543,99 @@ button {
 
 .image-hover:hover img {
   transform: scale(1.04);
+}
+
+/* =========================================================
+   CARD HOVER
+   ========================================================= */
+
+.card-hover {
+  transition:
+    transform 300ms ease,
+    border-color 300ms ease,
+    box-shadow 300ms ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+}
+
+/* =========================================================
+   BUTTON HOVER
+   ========================================================= */
+
+.button-hover {
+  transition:
+    transform 300ms ease,
+    background-color 300ms ease,
+    border-color 300ms ease,
+    color 300ms ease,
+    box-shadow 300ms ease;
+}
+
+.button-hover:hover {
+  transform: translateY(-2px);
+}
+
+/* =========================================================
+   ARCHITECTURAL CORNER MARKS
+   ========================================================= */
+
+.corner-mark {
+  position: relative;
+}
+
+.corner-mark::before,
+.corner-mark::after {
+  content: "";
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  pointer-events: none;
+}
+
+.corner-mark::before {
+  top: 16px;
+  left: 16px;
+  border-top: 1px solid var(--gray-300);
+  border-left: 1px solid var(--gray-300);
+}
+
+.corner-mark::after {
+  right: 16px;
+  bottom: 16px;
+  border-right: 1px solid var(--gray-300);
+  border-bottom: 1px solid var(--gray-300);
+}
+
+/* =========================================================
+   STICKY HEADER SUPPORT
+   ========================================================= */
+
+/*
+  Do not add overflow: hidden / auto / scroll to body,
+  html, or the header's parent.
+
+  The Header component uses:
+
+  position: sticky;
+  top: 0;
+  z-index: 100;
+*/
+
+header {
+  isolation: isolate;
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 639px) {
+  .section-space {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
 }
 
 /* =========================================================
