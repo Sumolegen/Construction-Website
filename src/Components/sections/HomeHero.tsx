@@ -1,125 +1,166 @@
-import Image from "next/image";
 import Link from "next/link";
 
 export default function HomeHero() {
   return (
-    <section className="relative min-h-[calc(100vh-80px)] overflow-hidden bg-white">
-      {/* Main Hero */}
-      <div className="relative z-10 mx-auto flex min-h-[calc(100vh-80px)] max-w-[1600px] items-center px-5 pb-28 pt-16 sm:px-8 lg:px-12 lg:pb-32 lg:pt-20">
-        <div className="grid w-full items-center lg:grid-cols-12">
-          {/* Founder Image */}
-          <div className="relative order-2 mt-10 h-[400px] sm:h-[500px] lg:order-1 lg:col-span-5 lg:mt-0 lg:h-[650px]">
-            <div className="absolute bottom-0 left-[-10%] h-full w-[115%] sm:left-0 sm:w-full">
-              <Image
-                src="/images/founder-sketch.jpg"
-                alt="Daya Constructions founder"
-                fill
-                priority
-                className="object-contain object-bottom grayscale"
-              />
+    <section className="relative overflow-hidden bg-[#f7f7f5]">
+      {/* Subtle Background Grid */}
+      <div
+        className="pointer-events-none absolute inset-0 opacity-40"
+        style={{
+          backgroundImage: `
+            linear-gradient(to right, rgba(0,0,0,0.035) 1px, transparent 1px),
+            linear-gradient(to bottom, rgba(0,0,0,0.035) 1px, transparent 1px)
+          `,
+          backgroundSize: "80px 80px",
+        }}
+      />
+
+      {/* Soft Background Glow */}
+      <div className="pointer-events-none absolute left-1/2 top-1/2 h-[600px] w-[600px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-white opacity-70 blur-3xl" />
+
+      <div className="relative mx-auto min-h-[calc(100vh-80px)] max-w-7xl px-5 py-16 sm:px-6 lg:flex lg:min-h-[calc(100vh-80px)] lg:items-center lg:px-8 lg:py-20">
+        <div className="grid w-full items-center gap-14 lg:grid-cols-2 lg:gap-20">
+          {/* LEFT CONTENT */}
+          <div className="max-w-xl">
+            {/* Eyebrow */}
+            <div className="mb-6 flex items-center gap-3">
+              <span className="h-px w-8 bg-gray-500" />
+
+              <p className="font-[var(--font-josefin-sans)] text-xs font-medium uppercase tracking-[0.22em] text-gray-500">
+                Daya Constructions
+              </p>
+            </div>
+
+            {/* Heading */}
+            <h1 className="font-[var(--font-josefin-sans)] text-4xl font-semibold leading-[1.05] tracking-[-0.035em] text-gray-950 sm:text-5xl lg:text-6xl">
+              Build with
+              <br />
+              confidence.
+            </h1>
+
+            {/* Description */}
+            <p className="mt-7 max-w-md font-[var(--font-inter)] text-sm leading-7 text-gray-500 sm:text-base">
+              Construction and structural expertise built on engineering
+              precision, practical experience and trust.
+            </p>
+
+            {/* CTA */}
+            <div className="mt-8 flex flex-wrap items-center gap-5">
+              <Link
+                href="/projects"
+                className="group inline-flex items-center gap-4 rounded-full bg-gray-950 px-5 py-3 font-[var(--font-josefin-sans)] text-sm font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-gray-800"
+              >
+                <span>Explore Projects</span>
+
+                <span className="flex h-6 w-6 items-center justify-center rounded-full bg-gray-800 transition-transform duration-300 group-hover:translate-x-1">
+                  →
+                </span>
+              </Link>
+
+              <Link
+                href="/about"
+                className="group inline-flex items-center gap-2 font-[var(--font-josefin-sans)] text-sm font-medium text-gray-600 transition-colors duration-300 hover:text-gray-950"
+              >
+                <span>Our Story</span>
+
+                <span className="transition-transform duration-300 group-hover:translate-x-1">
+                  →
+                </span>
+              </Link>
+            </div>
+
+            {/* Small Information */}
+            <div className="mt-12 grid max-w-md grid-cols-2 border-t border-gray-300 pt-5">
+              <div>
+                <p className="font-[var(--font-josefin-sans)] text-xl font-semibold text-gray-950">
+                  5+
+                </p>
+
+                <p className="mt-1 font-[var(--font-inter)] text-xs text-gray-500">
+                  Completed Projects
+                </p>
+              </div>
+
+              <div className="border-l border-gray-300 pl-6">
+                <p className="font-[var(--font-josefin-sans)] text-xl font-semibold text-gray-950">
+                  40+
+                </p>
+
+                <p className="mt-1 font-[var(--font-inter)] text-xs text-gray-500">
+                  Years Family Legacy
+                </p>
+              </div>
             </div>
           </div>
 
-          {/* Hero Content */}
-          <div className="relative z-20 order-1 text-center lg:order-2 lg:col-span-7 lg:text-left">
-            <div className="mx-auto max-w-5xl lg:ml-auto lg:mr-0">
-              {/* Eyebrow */}
-              <p className="mb-6 font-[var(--font-josefin-sans)] text-xs font-medium uppercase tracking-[0.3em] text-gray-500 sm:text-sm">
-                Daya Constructions
-              </p>
+          {/* RIGHT IMAGE / VISUAL HOLDER */}
+          <div className="relative">
+            <div className="relative aspect-[4/5] overflow-hidden border border-gray-300 bg-gray-200">
+              {/* Architectural Image Placeholder */}
 
-              {/* Main Heading */}
-              <h1 className="font-[var(--font-josefin-sans)] font-bold uppercase leading-[0.82] tracking-[-0.055em] text-gray-950">
-                <span className="block text-[clamp(4rem,10vw,9rem)]">
-                  Build
-                </span>
+              <div className="absolute inset-0 bg-[#e9e9e7]">
+                {/* Vertical Architectural Lines */}
+                <div className="absolute left-[18%] top-0 h-full w-px bg-gray-300" />
 
-                <span className="block text-[clamp(4rem,10vw,9rem)] text-gray-400">
-                  With
-                </span>
+                <div className="absolute left-[38%] top-0 h-full w-px bg-gray-300" />
 
-                <span className="block text-[clamp(4rem,10vw,9rem)]">
-                  Confidence.
-                </span>
-              </h1>
+                <div className="absolute left-[62%] top-0 h-full w-px bg-gray-300" />
 
-              {/* Tagline */}
-              <div className="mt-8 sm:mt-10">
-                <p className="font-[var(--font-josefin-sans)] text-sm font-medium uppercase tracking-[0.3em] text-gray-800 sm:text-base">
-                  Strength. Precision. Trust.
-                </p>
+                <div className="absolute left-[82%] top-0 h-full w-px bg-gray-300" />
 
-                <div className="mx-auto mt-4 h-px w-16 bg-gray-400 lg:mx-0" />
+                {/* Horizontal Architectural Lines */}
+                <div className="absolute left-0 top-[22%] h-px w-full bg-gray-300" />
+
+                <div className="absolute left-0 top-[48%] h-px w-full bg-gray-300" />
+
+                <div className="absolute left-0 top-[74%] h-px w-full bg-gray-300" />
+
+                {/* Large Architectural Shape */}
+                <div className="absolute bottom-[12%] left-[12%] h-[45%] w-[65%] border border-gray-400 bg-gray-300/40">
+                  <div className="absolute bottom-0 left-[12%] h-[70%] w-[22%] bg-gray-400/50" />
+
+                  <div className="absolute bottom-0 left-[42%] h-[85%] w-[20%] bg-gray-500/40" />
+
+                  <div className="absolute bottom-0 right-[10%] h-[55%] w-[15%] bg-gray-400/50" />
+                </div>
+
+                {/* Image Placeholder Label */}
+                <div className="absolute left-6 top-6">
+                  <p className="font-[var(--font-josefin-sans)] text-[10px] font-medium uppercase tracking-[0.25em] text-gray-500">
+                    Featured Project
+                  </p>
+                </div>
+
+                {/* Bottom Label */}
+                <div className="absolute bottom-6 left-6">
+                  <p className="font-[var(--font-josefin-sans)] text-2xl font-semibold tracking-tight text-gray-800">
+                    Daya
+                  </p>
+
+                  <p className="mt-1 font-[var(--font-inter)] text-xs text-gray-500">
+                    Construction / Structural
+                  </p>
+                </div>
               </div>
 
-              {/* Description */}
-              <p className="mx-auto mt-6 max-w-lg text-sm leading-7 text-gray-500 sm:text-base lg:mx-0">
-                Construction and structural expertise shaped by engineering,
-                experience and a commitment to quality.
-              </p>
-
-              {/* Buttons */}
-              <div className="mt-8 flex flex-col items-center gap-4 sm:flex-row lg:justify-start">
-                <Link
-                  href="/projects"
-                  className="group inline-flex items-center gap-4 rounded-full bg-gray-950 px-6 py-3.5 font-[var(--font-josefin-sans)] text-sm font-medium text-white transition-all duration-300 hover:-translate-y-1 hover:bg-gray-800"
-                >
-                  <span>Explore Projects</span>
-
-                  <span className="flex h-7 w-7 items-center justify-center rounded-full bg-gray-800 transition-transform duration-300 group-hover:translate-x-1">
-                    →
-                  </span>
-                </Link>
-
-                <Link
-                  href="/about"
-                  className="group inline-flex items-center gap-3 px-3 py-3 font-[var(--font-josefin-sans)] text-sm font-medium text-gray-700 transition-all duration-300 hover:text-gray-950"
-                >
-                  <span className="flex h-9 w-9 items-center justify-center rounded-full border border-gray-400 transition-all duration-300 group-hover:border-gray-950 group-hover:bg-gray-950 group-hover:text-white">
-                    <svg
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                      className="ml-0.5 h-3.5 w-3.5"
-                      aria-hidden="true"
-                    >
-                      <path d="M8 5.14v13.72L19 12 8 5.14z" />
-                    </svg>
-                  </span>
-
-                  <span className="transition-transform duration-300 group-hover:translate-x-1">
-                    Our Story
-                  </span>
-                </Link>
+              {/* Corner Mark */}
+              <div className="absolute right-5 top-5 flex h-8 w-8 items-center justify-center border border-gray-400 text-xs text-gray-500">
+                ↗
               </div>
+            </div>
+
+            {/* Side Number */}
+            <div className="absolute -right-3 bottom-10 hidden lg:block">
+              <p className="font-[var(--font-josefin-sans)] text-[10px] uppercase tracking-[0.25em] text-gray-400 [writing-mode:vertical-rl]">
+                Building With Strength
+              </p>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Bottom Text */}
-      <div className="absolute bottom-10 left-5 z-20 hidden sm:block lg:left-12">
-        <p className="font-[var(--font-josefin-sans)] text-[10px] font-medium uppercase tracking-[0.3em] text-gray-500">
-          Building With Strength
-        </p>
-      </div>
-
-      {/* Torn Bottom Shape */}
-      <div
-        className="absolute bottom-0 left-0 z-10 h-24 w-full bg-gray-950"
-        style={{
-          clipPath:
-            "polygon(0 55%, 3% 62%, 7% 58%, 11% 68%, 15% 62%, 19% 70%, 24% 64%, 29% 73%, 34% 66%, 39% 72%, 44% 60%, 49% 68%, 54% 61%, 59% 71%, 64% 65%, 69% 75%, 74% 67%, 79% 73%, 84% 64%, 89% 71%, 94% 65%, 100% 70%, 100% 100%, 0 100%)",
-        }}
-      />
-
-      {/* Torn Edge */}
-      <div
-        className="absolute bottom-[70px] left-0 z-10 h-1 w-full bg-gray-400"
-        style={{
-          clipPath:
-            "polygon(0 60%, 5% 45%, 10% 62%, 15% 48%, 20% 64%, 25% 44%, 30% 58%, 35% 42%, 40% 61%, 45% 45%, 50% 57%, 55% 42%, 60% 60%, 65% 45%, 70% 62%, 75% 47%, 80% 59%, 85% 44%, 90% 60%, 95% 48%, 100% 58%, 100% 100%, 0 100%)",
-        }}
-      />
+      {/* Bottom Border */}
+      <div className="absolute bottom-0 left-0 h-px w-full bg-gray-300" />
     </section>
   );
 }
