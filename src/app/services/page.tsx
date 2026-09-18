@@ -1,6 +1,8 @@
 import Link from "next/link";
 import Container from "../../Components/ui/Container";
 import SectionHeading from "../../Components/ui/SectionHeading";
+import ImagePlaceholder from "../../Components/cards/ImagePlaceholder";
+import CTAPreview from "../../Components/sections/CTAPreview";
 
 const services = [
   {
@@ -8,48 +10,56 @@ const services = [
     title: "Structural Design",
     description:
       "Engineering-focused structural design solutions developed with safety, precision, functionality and long-term performance in mind.",
+    type: "Design",
   },
   {
     number: "02",
     title: "Structural Consultancy",
     description:
       "Professional technical guidance to support structural decisions, project planning and practical engineering requirements.",
+    type: "Consultancy",
   },
   {
     number: "03",
     title: "Construction",
     description:
       "Reliable construction execution with attention to quality, coordination, workmanship, durability and project requirements.",
+    type: "Execution",
   },
   {
     number: "04",
     title: "Restoration",
     description:
       "Careful restoration solutions that help preserve existing structures while improving their usability, condition and performance.",
+    type: "Restoration",
   },
   {
     number: "05",
     title: "Rehabilitation",
     description:
       "Engineering-led rehabilitation approaches focused on improving the strength, condition and serviceability of existing structures.",
+    type: "Engineering",
   },
   {
     number: "06",
     title: "Project Management",
     description:
       "Structured planning and coordination from project initiation through execution, keeping scope, quality, resources and timelines aligned.",
+    type: "Management",
   },
   {
     number: "07",
     title: "Lump Sum Contracts",
     description:
-      "Clearly defined construction contracts with an agreed project scope and contract value, supporting better cost planning and control.",
+      "Clearly defined construction contracts with an agreed project scope and fixed contract value for better cost planning and control.",
+    type: "Contracts",
   },
   {
     number: "08",
     title: "Labour Contracts",
     description:
       "Skilled labour and workforce coordination for construction activities, supporting efficient execution and quality workmanship.",
+    type: "Workforce",
   },
 ];
 
@@ -58,287 +68,1032 @@ const process = [
     number: "01",
     title: "Understand",
     description:
-      "We begin by understanding the project requirements, objectives, site conditions and practical constraints.",
+      "We begin by understanding the project, site conditions, requirements, objectives and practical considerations.",
   },
   {
     number: "02",
     title: "Plan",
     description:
-      "We organize the technical requirements, resources and execution approach around the needs of the project.",
+      "The project is developed through appropriate engineering decisions, coordination and execution planning.",
   },
   {
     number: "03",
     title: "Execute",
     description:
-      "We focus on coordinated execution, quality workmanship and attention to detail throughout the project.",
-  },
-  {
-    number: "04",
-    title: "Deliver",
-    description:
-      "We work toward delivering dependable outcomes with a focus on quality, functionality and long-term performance.",
+      "We focus on coordinated implementation, quality workmanship, communication and responsible project delivery.",
   },
 ];
 
-const industries = [
-  "Residential",
-  "Commercial",
-  "Industrial",
-  "Institutional",
-  "Renovation",
-  "Existing Structures",
-];
+function ServiceIcon({ number }: { number: string }) {
+  const icons: Record<string, React.ReactNode> = {
+    "01": (
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.4"
+        className="h-5 w-5"
+        aria-hidden="true"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M4 20h16M6 20V9l6-5 6 5v11M9 20v-6h6v6"
+        />
+      </svg>
+    ),
+
+    "02": (
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.4"
+        className="h-5 w-5"
+        aria-hidden="true"
+      >
+        <circle cx="12" cy="12" r="8" />
+        <path
+          strokeLinecap="round"
+          d="M12 8v8M8 12h8"
+        />
+      </svg>
+    ),
+
+    "03": (
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.4"
+        className="h-5 w-5"
+        aria-hidden="true"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M4 20h16M5 20V9h14v11M8 9V5h8v4M8 13h2m4 0h2M8 17h2m4 0h2"
+        />
+      </svg>
+    ),
+
+    "04": (
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.4"
+        className="h-5 w-5"
+        aria-hidden="true"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M4 19h16M6 19V8l6-4 6 4v11"
+        />
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M9 19v-5h6v5M8 9h.01M12 7h.01M16 9h.01"
+        />
+      </svg>
+    ),
+
+    "05": (
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.4"
+        className="h-5 w-5"
+        aria-hidden="true"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M5 19h14M7 19V7h10v12M9 7V4h6v3M10 11h4M10 15h4"
+        />
+      </svg>
+    ),
+
+    "06": (
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.4"
+        className="h-5 w-5"
+        aria-hidden="true"
+      >
+        <rect
+          x="5"
+          y="5"
+          width="14"
+          height="14"
+          rx="1"
+        />
+        <path
+          strokeLinecap="round"
+          d="M8 9h8M8 13h5M8 16h3"
+        />
+      </svg>
+    ),
+
+    "07": (
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.4"
+        className="h-5 w-5"
+        aria-hidden="true"
+      >
+        <rect
+          x="4"
+          y="6"
+          width="16"
+          height="13"
+          rx="1"
+        />
+        <path
+          strokeLinecap="round"
+          d="M9 6V4h6v2M8 12h8M12 9v6"
+        />
+      </svg>
+    ),
+
+    "08": (
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.4"
+        className="h-5 w-5"
+        aria-hidden="true"
+      >
+        <circle cx="8" cy="8" r="2.5" />
+        <circle cx="16" cy="8" r="2.5" />
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M3.5 19c.5-3.2 2-5 4.5-5s4 1.8 4.5 5M11.5 19c.5-3.2 2-5 4.5-5s4 1.8 4.5 5"
+        />
+      </svg>
+    ),
+  };
+
+  return icons[number];
+}
+
+function ArrowIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.6"
+      className="h-4 w-4"
+      aria-hidden="true"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M5 12h14m-6-6 6 6-6 6"
+      />
+    </svg>
+  );
+}
 
 export default function ServicesPage() {
   return (
-    <main>
-      {/* Hero */}
-      <section className="bg-gray-100">
-        <Container>
-          <div className="flex min-h-[70vh] items-center py-24 sm:py-28 lg:py-32">
-            <div className="max-w-5xl">
-              <p className="mb-6 text-sm font-medium uppercase tracking-[0.25em] text-gray-500">
-                Our Services
-              </p>
+    <main className="overflow-hidden bg-white">
 
-              <h1 className="text-5xl font-semibold leading-[1.05] tracking-tight text-gray-950 sm:text-6xl lg:text-8xl">
+      {/* =====================================================
+          HERO
+      ====================================================== */}
+
+      <section className="relative overflow-hidden border-b border-gray-200 bg-white">
+
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 opacity-60"
+          style={{
+            backgroundImage: `
+              linear-gradient(
+                to right,
+                rgba(17,17,17,0.035) 1px,
+                transparent 1px
+              ),
+              linear-gradient(
+                to bottom,
+                rgba(17,17,17,0.035) 1px,
+                transparent 1px
+              )
+            `,
+            backgroundSize: "72px 72px",
+          }}
+        />
+
+        <Container>
+          <div className="relative grid min-h-[62vh] items-center gap-12 py-20 sm:py-24 lg:grid-cols-12 lg:gap-16 lg:py-28">
+
+            {/* Left */}
+
+            <div className="lg:col-span-7">
+
+              <div className="mb-6 flex items-center gap-3">
+                <span className="h-px w-10 bg-gray-950" />
+
+                <span className="text-label text-gray-500">
+                  Our Services
+                </span>
+              </div>
+
+              <h1 className="text-display max-w-5xl text-gray-950">
                 Engineering.
                 <br />
-                Construction.
+                <span className="text-gray-500">
+                  Construction.
+                </span>
                 <br />
-                Complete solutions.
+                Delivered with purpose.
               </h1>
 
-              <p className="mt-8 max-w-2xl text-base leading-7 text-gray-600 sm:text-lg">
+              <p className="text-body-lg mt-8 max-w-2xl text-gray-600">
                 From structural design and consultancy to construction,
-                restoration and project management, we provide practical
+                restoration and project management, Daya provides practical
                 solutions for the built environment.
               </p>
 
-              <div className="mt-10 flex flex-wrap gap-4">
-                <Link
-                  href="#services"
-                  className="inline-flex items-center justify-center rounded-md bg-gray-950 px-6 py-3 text-sm font-medium text-white transition-colors duration-200 hover:bg-gray-800"
-                >
-                  Explore Services
-                </Link>
+              <div className="mt-9 flex flex-wrap gap-3">
 
                 <Link
                   href="/contact"
-                  className="inline-flex items-center justify-center rounded-md border border-gray-900 px-6 py-3 text-sm font-medium text-gray-900 transition-colors duration-200 hover:bg-gray-900 hover:text-white"
+                  className="
+                    group
+                    inline-flex
+                    min-h-12
+                    items-center
+                    gap-4
+                    rounded-full
+                    bg-gray-950
+                    px-6
+                    py-3
+                    text-button
+                    text-white
+                    transition-all
+                    duration-300
+                    hover:-translate-y-1
+                    hover:bg-gray-800
+                    hover:shadow-xl
+                  "
                 >
-                  Start a Conversation
+                  <span>Discuss Your Project</span>
+
+                  <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white/10 transition-transform duration-300 group-hover:translate-x-1">
+                    <ArrowIcon />
+                  </span>
                 </Link>
+
+                <a
+                  href="#services"
+                  className="
+                    inline-flex
+                    min-h-12
+                    items-center
+                    gap-3
+                    rounded-full
+                    border
+                    border-gray-300
+                    px-6
+                    py-3
+                    text-button
+                    text-gray-700
+                    transition-all
+                    duration-300
+                    hover:-translate-y-1
+                    hover:border-gray-950
+                    hover:text-gray-950
+                  "
+                >
+                  Explore Services
+                </a>
+
               </div>
             </div>
+
+            {/* Right Visual */}
+
+            <div className="relative lg:col-span-5">
+
+              <div className="relative">
+
+                <div className="overflow-hidden border border-gray-200 bg-gray-100 shadow-2xl shadow-gray-950/10">
+                  <ImagePlaceholder
+                    label="Construction & Engineering"
+                    title="Daya"
+                    aspectRatio="aspect-[4/5]"
+                  />
+                </div>
+
+                {/* Corner */}
+
+                <span
+                  aria-hidden="true"
+                  className="absolute -left-3 -top-3 h-16 w-16 border-l border-t border-gray-400"
+                />
+
+                <span
+                  aria-hidden="true"
+                  className="absolute -bottom-3 -right-3 h-16 w-16 border-b border-r border-gray-400"
+                />
+
+                {/* Floating card */}
+
+                <div className="absolute -bottom-6 -left-5 w-60 border border-gray-200 bg-white p-5 shadow-xl sm:-left-8">
+
+                  <div className="flex items-center justify-between">
+
+                    <span className="text-label text-gray-400">
+                      Daya
+                    </span>
+
+                    <span className="flex h-9 w-9 items-center justify-center rounded-full bg-gray-950 text-white">
+                      <ServiceIcon number="01" />
+                    </span>
+
+                  </div>
+
+                  <p className="mt-3 font-[var(--font-primary)] text-h4 text-gray-950">
+                    Built on engineering.
+                  </p>
+
+                  <div className="mt-4 h-px bg-gray-200" />
+
+                  <p className="text-body-sm mt-3 text-gray-500">
+                    Practical construction knowledge supported by structural
+                    engineering expertise.
+                  </p>
+
+                </div>
+
+              </div>
+
+            </div>
+
           </div>
         </Container>
+
+        {/* Scroll */}
+
+        <div
+          aria-hidden="true"
+          className="absolute bottom-7 left-1/2 hidden -translate-x-1/2 items-center gap-3 lg:flex"
+        >
+          <span className="h-px w-8 bg-gray-300" />
+
+          <span className="text-label text-gray-400">
+            Scroll to explore
+          </span>
+
+          <span className="h-px w-8 bg-gray-300" />
+        </div>
+
       </section>
 
-      {/* Services */}
+      {/* =====================================================
+          SERVICES
+      ====================================================== */}
+
       <section
         id="services"
-        className="bg-white py-24 sm:py-28 lg:py-32"
+        className="bg-white py-20 sm:py-24 lg:py-28"
       >
         <Container>
-          <div className="flex flex-col gap-12">
-            <SectionHeading
-              eyebrow="What We Do"
-              title="Solutions for every stage of your project."
-              description="Our services bring together structural engineering, construction knowledge and project coordination to support different project requirements."
-            />
 
-            <div className="grid border-t border-gray-300 md:grid-cols-2">
+          <div className="flex flex-col gap-12">
+
+            {/* Section heading */}
+
+            <div className="grid gap-8 lg:grid-cols-12 lg:items-end">
+
+              <div className="lg:col-span-6">
+                <SectionHeading
+                  eyebrow="What We Do"
+                  title="Services shaped around the realities of construction."
+                  description="Each service combines technical understanding with practical project experience."
+                />
+              </div>
+
+              <div className="lg:col-span-4 lg:col-start-9">
+                <p className="text-body-sm text-gray-500">
+                  We work across design, engineering, construction and
+                  project coordination to support projects from early
+                  decisions through execution.
+                </p>
+              </div>
+
+            </div>
+
+            {/* Service cards */}
+
+            <div className="grid border-l border-t border-gray-200 sm:grid-cols-2 lg:grid-cols-3">
+
               {services.map((service) => (
                 <article
                   key={service.number}
-                  className="group border-b border-gray-300 p-6 md:p-8 lg:p-10"
+                  className="
+                    group
+                    relative
+                    min-h-[290px]
+                    overflow-hidden
+                    border-b
+                    border-r
+                    border-gray-200
+                    p-6
+                    transition-all
+                    duration-500
+                    hover:bg-gray-50
+                    sm:p-7
+                    lg:p-8
+                  "
                 >
-                  <div className="flex items-start justify-between gap-6">
-                    <span className="text-sm font-medium text-gray-400">
-                      {service.number}
+
+                  {/* Large background number */}
+
+                  <span
+                    aria-hidden="true"
+                    className="
+                      pointer-events-none
+                      absolute
+                      -right-3
+                      -top-8
+                      font-[var(--font-primary)]
+                      text-[8rem]
+                      font-semibold
+                      leading-none
+                      tracking-[-0.08em]
+                      text-gray-100
+                      transition-transform
+                      duration-500
+                      group-hover:-translate-y-2
+                    "
+                  >
+                    {service.number}
+                  </span>
+
+                  {/* Top */}
+
+                  <div className="relative z-10 flex items-start justify-between">
+
+                    <div>
+                      <span className="text-label text-gray-400">
+                        {service.number}
+                      </span>
+
+                      <p className="mt-2 text-label text-gray-400">
+                        {service.type}
+                      </p>
+                    </div>
+
+                    <span
+                      className="
+                        flex
+                        h-10
+                        w-10
+                        items-center
+                        justify-center
+                        rounded-full
+                        border
+                        border-gray-200
+                        bg-white
+                        text-gray-500
+                        transition-all
+                        duration-300
+                        group-hover:border-gray-950
+                        group-hover:bg-gray-950
+                        group-hover:text-white
+                      "
+                    >
+                      <ServiceIcon number={service.number} />
                     </span>
 
-                    <span className="text-gray-400 transition-transform duration-200 group-hover:translate-x-1 group-hover:-translate-y-1">
-                      ↗
-                    </span>
                   </div>
 
-                  <h2 className="mt-12 text-2xl font-semibold tracking-tight text-gray-900 sm:text-3xl">
-                    {service.title}
-                  </h2>
+                  {/* Content */}
 
-                  <p className="mt-4 max-w-xl text-sm leading-7 text-gray-600 sm:text-base">
-                    {service.description}
-                  </p>
+                  <div className="relative z-10 mt-16">
+
+                    <h2 className="font-[var(--font-primary)] text-h4 font-semibold tracking-[-0.025em] text-gray-950">
+                      {service.title}
+                    </h2>
+
+                    <p className="text-body-sm mt-4 max-w-md text-gray-500">
+                      {service.description}
+                    </p>
+
+                  </div>
+
+                  {/* Bottom */}
+
+                  <div className="absolute bottom-6 left-6 right-6 flex items-center justify-between sm:left-7 sm:right-7 lg:left-8 lg:right-8">
+
+                    <span className="text-label text-gray-400 transition-colors duration-300 group-hover:text-gray-950">
+                      Explore Service
+                    </span>
+
+                    <span className="text-gray-400 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-gray-950">
+                      <ArrowIcon />
+                    </span>
+
+                  </div>
+
                 </article>
               ))}
+
             </div>
+
           </div>
+
         </Container>
       </section>
 
-      {/* Process */}
-      <section className="bg-gray-100 py-24 sm:py-28 lg:py-32">
-        <Container>
-          <div className="flex flex-col gap-12">
-            <SectionHeading
-              eyebrow="Our Process"
-              title="A structured approach from start to finish."
-              description="Every project is approached through clear stages that help align technical requirements, execution and project goals."
-            />
+      {/* =====================================================
+          ENGINEERING APPROACH
+      ====================================================== */}
 
-            <div className="grid border-t border-gray-300 md:grid-cols-2 lg:grid-cols-4">
+      <section className="bg-gray-50 py-20 sm:py-24 lg:py-28">
+        <Container>
+
+          <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-20">
+
+            {/* Image */}
+
+            <div className="lg:col-span-5">
+
+              <div className="relative">
+
+                <ImagePlaceholder
+                  label="Engineering Approach"
+                  title="Precision"
+                  aspectRatio="aspect-[4/5]"
+                />
+
+                <div className="absolute -bottom-5 -right-5 hidden h-24 w-24 border border-gray-300 bg-white lg:block">
+
+                  <div className="flex h-full items-center justify-center">
+
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.3"
+                      className="h-7 w-7 text-gray-700"
+                      aria-hidden="true"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M4 19h16M6 19V8l6-4 6 4v11M9 19v-5h6v5"
+                      />
+                    </svg>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+            {/* Content */}
+
+            <div className="lg:col-span-6 lg:col-start-7">
+
+              <SectionHeading
+                eyebrow="Engineering Approach"
+                title="Good construction starts with good decisions."
+                description="Our work connects engineering knowledge with practical construction understanding."
+              />
+
+              <div className="mt-10 space-y-0 border-t border-gray-300">
+
+                <div className="group flex gap-5 border-b border-gray-300 py-6">
+
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gray-950 text-white">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      className="h-4 w-4"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        d="M12 3v18M3 12h18"
+                      />
+                    </svg>
+                  </span>
+
+                  <div>
+                    <h3 className="font-[var(--font-primary)] text-h4 text-gray-950">
+                      Technical Precision
+                    </h3>
+
+                    <p className="text-body-sm mt-2 text-gray-500">
+                      Engineering decisions are considered with structural
+                      performance, safety and durability in mind.
+                    </p>
+                  </div>
+
+                </div>
+
+                <div className="group flex gap-5 border-b border-gray-300 py-6">
+
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gray-950 text-white">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      className="h-4 w-4"
+                    >
+                      <circle cx="12" cy="12" r="8" />
+                      <path
+                        strokeLinecap="round"
+                        d="M8 12h8"
+                      />
+                    </svg>
+                  </span>
+
+                  <div>
+                    <h3 className="font-[var(--font-primary)] text-h4 text-gray-950">
+                      Practical Thinking
+                    </h3>
+
+                    <p className="text-body-sm mt-2 text-gray-500">
+                      Solutions are developed around real site conditions,
+                      project requirements and execution realities.
+                    </p>
+                  </div>
+
+                </div>
+
+                <div className="group flex gap-5 py-6">
+
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gray-950 text-white">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      className="h-4 w-4"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        d="M5 12l4 4L19 6"
+                      />
+                    </svg>
+                  </span>
+
+                  <div>
+                    <h3 className="font-[var(--font-primary)] text-h4 text-gray-950">
+                      Responsible Execution
+                    </h3>
+
+                    <p className="text-body-sm mt-2 text-gray-500">
+                      Clear coordination and attention to quality help move
+                      projects from plans toward completed spaces.
+                    </p>
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </Container>
+      </section>
+
+      {/* =====================================================
+          PROCESS
+      ====================================================== */}
+
+      <section className="bg-white py-20 sm:py-24 lg:py-28">
+        <Container>
+
+          <div className="flex flex-col gap-12">
+
+            <div className="grid gap-8 lg:grid-cols-12 lg:items-end">
+
+              <div className="lg:col-span-7">
+                <SectionHeading
+                  eyebrow="Our Process"
+                  title="A clear path from idea to execution."
+                  description="Every project is different. Our process gives each one a consistent foundation for making decisions and moving forward."
+                />
+              </div>
+
+              <div className="lg:col-span-4 lg:col-start-9">
+                <p className="text-body-sm text-gray-500">
+                  Understand the requirement. Develop the right approach.
+                  Execute with attention to detail.
+                </p>
+              </div>
+
+            </div>
+
+            <div className="grid border-t border-gray-200 md:grid-cols-3">
+
               {process.map((item) => (
                 <article
                   key={item.number}
-                  className="border-b border-gray-300 p-6 md:p-8 lg:border-b-0 lg:border-r lg:p-8"
+                  className="
+                    group
+                    relative
+                    min-h-[300px]
+                    border-b
+                    border-gray-200
+                    p-7
+                    md:border-b-0
+                    md:border-r
+                    md:p-9
+                    lg:p-10
+                  "
                 >
-                  <span className="text-sm font-medium text-gray-400">
-                    {item.number}
-                  </span>
 
-                  <h2 className="mt-12 text-2xl font-semibold tracking-tight text-gray-900">
-                    {item.title}
-                  </h2>
+                  <div className="flex items-center justify-between">
 
-                  <p className="mt-4 text-sm leading-7 text-gray-600">
-                    {item.description}
-                  </p>
+                    <span className="text-label text-gray-400">
+                      {item.number}
+                    </span>
+
+                    <span
+                      className="
+                        flex
+                        h-10
+                        w-10
+                        items-center
+                        justify-center
+                        rounded-full
+                        border
+                        border-gray-200
+                        transition-all
+                        duration-300
+                        group-hover:border-gray-950
+                        group-hover:bg-gray-950
+                        group-hover:text-white
+                      "
+                    >
+                      <ArrowIcon />
+                    </span>
+
+                  </div>
+
+                  <div className="mt-20">
+
+                    <h2 className="font-[var(--font-primary)] text-h3 font-semibold tracking-[-0.03em] text-gray-950">
+                      {item.title}
+                    </h2>
+
+                    <p className="text-body-sm mt-4 max-w-sm text-gray-500">
+                      {item.description}
+                    </p>
+
+                  </div>
+
                 </article>
               ))}
+
             </div>
+
           </div>
+
         </Container>
       </section>
 
-      {/* Delivery Approach */}
-      <section className="bg-white py-24 sm:py-28 lg:py-32">
+      {/* =====================================================
+          CAPABILITIES
+      ====================================================== */}
+
+      <section className="bg-gray-950 py-20 text-white sm:py-24 lg:py-28">
         <Container>
-          <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
-            <div className="lg:col-span-4">
-              <SectionHeading
-                eyebrow="Project Delivery"
-                title="Focused on what makes a project work."
-                description="We consider technical requirements and practical execution together to create a coordinated project approach."
-              />
-            </div>
 
-            <div className="lg:col-span-7 lg:col-start-6">
-              <div className="border-t border-gray-300">
-                <article className="border-b border-gray-300 py-8">
-                  <p className="text-sm font-medium uppercase tracking-[0.12em] text-gray-400">
-                    Quality
-                  </p>
+          <div className="grid gap-12 lg:grid-cols-12 lg:items-center lg:gap-20">
 
-                  <h2 className="mt-3 text-2xl font-semibold tracking-tight text-gray-900">
-                    Attention to detail
-                  </h2>
+            <div className="lg:col-span-6">
 
-                  <p className="mt-3 text-sm leading-7 text-gray-600 sm:text-base">
-                    We emphasize careful planning, accurate work and quality
-                    execution throughout the project lifecycle.
-                  </p>
-                </article>
+              <div className="mb-6 flex items-center gap-3">
 
-                <article className="border-b border-gray-300 py-8">
-                  <p className="text-sm font-medium uppercase tracking-[0.12em] text-gray-400">
-                    Coordination
-                  </p>
+                <span className="h-px w-10 bg-white/40" />
 
-                  <h2 className="mt-3 text-2xl font-semibold tracking-tight text-gray-900">
-                    Clear project communication
-                  </h2>
+                <span className="text-label text-gray-400">
+                  Built Around Expertise
+                </span>
 
-                  <p className="mt-3 text-sm leading-7 text-gray-600 sm:text-base">
-                    Clear coordination helps keep project requirements,
-                    responsibilities and execution aligned.
-                  </p>
-                </article>
-
-                <article className="border-b border-gray-300 py-8">
-                  <p className="text-sm font-medium uppercase tracking-[0.12em] text-gray-400">
-                    Performance
-                  </p>
-
-                  <h2 className="mt-3 text-2xl font-semibold tracking-tight text-gray-900">
-                    Long-term thinking
-                  </h2>
-
-                  <p className="mt-3 text-sm leading-7 text-gray-600 sm:text-base">
-                    We consider durability, functionality and long-term
-                    performance when approaching construction and structural
-                    requirements.
-                  </p>
-                </article>
               </div>
-            </div>
-          </div>
-        </Container>
-      </section>
 
-      {/* Industries */}
-      <section className="bg-gray-100 py-24 sm:py-28 lg:py-32">
-        <Container>
-          <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
-            <div className="lg:col-span-4">
-              <SectionHeading
-                eyebrow="Industries"
-                title="Supporting different types of built environments."
-                description="Our services can support a range of construction and structural requirements across different project environments."
-              />
-            </div>
+              <h2 className="font-[var(--font-primary)] text-h2 font-semibold tracking-[-0.04em] text-white">
+                One project.
+                <br />
+                Multiple disciplines.
+                <br />
+                One coordinated approach.
+              </h2>
 
-            <div className="lg:col-span-7 lg:col-start-6">
-              <div className="grid border-t border-gray-300 sm:grid-cols-2">
-                {industries.map((industry, index) => (
-                  <div
-                    key={industry}
-                    className="flex items-center justify-between border-b border-gray-300 py-6 sm:px-4"
-                  >
-                    <span className="text-lg font-medium text-gray-900">
-                      {industry}
-                    </span>
+              <p className="text-body mt-7 max-w-xl text-gray-400">
+                Construction projects often require decisions across
+                structure, execution, contracts, coordination and long-term
+                performance. Our services are designed to connect these
+                requirements rather than treat them as isolated tasks.
+              </p>
 
-                    <span className="text-sm text-gray-400">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </Container>
-      </section>
-
-      {/* CTA */}
-      <section className="bg-gray-950 py-24 sm:py-28 lg:py-32">
-        <Container>
-          <div className="mx-auto max-w-4xl text-center">
-            <p className="text-sm font-medium uppercase tracking-[0.25em] text-gray-400">
-              Start a Project
-            </p>
-
-            <h2 className="mt-5 text-4xl font-semibold leading-tight tracking-tight text-white sm:text-5xl lg:text-6xl">
-              Let&apos;s build with confidence.
-            </h2>
-
-            <p className="mx-auto mt-6 max-w-2xl text-base leading-7 text-gray-400 sm:text-lg">
-              Talk to Daya about your construction, structural design,
-              consultancy, restoration or project management requirements.
-            </p>
-
-            <div className="mt-10">
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center rounded-md bg-white px-6 py-3 text-sm font-medium text-gray-950 transition-colors duration-200 hover:bg-gray-200"
+                className="
+                  group
+                  mt-8
+                  inline-flex
+                  items-center
+                  gap-4
+                  rounded-full
+                  border
+                  border-white/20
+                  px-6
+                  py-3
+                  text-button
+                  text-white
+                  transition-all
+                  duration-300
+                  hover:border-white
+                  hover:bg-white
+                  hover:text-gray-950
+                "
               >
-                Contact Daya
+                <span>Talk to Daya</span>
+
+                <span className="transition-transform duration-300 group-hover:translate-x-1">
+                  <ArrowIcon />
+                </span>
               </Link>
+
             </div>
+
+            <div className="lg:col-span-5 lg:col-start-8">
+
+              <div className="grid grid-cols-2 border-l border-t border-white/10">
+
+                <div className="min-h-[170px] border-b border-r border-white/10 p-6">
+
+                  <span className="text-label text-gray-500">
+                    01
+                  </span>
+
+                  <div className="mt-8">
+                    <p className="font-[var(--font-primary)] text-h4 text-white">
+                      Design
+                    </p>
+
+                    <p className="text-body-sm mt-2 text-gray-500">
+                      Structural thinking
+                    </p>
+                  </div>
+
+                </div>
+
+                <div className="min-h-[170px] border-b border-r border-white/10 p-6">
+
+                  <span className="text-label text-gray-500">
+                    02
+                  </span>
+
+                  <div className="mt-8">
+                    <p className="font-[var(--font-primary)] text-h4 text-white">
+                      Engineer
+                    </p>
+
+                    <p className="text-body-sm mt-2 text-gray-500">
+                      Technical decisions
+                    </p>
+                  </div>
+
+                </div>
+
+                <div className="min-h-[170px] border-b border-r border-white/10 p-6">
+
+                  <span className="text-label text-gray-500">
+                    03
+                  </span>
+
+                  <div className="mt-8">
+                    <p className="font-[var(--font-primary)] text-h4 text-white">
+                      Execute
+                    </p>
+
+                    <p className="text-body-sm mt-2 text-gray-500">
+                      Quality construction
+                    </p>
+                  </div>
+
+                </div>
+
+                <div className="min-h-[170px] border-b border-r border-white/10 p-6">
+
+                  <span className="text-label text-gray-500">
+                    04
+                  </span>
+
+                  <div className="mt-8">
+                    <p className="font-[var(--font-primary)] text-h4 text-white">
+                      Manage
+                    </p>
+
+                    <p className="text-body-sm mt-2 text-gray-500">
+                      Project coordination
+                    </p>
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
           </div>
+
         </Container>
       </section>
+
+      {/* =====================================================
+          FINAL STATEMENT
+      ====================================================== */}
+
+      <section className="bg-gray-50 py-24 sm:py-28 lg:py-32">
+        <Container>
+
+          <div className="mx-auto max-w-4xl text-center">
+
+            <p className="text-label text-gray-400">
+              Your Project
+            </p>
+
+            <h2 className="mt-5 font-[var(--font-primary)] text-h2 font-semibold tracking-[-0.04em] text-gray-950">
+              Let&apos;s build the right foundation for your project.
+            </h2>
+
+            <p className="text-body mt-6 text-gray-500">
+              Whether you need structural design, consultancy, construction,
+              restoration or project management, we can discuss your
+              requirements and identify the right approach.
+            </p>
+
+            <div className="mt-8 flex justify-center">
+
+              <Link
+                href="/contact"
+                className="
+                  group
+                  inline-flex
+                  items-center
+                  gap-4
+                  rounded-full
+                  bg-gray-950
+                  px-6
+                  py-3
+                  text-button
+                  text-white
+                  transition-all
+                  duration-300
+                  hover:-translate-y-1
+                  hover:bg-gray-800
+                  hover:shadow-xl
+                "
+              >
+                <span>Start a Conversation</span>
+
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white/10 transition-transform duration-300 group-hover:translate-x-1">
+                  <ArrowIcon />
+                </span>
+
+              </Link>
+
+            </div>
+
+          </div>
+
+        </Container>
+      </section>
+
+      {/* =====================================================
+          COMMON CTA
+      ====================================================== */}
+
+      <CTAPreview />
+
     </main>
   );
 }
