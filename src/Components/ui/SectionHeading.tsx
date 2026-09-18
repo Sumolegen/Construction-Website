@@ -1,41 +1,43 @@
-import type { ReactNode } from "react";
-
-interface SectionHeadingProps {
-  eyebrow?: string;
-  title: string;
-  description?: string;
-  align?: "left" | "center";
-  children?: ReactNode;
-}
-
 export default function SectionHeading({
   eyebrow,
   title,
   description,
   align = "left",
-  children,
-}: SectionHeadingProps) {
-  const alignment = align === "center" ? "mx-auto text-center" : "text-left";
+}: {
+  eyebrow: string;
+  title: string;
+  description?: string;
+  align?: "left" | "center";
+}) {
+  const centered = align === "center";
 
   return (
-    <div className={`max-w-3xl ${alignment}`}>
-      {eyebrow && (
-        <p className="mb-3 text-sm font-medium uppercase tracking-[0.2em] text-gray-500">
-          {eyebrow}
-        </p>
-      )}
+    <div className={centered ? "mx-auto text-center" : ""}>
+      <div
+        className={`mb-5 flex items-center gap-3 ${
+          centered ? "justify-center" : ""
+        }`}
+      >
+        <span className="h-px w-8 bg-gray-900" />
 
-      <h2 className="text-3xl font-semibold tracking-tight text-gray-900 sm:text-4xl lg:text-5xl">
+        <span className="text-label text-gray-500">
+          {eyebrow}
+        </span>
+      </div>
+
+      <h2 className="text-h2 max-w-4xl text-gray-950">
         {title}
       </h2>
 
       {description && (
-        <p className="mt-5 text-base leading-7 text-gray-600 sm:text-lg">
+        <p
+          className={`text-body mt-6 max-w-2xl text-gray-600 ${
+            centered ? "mx-auto" : ""
+          }`}
+        >
           {description}
         </p>
       )}
-
-      {children}
     </div>
   );
 }

@@ -1,35 +1,508 @@
 @import "tailwindcss";
 
+/* =========================================================
+   DAYA CONSTRUCTIONS
+   GLOBAL DESIGN SYSTEM
+   ========================================================= */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* =======================================================
+     FONTS
+     ======================================================= */
+
+  --font-primary: var(--font-josefin-sans);
+  --font-body: var(--font-inter);
+
+  /* =======================================================
+     GRAYSCALE ONLY
+     ======================================================= */
+
+  --black: #111111;
+  --gray-950: #171717;
+  --gray-900: #1f1f1f;
+  --gray-800: #2b2b2b;
+  --gray-700: #404040;
+  --gray-600: #525252;
+  --gray-500: #737373;
+  --gray-400: #a3a3a3;
+  --gray-300: #d4d4d4;
+  --gray-200: #e5e5e5;
+  --gray-100: #f5f5f5;
+  --gray-50: #fafafa;
+  --white: #ffffff;
+
+  /* =======================================================
+     SITE COLORS
+     ======================================================= */
+
+  --background: var(--white);
+  --foreground: var(--gray-950);
+
+  /* =======================================================
+     TYPOGRAPHY SCALE
+     ======================================================= */
+
+  --font-size-display: clamp(3.5rem, 8vw, 6.5rem);
+  --font-size-h1: clamp(3rem, 6vw, 5rem);
+  --font-size-h2: clamp(2.25rem, 4vw, 4rem);
+  --font-size-h3: 2rem;
+  --font-size-h4: 1.5rem;
+
+  --font-size-body-lg: 1.125rem;
+  --font-size-body: 1rem;
+  --font-size-body-sm: 0.875rem;
+  --font-size-label: 0.6875rem;
+  --font-size-button: 0.875rem;
 }
 
-* {
+/* =========================================================
+   RESET
+   ========================================================= */
+
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
 html {
   scroll-behavior: smooth;
+  background: var(--background);
 }
 
 body {
   margin: 0;
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-inter), Arial, Helvetica, sans-serif;
+
+  font-family: var(--font-body);
+  font-size: var(--font-size-body);
+  line-height: 1.75;
+
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
+
+/* =========================================================
+   ELEMENT RESET
+   ========================================================= */
 
 button,
-a {
-  -webkit-tap-highlight-color: transparent;
-}
-
-button {
+input,
+textarea,
+select {
   font: inherit;
 }
 
-img {
+button {
+  cursor: pointer;
+}
+
+img,
+svg,
+video,
+canvas {
+  display: block;
   max-width: 100%;
+}
+
+img {
   height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* =========================================================
+   TYPOGRAPHY
+   ========================================================= */
+
+/* ---------------------------------------------------------
+   Display
+   --------------------------------------------------------- */
+
+.text-display {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-display);
+  font-weight: 600;
+  line-height: 0.95;
+  letter-spacing: -0.05em;
+}
+
+/* ---------------------------------------------------------
+   Heading 1
+   --------------------------------------------------------- */
+
+.text-h1 {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-h1);
+  font-weight: 600;
+  line-height: 0.98;
+  letter-spacing: -0.04em;
+}
+
+/* ---------------------------------------------------------
+   Heading 2
+   --------------------------------------------------------- */
+
+.text-h2 {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-h2);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.035em;
+}
+
+/* ---------------------------------------------------------
+   Heading 3
+   --------------------------------------------------------- */
+
+.text-h3 {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-h3);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+}
+
+/* ---------------------------------------------------------
+   Heading 4
+   --------------------------------------------------------- */
+
+.text-h4 {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-h4);
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+/* ---------------------------------------------------------
+   Body Large
+   --------------------------------------------------------- */
+
+.text-body-lg {
+  font-family: var(--font-body);
+  font-size: var(--font-size-body-lg);
+  line-height: 1.8;
+}
+
+/* ---------------------------------------------------------
+   Body
+   --------------------------------------------------------- */
+
+.text-body {
+  font-family: var(--font-body);
+  font-size: var(--font-size-body);
+  line-height: 1.75;
+}
+
+/* ---------------------------------------------------------
+   Body Small
+   --------------------------------------------------------- */
+
+.text-body-sm {
+  font-family: var(--font-body);
+  font-size: var(--font-size-body-sm);
+  line-height: 1.7;
+}
+
+/* ---------------------------------------------------------
+   Labels / Eyebrows
+   --------------------------------------------------------- */
+
+.text-label {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-label);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+
+/* ---------------------------------------------------------
+   Buttons
+   --------------------------------------------------------- */
+
+.text-button {
+  font-family: var(--font-primary);
+  font-size: var(--font-size-button);
+  font-weight: 600;
+  line-height: 1;
+}
+
+/* =========================================================
+   TEXT COLORS
+   ========================================================= */
+
+.text-primary {
+  color: var(--gray-950);
+}
+
+.text-secondary {
+  color: var(--gray-600);
+}
+
+.text-muted {
+  color: var(--gray-500);
+}
+
+.text-subtle {
+  color: var(--gray-400);
+}
+
+.text-white {
+  color: var(--white);
+}
+
+/* =========================================================
+   BACKGROUND COLORS
+   ========================================================= */
+
+.bg-page {
+  background-color: var(--white);
+}
+
+.bg-soft {
+  background-color: var(--gray-50);
+}
+
+.bg-light {
+  background-color: var(--gray-100);
+}
+
+.bg-dark {
+  background-color: var(--gray-950);
+}
+
+.bg-black {
+  background-color: var(--black);
+}
+
+/* =========================================================
+   BORDERS
+   ========================================================= */
+
+.border-default {
+  border-color: var(--gray-200);
+}
+
+.border-light {
+  border-color: var(--gray-100);
+}
+
+.border-medium {
+  border-color: var(--gray-300);
+}
+
+.border-dark {
+  border-color: var(--gray-950);
+}
+
+/* =========================================================
+   SELECTION
+   ========================================================= */
+
+::selection {
+  background: var(--gray-950);
+  color: var(--white);
+}
+
+::-moz-selection {
+  background: var(--gray-950);
+  color: var(--white);
+}
+
+/* =========================================================
+   FOCUS
+   ========================================================= */
+
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--gray-950);
+  outline-offset: 3px;
+}
+
+/* =========================================================
+   SCROLLBAR
+   ========================================================= */
+
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--gray-400) var(--gray-100);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--gray-100);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--gray-400);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gray-600);
+}
+
+/* =========================================================
+   SMOOTH INTERACTIONS
+   ========================================================= */
+
+a,
+button {
+  transition-property:
+    color,
+    background-color,
+    border-color,
+    opacity,
+    transform,
+    box-shadow;
+  transition-timing-function: ease;
+  transition-duration: 300ms;
+}
+
+/* =========================================================
+   ARCHITECTURAL GRID
+   Reusable grayscale background pattern
+   ========================================================= */
+
+.architectural-grid {
+  background-image:
+    linear-gradient(
+      to right,
+      rgba(17, 17, 17, 0.045) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(17, 17, 17, 0.045) 1px,
+      transparent 1px
+    );
+
+  background-size: 72px 72px;
+}
+
+/* =========================================================
+   SMALL ARCHITECTURAL GRID
+   ========================================================= */
+
+.architectural-grid-small {
+  background-image:
+    linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.08) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.08) 1px,
+      transparent 1px
+    );
+
+  background-size: 48px 48px;
+}
+
+/* =========================================================
+   CONTAINER HELPERS
+   ========================================================= */
+
+.section-space {
+  padding-top: 6rem;
+  padding-bottom: 6rem;
+}
+
+@media (min-width: 640px) {
+  .section-space {
+    padding-top: 7rem;
+    padding-bottom: 7rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-space {
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+  }
+}
+
+/* =========================================================
+   HORIZONTAL LINE
+   ========================================================= */
+
+.line {
+  height: 1px;
+  width: 100%;
+  background: var(--gray-200);
+}
+
+.line-dark {
+  height: 1px;
+  width: 100%;
+  background: var(--gray-950);
+}
+
+/* =========================================================
+   HOVER IMAGE EFFECT
+   ========================================================= */
+
+.image-hover {
+  overflow: hidden;
+}
+
+.image-hover img {
+  transition:
+    transform 700ms cubic-bezier(0.2, 0.65, 0.25, 1),
+    filter 700ms ease;
+}
+
+.image-hover:hover img {
+  transform: scale(1.04);
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

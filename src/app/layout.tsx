@@ -1,25 +1,27 @@
 import type { Metadata } from "next";
 import { Inter, Josefin_Sans } from "next/font/google";
+
 import "./globals.css";
+
 import Header from "../Components/layout/Header";
 import Footer from "../Components/layout/Footer";
 
 const josefinSans = Josefin_Sans({
   variable: "--font-josefin-sans",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
 });
 
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
   title: "Daya Constructions & Structural Consultants",
   description:
-    "Daya Constructions & Structural Consultants — Construction, structural design, consultancy, restoration, rehabilitation and project management.",
+    "Construction and structural consultancy built on engineering precision, practical experience and trust.",
 };
 
 export default function RootLayout({
@@ -29,9 +31,13 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${josefinSans.variable} ${inter.variable}`}>
+      <body
+        className={`${josefinSans.variable} ${inter.variable}`}
+      >
         <Header />
-        {children}
+
+        <main>{children}</main>
+
         <Footer />
       </body>
     </html>

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Container from "../ui/Container";
 import SectionHeading from "../ui/SectionHeading";
+import ProjectCard from "../cards/ProjectCard";
 
 const projects = [
   {
@@ -25,9 +26,15 @@ const projects = [
 
 export default function ProjectsPreview() {
   return (
-    <section className="bg-white py-24 sm:py-28 lg:py-32">
+    <section className="relative overflow-hidden bg-white py-24 sm:py-28 lg:py-32">
+      {/* Subtle Background Detail */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute right-0 top-0 h-[500px] w-[500px] rounded-full bg-gray-50 blur-3xl"
+      />
+
       <Container>
-        <div className="flex flex-col gap-12">
+        <div className="relative flex flex-col gap-12 lg:gap-16">
           {/* Section Header */}
           <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
             <SectionHeading
@@ -38,62 +45,57 @@ export default function ProjectsPreview() {
 
             <Link
               href="/projects"
-              className="w-fit shrink-0 border-b border-gray-900 pb-1 text-sm font-medium text-gray-900 transition-colors duration-200 hover:border-gray-500 hover:text-gray-600"
+              className="group inline-flex w-fit shrink-0 items-center gap-3 rounded-full border border-gray-200 bg-white px-5 py-3 font-[var(--font-josefin-sans)] text-sm font-semibold text-gray-700 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-gray-950 hover:bg-gray-950 hover:text-white hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-950 focus-visible:ring-offset-2"
             >
-              View All Projects
+              <span>View All Projects</span>
+
+              <span className="flex h-6 w-6 items-center justify-center rounded-full border border-current transition-transform duration-300 group-hover:translate-x-1">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  className="h-3.5 w-3.5"
+                  aria-hidden="true"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M5 12h14m-6-6 6 6-6 6"
+                  />
+                </svg>
+              </span>
             </Link>
           </div>
 
           {/* Projects */}
-          <div className="grid gap-8 lg:grid-cols-2">
+          <div className="grid gap-x-8 gap-y-12 lg:grid-cols-2 lg:gap-y-14">
             {projects.map((project, index) => (
-              <article
+              <ProjectCard
                 key={project.number}
-                className={`group ${
-                  index === 0 ? "lg:col-span-2" : ""
-                }`}
-              >
-                {/* Image Placeholder */}
-                <div
-                  className={`relative overflow-hidden bg-gray-200 ${
-                    index === 0
-                      ? "aspect-16/8"
-                      : "aspect-4/3"
-                  }`}
-                >
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="text-sm font-medium uppercase tracking-[0.2em] text-gray-400">
-                      Project Image
-                    </span>
-                  </div>
-
-                  <div className="absolute left-6 top-6">
-                    <span className="text-sm font-medium text-gray-500">
-                      {project.number}
-                    </span>
-                  </div>
-
-                  <div className="absolute bottom-6 right-6">
-                    <span className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-400 bg-white text-gray-700 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
-                      ↗
-                    </span>
-                  </div>
-                </div>
-
-                {/* Project Details */}
-                <div className="mt-5 flex flex-col gap-2">
-                  <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-gray-500">
-                    <span>{project.category}</span>
-                    <span className="text-gray-300">•</span>
-                    <span>{project.location}</span>
-                  </div>
-
-                  <h3 className="text-2xl font-semibold tracking-tight text-gray-900 sm:text-3xl">
-                    {project.title}
-                  </h3>
-                </div>
-              </article>
+                number={project.number}
+                title={project.title}
+                category={project.category}
+                location={project.location}
+                featured={index === 0}
+              />
             ))}
+          </div>
+
+          {/* Bottom Navigation */}
+          <div className="flex items-center justify-between border-t border-gray-200 pt-6">
+            <div className="flex items-center gap-3">
+              <span className="h-px w-8 bg-gray-950" />
+
+              <span className="font-[var(--font-josefin-sans)] text-[10px] font-semibold uppercase tracking-[0.25em] text-gray-400">
+                Selected Work
+              </span>
+            </div>
+
+            <span className="font-[var(--font-josefin-sans)] text-[10px] font-semibold uppercase tracking-[0.2em] text-gray-400">
+              01 — 03
+            </span>
           </div>
         </div>
       </Container>
