@@ -1,69 +1,108 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Container from "../ui/Container";
 import SectionHeading from "../ui/SectionHeading";
-import ImagePlaceholder from "../cards/ImagePlaceholder";
 
 const services = [
   {
     number: "01",
     title: "Structural Design",
     description:
-      "Thoughtful structural solutions developed with engineering precision, safety and long-term performance in mind.",
+      "Engineering-focused structural design solutions developed with safety, precision, functionality and long-term performance in mind.",
+    type: "Design",
   },
   {
     number: "02",
     title: "Structural Consultancy",
     description:
-      "Technical guidance and structural expertise to support informed decisions throughout your project.",
+      "Professional technical guidance to support structural decisions, project planning and practical engineering requirements.",
+    type: "Consultancy",
   },
   {
     number: "03",
     title: "Construction",
     description:
-      "Reliable construction execution focused on quality, coordination, durability and attention to detail.",
+      "Reliable construction execution with attention to quality, coordination, workmanship, durability and project requirements.",
+    type: "Execution",
   },
   {
     number: "04",
     title: "Restoration",
     description:
-      "Careful restoration solutions that preserve existing structures while improving their performance and usability.",
+      "Careful restoration solutions that help preserve existing structures while improving their usability, condition and performance.",
+    type: "Restoration",
   },
   {
     number: "05",
     title: "Rehabilitation",
     description:
-      "Engineering-led rehabilitation approaches for improving the condition, strength and serviceability of structures.",
+      "Engineering-led rehabilitation approaches focused on improving the strength, condition and serviceability of existing structures.",
+    type: "Engineering",
   },
   {
     number: "06",
     title: "Project Management",
     description:
-      "Organized project coordination from planning through execution, keeping quality, time and requirements aligned.",
+      "Structured planning and coordination from project initiation through execution, keeping scope, quality, resources and timelines aligned.",
+    type: "Management",
   },
   {
     number: "07",
     title: "Lump Sum Contracts",
     description:
       "Clearly defined construction contracts with an agreed project scope and fixed contract value for better cost planning and control.",
+    type: "Contracts",
   },
   {
     number: "08",
     title: "Labour Contracts",
     description:
       "Skilled labour and workforce coordination for construction activities, supporting efficient execution and quality workmanship.",
+    type: "Workforce",
   },
 ];
 
+function ArrowIcon({ direction = "right" }: { direction?: "left" | "right" }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      className="h-4 w-4"
+      aria-hidden="true"
+    >
+      {direction === "right" ? (
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M5 12h14m-6-6 6 6-6 6"
+        />
+      ) : (
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M19 12H5m6 6-6-6 6-6"
+        />
+      )}
+    </svg>
+  );
+}
+
 function ServiceIcon({ number }: { number: string }) {
+  const common =
+    "h-7 w-7 transition-transform duration-500 group-hover:scale-110";
+
   const icons: Record<string, React.ReactNode> = {
     "01": (
       <svg
-        xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
-        strokeWidth="1.4"
-        className="h-5 w-5"
+        strokeWidth="1.2"
+        className={common}
       >
         <path
           strokeLinecap="round"
@@ -75,17 +114,15 @@ function ServiceIcon({ number }: { number: string }) {
 
     "02": (
       <svg
-        xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
-        strokeWidth="1.4"
-        className="h-5 w-5"
+        strokeWidth="1.2"
+        className={common}
       >
         <circle cx="12" cy="12" r="8" />
         <path
           strokeLinecap="round"
-          strokeLinejoin="round"
           d="M12 8v8M8 12h8"
         />
       </svg>
@@ -93,12 +130,11 @@ function ServiceIcon({ number }: { number: string }) {
 
     "03": (
       <svg
-        xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
-        strokeWidth="1.4"
-        className="h-5 w-5"
+        strokeWidth="1.2"
+        className={common}
       >
         <path
           strokeLinecap="round"
@@ -110,34 +146,32 @@ function ServiceIcon({ number }: { number: string }) {
 
     "04": (
       <svg
-        xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
-        strokeWidth="1.4"
-        className="h-5 w-5"
+        strokeWidth="1.2"
+        className={common}
       >
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
-          d="M4 19h16M6 19V8l6-4 6 4v11M9 19v-5h6v5"
+          d="M4 19h16M6 19V8l6-4 6 4v11"
         />
         <path
           strokeLinecap="round"
           strokeLinejoin="round"
-          d="M8 9h.01M12 7h.01M16 9h.01"
+          d="M9 19v-5h6v5M8 9h.01M12 7h.01M16 9h.01"
         />
       </svg>
     ),
 
     "05": (
       <svg
-        xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
-        strokeWidth="1.4"
-        className="h-5 w-5"
+        strokeWidth="1.2"
+        className={common}
       >
         <path
           strokeLinecap="round"
@@ -149,34 +183,33 @@ function ServiceIcon({ number }: { number: string }) {
 
     "06": (
       <svg
-        xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
-        strokeWidth="1.4"
-        className="h-5 w-5"
+        strokeWidth="1.2"
+        className={common}
       >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M4 19h16M6 19V6h12v13M9 9h6M9 13h6"
+        <rect
+          x="5"
+          y="5"
+          width="14"
+          height="14"
+          rx="1"
         />
         <path
           strokeLinecap="round"
-          strokeLinejoin="round"
-          d="M8 4h8"
+          d="M8 9h8M8 13h5M8 16h3"
         />
       </svg>
     ),
 
     "07": (
       <svg
-        xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
-        strokeWidth="1.4"
-        className="h-5 w-5"
+        strokeWidth="1.2"
+        className={common}
       >
         <rect
           x="4"
@@ -187,7 +220,6 @@ function ServiceIcon({ number }: { number: string }) {
         />
         <path
           strokeLinecap="round"
-          strokeLinejoin="round"
           d="M9 6V4h6v2M8 12h8M12 9v6"
         />
       </svg>
@@ -195,12 +227,11 @@ function ServiceIcon({ number }: { number: string }) {
 
     "08": (
       <svg
-        xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
-        strokeWidth="1.4"
-        className="h-5 w-5"
+        strokeWidth="1.2"
+        className={common}
       >
         <circle cx="8" cy="8" r="2.5" />
         <circle cx="16" cy="8" r="2.5" />
@@ -217,331 +248,475 @@ function ServiceIcon({ number }: { number: string }) {
 }
 
 export default function ServicesPreview() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
+
+  const sliderRef = useRef<HTMLDivElement>(null);
+
+  const nextSlide = () => {
+    setActiveIndex((current) => {
+      if (current >= services.length - 1) {
+        return 0;
+      }
+
+      return current + 1;
+    });
+  };
+
+  const previousSlide = () => {
+    setActiveIndex((current) => {
+      if (current <= 0) {
+        return services.length - 1;
+      }
+
+      return current - 1;
+    });
+  };
+
+  /*
+   * Automatic next-by-next scrolling.
+   */
+  useEffect(() => {
+    if (paused) return;
+
+    const timer = setInterval(() => {
+      nextSlide();
+    }, 4000);
+
+    return () => clearInterval(timer);
+  }, [paused]);
+
+  /*
+   * Scroll the carousel to the active card.
+   */
+  useEffect(() => {
+    const slider = sliderRef.current;
+
+    if (!slider) return;
+
+    const cards = slider.querySelectorAll<HTMLElement>(
+      "[data-service-card]"
+    );
+
+    const activeCard = cards[activeIndex];
+
+    if (!activeCard) return;
+
+    activeCard.scrollIntoView({
+      behavior: "smooth",
+      block: "nearest",
+      inline: "start",
+    });
+  }, [activeIndex]);
+
   return (
-    <section className="bg-white py-20 sm:py-24 lg:py-28">
+    <section className="overflow-hidden bg-white py-20 sm:py-24 lg:py-28">
       <Container>
-        <div className="flex flex-col gap-14">
 
-          {/* =================================================
-              SECTION INTRO
-          ================================================== */}
+        {/* =====================================================
+            HEADER
+        ====================================================== */}
 
-          <div className="grid gap-10 lg:grid-cols-12 lg:items-end lg:gap-16">
+        <div className="grid gap-8 lg:grid-cols-12 lg:items-end">
 
-            <div className="lg:col-span-7">
-              <SectionHeading
-                eyebrow="Our Services"
-                title="Engineering expertise for every stage of a project."
-                description="From structural thinking to project execution, we provide integrated solutions for the built environment."
-              />
-            </div>
-
-            <div className="lg:col-span-4 lg:col-start-9">
-              <div className="flex flex-col items-start">
-                <p className="text-body-sm max-w-md text-gray-500">
-                  Our services bring engineering, construction and
-                  project coordination together through one practical
-                  approach.
-                </p>
-
-                <Link
-                  href="/services"
-                  className="
-                    group
-                    mt-6
-                    inline-flex
-                    items-center
-                    gap-3
-                    text-button
-                    text-gray-950
-                  "
-                >
-                  <span className="border-b border-gray-950 pb-1">
-                    View All Services
-                  </span>
-
-                  <span
-                    className="
-                      flex
-                      h-8
-                      w-8
-                      items-center
-                      justify-center
-                      rounded-full
-                      border
-                      border-gray-300
-                      transition-all
-                      duration-300
-                      group-hover:translate-x-1
-                      group-hover:border-gray-950
-                    "
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="1.6"
-                      className="h-4 w-4"
-                      aria-hidden="true"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M5 12h14m-6-6 6 6-6 6"
-                      />
-                    </svg>
-                  </span>
-                </Link>
-              </div>
-            </div>
+          <div className="lg:col-span-7">
+            <SectionHeading
+              eyebrow="What We Do"
+              title="Services shaped around the realities of construction."
+              description="Each service combines technical understanding with practical project experience."
+            />
           </div>
 
-          {/* =================================================
-              FEATURED SERVICE VISUAL
-          ================================================== */}
+          <div className="lg:col-span-4 lg:col-start-9">
 
-          <div className="grid gap-6 lg:grid-cols-12">
+            <p className="text-body-sm text-gray-500">
+              From engineering and design to execution and project
+              coordination, our services support the complete construction
+              journey.
+            </p>
 
-            {/* Image */}
+          </div>
 
-            <div className="lg:col-span-5">
-              <div className="group relative overflow-hidden border border-gray-200 bg-gray-100">
-                <ImagePlaceholder
-                  label="Engineering Services"
-                  title="Precision"
-                  aspectRatio="aspect-[4/3] lg:aspect-[4/5]"
-                />
+        </div>
 
-                {/* Overlay information */}
+        {/* =====================================================
+            CAROUSEL CONTROLS
+        ====================================================== */}
+
+        <div className="mt-10 flex items-center justify-between border-t border-gray-200 pt-5">
+
+          <div className="flex items-center gap-3">
+
+            <span className="text-label text-gray-400">
+              Services
+            </span>
+
+            <span className="h-px w-8 bg-gray-300" />
+
+            <span className="font-[var(--font-primary)] text-sm font-semibold text-gray-950">
+              {String(activeIndex + 1).padStart(2, "0")}
+            </span>
+
+            <span className="text-sm text-gray-400">
+              /
+            </span>
+
+            <span className="text-sm text-gray-400">
+              {String(services.length).padStart(2, "0")}
+            </span>
+
+          </div>
+
+          <div className="flex items-center gap-2">
+
+            {/* Previous */}
+
+            <button
+              type="button"
+              onClick={previousSlide}
+              aria-label="Previous service"
+              className="
+                flex
+                h-11
+                w-11
+                items-center
+                justify-center
+                rounded-full
+                border
+                border-gray-300
+                bg-white
+                text-gray-700
+                transition-all
+                duration-300
+                hover:-translate-y-1
+                hover:border-gray-950
+                hover:bg-gray-950
+                hover:text-white
+              "
+            >
+              <ArrowIcon direction="left" />
+            </button>
+
+            {/* Next */}
+
+            <button
+              type="button"
+              onClick={nextSlide}
+              aria-label="Next service"
+              className="
+                flex
+                h-11
+                w-11
+                items-center
+                justify-center
+                rounded-full
+                bg-gray-950
+                text-white
+                transition-all
+                duration-300
+                hover:-translate-y-1
+                hover:bg-gray-800
+              "
+            >
+              <ArrowIcon />
+            </button>
+
+          </div>
+
+        </div>
+
+        {/* =====================================================
+            SERVICE CAROUSEL
+        ====================================================== */}
+
+        <div
+          ref={sliderRef}
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+          onFocus={() => setPaused(true)}
+          onBlur={() => setPaused(false)}
+          className="
+            mt-8
+            flex
+            gap-5
+            overflow-x-auto
+            scroll-smooth
+            pb-6
+            pt-2
+            snap-x
+            snap-mandatory
+            [scrollbar-width:none]
+            [&::-webkit-scrollbar]:hidden
+          "
+        >
+
+          {services.map((service) => (
+            <article
+              key={service.number}
+              data-service-card
+              className="
+                group
+                relative
+                flex
+                min-h-[500px]
+                w-[82vw]
+                shrink-0
+                snap-start
+                flex-col
+                overflow-hidden
+                border
+                border-gray-200
+                bg-gray-50
+                p-6
+                transition-all
+                duration-500
+                hover:-translate-y-3
+                hover:border-gray-400
+                hover:bg-white
+                hover:shadow-2xl
+                hover:shadow-gray-950/10
+                sm:w-[360px]
+                sm:p-7
+                lg:min-h-[540px]
+                lg:w-[370px]
+                lg:p-8
+              "
+            >
+
+              {/* =================================================
+                  LARGE BACKGROUND NUMBER
+              ================================================== */}
+
+              <span
+                aria-hidden="true"
+                className="
+                  pointer-events-none
+                  absolute
+                  -right-5
+                  -top-5
+                  font-[var(--font-primary)]
+                  text-[10rem]
+                  font-semibold
+                  leading-none
+                  tracking-[-0.09em]
+                  text-gray-100
+                  transition-all
+                  duration-500
+                  group-hover:-translate-y-3
+                  group-hover:text-gray-200
+                "
+              >
+                {service.number}
+              </span>
+
+              {/* =================================================
+                  TOP AREA
+              ================================================== */}
+
+              <div className="relative z-10 flex items-start justify-between">
+
+                <div>
+
+                  <span className="text-label text-gray-400">
+                    {service.number}
+                  </span>
+
+                  <p className="mt-2 text-label text-gray-400">
+                    {service.type}
+                  </p>
+
+                </div>
 
                 <div
                   className="
-                    absolute
-                    bottom-0
-                    left-0
-                    right-0
-                    border-t
-                    border-white/20
-                    bg-gray-950/90
-                    p-5
-                    backdrop-blur-sm
+                    flex
+                    h-14
+                    w-14
+                    items-center
+                    justify-center
+                    rounded-full
+                    border
+                    border-gray-200
+                    bg-white
+                    text-gray-700
+                    transition-all
+                    duration-500
+                    group-hover:border-gray-950
+                    group-hover:bg-gray-950
+                    group-hover:text-white
                   "
                 >
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-label text-gray-400">
-                        Daya
-                      </p>
-
-                      <p className="mt-2 font-[var(--font-primary)] text-h4 text-white">
-                        Built around expertise.
-                      </p>
-                    </div>
-
-                    <span
-                      className="
-                        flex
-                        h-10
-                        w-10
-                        shrink-0
-                        items-center
-                        justify-center
-                        rounded-full
-                        border
-                        border-white/20
-                        text-white
-                      "
-                    >
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                        className="h-4 w-4"
-                        aria-hidden="true"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M5 12h14m-6-6 6 6-6 6"
-                        />
-                      </svg>
-                    </span>
-                  </div>
+                  <ServiceIcon number={service.number} />
                 </div>
+
               </div>
-            </div>
 
-            {/* =================================================
-                SERVICE GRID
-            ================================================== */}
+              {/* =================================================
+                  VISUAL / ARCHITECTURAL AREA
+              ================================================== */}
 
-            <div className="lg:col-span-7">
-              <div className="grid border-l border-t border-gray-200 sm:grid-cols-2">
-                {services.map((service) => (
-                  <Link
-                    key={service.number}
-                    href="/services"
-                    className="
-                      group
-                      relative
-                      min-h-[250px]
-                      border-b
-                      border-r
-                      border-gray-200
-                      p-6
-                      transition-all
-                      duration-300
-                      hover:bg-gray-50
-                      sm:p-7
-                    "
-                  >
-                    {/* Top row */}
+              <div className="relative z-10 mt-12 flex h-28 items-center justify-center overflow-hidden border-y border-gray-200 bg-white">
 
-                    <div className="flex items-start justify-between">
-                      <span className="text-label text-gray-400">
-                        {service.number}
-                      </span>
+                {/* Architectural lines */}
 
-                      <span
-                        className="
-                          flex
-                          h-9
-                          w-9
-                          items-center
-                          justify-center
-                          rounded-full
-                          border
-                          border-gray-200
-                          text-gray-400
-                          transition-all
-                          duration-300
-                          group-hover:-translate-y-1
-                          group-hover:border-gray-950
-                          group-hover:bg-gray-950
-                          group-hover:text-white
-                        "
-                      >
-                        <ServiceIcon
-                          number={service.number}
-                        />
-                      </span>
-                    </div>
+                <div
+                  aria-hidden="true"
+                  className="
+                    absolute
+                    inset-0
+                    opacity-60
+                    transition-transform
+                    duration-700
+                    group-hover:scale-110
+                  "
+                  style={{
+                    backgroundImage: `
+                      linear-gradient(
+                        to right,
+                        rgba(17,17,17,0.07) 1px,
+                        transparent 1px
+                      ),
+                      linear-gradient(
+                        to bottom,
+                        rgba(17,17,17,0.07) 1px,
+                        transparent 1px
+                      )
+                    `,
+                    backgroundSize: "28px 28px",
+                  }}
+                />
 
-                    {/* Content */}
+                <div className="relative flex h-16 w-16 items-center justify-center rounded-full border border-gray-300 bg-white text-gray-700 transition-transform duration-500 group-hover:scale-110">
 
-                    <div className="mt-12">
-                      <h3 className="font-[var(--font-primary)] text-h4 tracking-[-0.025em] text-gray-950">
-                        {service.title}
-                      </h3>
+                  <ServiceIcon number={service.number} />
 
-                      <p className="text-body-sm mt-3 max-w-md text-gray-500">
-                        {service.description}
-                      </p>
-                    </div>
+                </div>
 
-                    {/* Bottom arrow */}
-
-                    <span
-                      className="
-                        absolute
-                        bottom-5
-                        left-6
-                        flex
-                        items-center
-                        gap-2
-                        text-label
-                        text-gray-400
-                        transition-all
-                        duration-300
-                        group-hover:text-gray-950
-                        sm:left-7
-                      "
-                    >
-                      Explore
-                      <span className="transition-transform duration-300 group-hover:translate-x-1">
-                        →
-                      </span>
-                    </span>
-                  </Link>
-                ))}
               </div>
-            </div>
-          </div>
 
-          {/* =================================================
-              BOTTOM STATEMENT
-          ================================================== */}
+              {/* =================================================
+                  CONTENT
+              ================================================== */}
 
-          <div className="border-t border-gray-200 pt-8">
-            <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+              <div className="relative z-10 mt-8 flex flex-1 flex-col">
 
-              <p className="text-body-sm max-w-xl text-gray-500">
-                From the first structural decision to the final
-                stage of execution, our work is guided by precision,
-                practical knowledge and responsibility.
-              </p>
+                <h3 className="font-[var(--font-primary)] text-h3 font-semibold tracking-[-0.035em] text-gray-950">
+                  {service.title}
+                </h3>
 
-              <Link
-                href="/contact"
-                className="
-                  group
-                  inline-flex
-                  w-fit
-                  items-center
-                  gap-3
-                  rounded-full
-                  bg-gray-950
-                  px-5
-                  py-3
-                  text-button
-                  text-white
-                  transition-all
-                  duration-300
-                  hover:-translate-y-1
-                  hover:bg-gray-800
-                  hover:shadow-lg
-                "
-              >
-                <span>Discuss Your Project</span>
+                <p className="text-body-sm mt-4 text-gray-500">
+                  {service.description}
+                </p>
+
+              </div>
+
+              {/* =================================================
+                  BOTTOM
+              ================================================== */}
+
+              <div className="relative z-10 mt-8 flex items-center justify-between border-t border-gray-200 pt-5">
+
+                <span className="text-label text-gray-400 transition-colors duration-300 group-hover:text-gray-950">
+                  Explore Service
+                </span>
 
                 <span
                   className="
                     flex
-                    h-6
-                    w-6
+                    h-9
+                    w-9
                     items-center
                     justify-center
                     rounded-full
-                    bg-white/10
-                    transition-transform
+                    border
+                    border-gray-200
+                    text-gray-500
+                    transition-all
                     duration-300
-                    group-hover:translate-x-1
+                    group-hover:border-gray-950
+                    group-hover:bg-gray-950
+                    group-hover:text-white
                   "
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="1.6"
-                    className="h-4 w-4"
-                    aria-hidden="true"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M5 12h14m-6-6 6 6-6 6"
-                    />
-                  </svg>
+                  <ArrowIcon />
                 </span>
-              </Link>
 
-            </div>
-          </div>
+              </div>
+
+            </article>
+          ))}
+
         </div>
+
+        {/* =====================================================
+            SLIDER PROGRESS
+        ====================================================== */}
+
+        <div className="mt-3 flex items-center gap-2">
+
+          {services.map((service, index) => (
+            <button
+              key={service.number}
+              type="button"
+              aria-label={`Go to ${service.title}`}
+              onClick={() => setActiveIndex(index)}
+              className="group flex h-5 items-center"
+            >
+              <span
+                className={`
+                  h-px
+                  transition-all
+                  duration-500
+                  ${
+                    index === activeIndex
+                      ? "w-10 bg-gray-950"
+                      : "w-5 bg-gray-300 group-hover:bg-gray-600"
+                  }
+                `}
+              />
+            </button>
+          ))}
+
+        </div>
+
+        {/* =====================================================
+            VIEW ALL
+        ====================================================== */}
+
+        <div className="mt-10 flex justify-center">
+
+          <Link
+            href="/services"
+            className="
+              group
+              inline-flex
+              items-center
+              gap-4
+              rounded-full
+              border
+              border-gray-300
+              px-6
+              py-3
+              text-button
+              text-gray-800
+              transition-all
+              duration-300
+              hover:-translate-y-1
+              hover:border-gray-950
+              hover:bg-gray-950
+              hover:text-white
+            "
+          >
+            <span>View All Services</span>
+
+            <span className="transition-transform duration-300 group-hover:translate-x-1">
+              <ArrowIcon />
+            </span>
+
+          </Link>
+
+        </div>
+
       </Container>
     </section>
   );
