@@ -1,6 +1,12 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  type ReactNode,
+} from "react";
 import Link from "next/link";
 import Container from "../ui/Container";
 import SectionHeading from "../ui/SectionHeading";
@@ -64,7 +70,11 @@ const services = [
   },
 ];
 
-function ArrowIcon({ direction = "right" }: { direction?: "left" | "right" }) {
+function ArrowIcon({
+  direction = "right",
+}: {
+  direction?: "left" | "right";
+}) {
   return (
     <svg
       viewBox="0 0 24 24"
@@ -95,7 +105,7 @@ function ServiceIcon({ number }: { number: string }) {
   const common =
     "h-7 w-7 transition-transform duration-500 group-hover:scale-110";
 
-  const icons: Record<string, React.ReactNode> = {
+  const icons: Record<string, ReactNode> = {
     "01": (
       <svg
         viewBox="0 0 24 24"
@@ -121,10 +131,7 @@ function ServiceIcon({ number }: { number: string }) {
         className={common}
       >
         <circle cx="12" cy="12" r="8" />
-        <path
-          strokeLinecap="round"
-          d="M12 8v8M8 12h8"
-        />
+        <path strokeLinecap="round" d="M12 8v8M8 12h8" />
       </svg>
     ),
 
@@ -189,17 +196,8 @@ function ServiceIcon({ number }: { number: string }) {
         strokeWidth="1.2"
         className={common}
       >
-        <rect
-          x="5"
-          y="5"
-          width="14"
-          height="14"
-          rx="1"
-        />
-        <path
-          strokeLinecap="round"
-          d="M8 9h8M8 13h5M8 16h3"
-        />
+        <rect x="5" y="5" width="14" height="14" rx="1" />
+        <path strokeLinecap="round" d="M8 9h8M8 13h5M8 16h3" />
       </svg>
     ),
 
@@ -211,17 +209,8 @@ function ServiceIcon({ number }: { number: string }) {
         strokeWidth="1.2"
         className={common}
       >
-        <rect
-          x="4"
-          y="6"
-          width="16"
-          height="13"
-          rx="1"
-        />
-        <path
-          strokeLinecap="round"
-          d="M9 6V4h6v2M8 12h8M12 9v6"
-        />
+        <rect x="4" y="6" width="16" height="13" rx="1" />
+        <path strokeLinecap="round" d="M9 6V4h6v2M8 12h8M12 9v6" />
       </svg>
     ),
 
@@ -253,72 +242,117 @@ export default function ServicesPreview() {
 
   const sliderRef = useRef<HTMLDivElement>(null);
 
-  const nextSlide = () => {
-    setActiveIndex((current) => {
-      if (current >= services.length - 1) {
-        return 0;
-      }
-
-      return current + 1;
-    });
-  };
-
-  const previousSlide = () => {
-    setActiveIndex((current) => {
-      if (current <= 0) {
-        return services.length - 1;
-      }
-
-      return current - 1;
-    });
-  };
-
   /*
-   * Automatic next-by-next scrolling.
+   * Move the slider to a specific service.
    */
-  useEffect(() => {
-    if (paused) return;
-
-    const timer = setInterval(() => {
-      nextSlide();
-    }, 4000);
-
-    return () => clearInterval(timer);
-  }, [paused]);
-
-  /*
-   * Scroll the carousel to the active card.
-   */
-  useEffect(() => {
+  const goToSlide = useCallback((index: number) => {
     const slider = sliderRef.current;
 
-    if (!slider) return;
+    if (!slider) {
+      return;
+    }
 
     const cards = slider.querySelectorAll<HTMLElement>(
       "[data-service-card]"
     );
 
-    const activeCard = cards[activeIndex];
+    const targetCard = cards[index];
 
-    if (!activeCard) return;
+    if (!targetCard) {
+      return;
+    }
 
-    activeCard.scrollIntoView({
+    slider.scrollTo({
+      left: targetCard.offsetLeft - slider.offsetLeft,
       behavior: "smooth",
-      block: "nearest",
-      inline: "start",
     });
-  }, [activeIndex]);
+
+    setActiveIndex(index);
+  }, []);
+
+  /*
+   * Move one service to the left.
+   */
+  const nextSlide = useCallback(() => {
+    setActiveIndex((current) => {
+      const next =
+        current >= services.length - 1 ? 0 : current + 1;
+
+      const slider = sliderRef.current;
+
+      if (slider) {
+        const cards = slider.querySelectorAll<HTMLElement>(
+          "[data-service-card]"
+        );
+
+        const targetCard = cards[next];
+
+        if (targetCard) {
+          slider.scrollTo({
+            left: targetCard.offsetLeft - slider.offsetLeft,
+            behavior: "smooth",
+          });
+        }
+      }
+
+      return next;
+    });
+  }, []);
+
+  /*
+   * Move one service to the right.
+   */
+  const previousSlide = useCallback(() => {
+    setActiveIndex((current) => {
+      const previous =
+        current <= 0 ? services.length - 1 : current - 1;
+
+      const slider = sliderRef.current;
+
+      if (slider) {
+        const cards = slider.querySelectorAll<HTMLElement>(
+          "[data-service-card]"
+        );
+
+        const targetCard = cards[previous];
+
+        if (targetCard) {
+          slider.scrollTo({
+            left: targetCard.offsetLeft - slider.offsetLeft,
+            behavior: "smooth",
+          });
+        }
+      }
+
+      return previous;
+    });
+  }, []);
+
+  /*
+   * Automatic left-to-right service movement.
+   */
+  useEffect(() => {
+    if (paused) {
+      return;
+    }
+
+    const timer = window.setInterval(() => {
+      nextSlide();
+    }, 4000);
+
+    return () => {
+      window.clearInterval(timer);
+    };
+  }, [paused, nextSlide]);
 
   return (
     <section className="overflow-hidden bg-white py-20 sm:py-24 lg:py-28">
       <Container>
-
         {/* =====================================================
-            HEADER
+            SECTION INTRO
         ====================================================== */}
 
         <div className="grid gap-8 lg:grid-cols-12 lg:items-end">
-
           <div className="lg:col-span-7">
             <SectionHeading
               eyebrow="What We Do"
@@ -328,25 +362,20 @@ export default function ServicesPreview() {
           </div>
 
           <div className="lg:col-span-4 lg:col-start-9">
-
             <p className="text-body-sm text-gray-500">
-              From engineering and design to execution and project
-              coordination, our services support the complete construction
-              journey.
+              We work across design, engineering, construction and
+              project coordination to support projects from early
+              decisions through execution.
             </p>
-
           </div>
-
         </div>
 
         {/* =====================================================
-            CAROUSEL CONTROLS
+            SLIDER HEADER
         ====================================================== */}
 
-        <div className="mt-10 flex items-center justify-between border-t border-gray-200 pt-5">
-
+        <div className="mt-12 flex items-center justify-between border-t border-gray-200 pt-5">
           <div className="flex items-center gap-3">
-
             <span className="text-label text-gray-400">
               Services
             </span>
@@ -357,76 +386,38 @@ export default function ServicesPreview() {
               {String(activeIndex + 1).padStart(2, "0")}
             </span>
 
-            <span className="text-sm text-gray-400">
-              /
-            </span>
+            <span className="text-sm text-gray-400">/</span>
 
             <span className="text-sm text-gray-400">
               {String(services.length).padStart(2, "0")}
             </span>
-
           </div>
 
+          {/* SLIDER ARROWS */}
+
           <div className="flex items-center gap-2">
-
-            {/* Previous */}
-
             <button
               type="button"
               onClick={previousSlide}
               aria-label="Previous service"
-              className="
-                flex
-                h-11
-                w-11
-                items-center
-                justify-center
-                rounded-full
-                border
-                border-gray-300
-                bg-white
-                text-gray-700
-                transition-all
-                duration-300
-                hover:-translate-y-1
-                hover:border-gray-950
-                hover:bg-gray-950
-                hover:text-white
-              "
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-gray-300 bg-white text-gray-700 transition-all duration-300 hover:-translate-y-1 hover:border-gray-950 hover:bg-gray-950 hover:text-white"
             >
               <ArrowIcon direction="left" />
             </button>
-
-            {/* Next */}
 
             <button
               type="button"
               onClick={nextSlide}
               aria-label="Next service"
-              className="
-                flex
-                h-11
-                w-11
-                items-center
-                justify-center
-                rounded-full
-                bg-gray-950
-                text-white
-                transition-all
-                duration-300
-                hover:-translate-y-1
-                hover:bg-gray-800
-              "
+              className="flex h-11 w-11 items-center justify-center rounded-full bg-gray-950 text-white transition-all duration-300 hover:-translate-y-1 hover:bg-gray-800"
             >
               <ArrowIcon />
             </button>
-
           </div>
-
         </div>
 
         {/* =====================================================
-            SERVICE CAROUSEL
+            PORTRAIT SERVICE SLIDER
         ====================================================== */}
 
         <div
@@ -435,76 +426,19 @@ export default function ServicesPreview() {
           onMouseLeave={() => setPaused(false)}
           onFocus={() => setPaused(true)}
           onBlur={() => setPaused(false)}
-          className="
-            mt-8
-            flex
-            gap-5
-            overflow-x-auto
-            scroll-smooth
-            pb-6
-            pt-2
-            snap-x
-            snap-mandatory
-            [scrollbar-width:none]
-            [&::-webkit-scrollbar]:hidden
-          "
+          className="mt-8 flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth pb-8 pt-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
         >
-
           {services.map((service) => (
             <article
               key={service.number}
               data-service-card
-              className="
-                group
-                relative
-                flex
-                min-h-[500px]
-                w-[82vw]
-                shrink-0
-                snap-start
-                flex-col
-                overflow-hidden
-                border
-                border-gray-200
-                bg-gray-50
-                p-6
-                transition-all
-                duration-500
-                hover:-translate-y-3
-                hover:border-gray-400
-                hover:bg-white
-                hover:shadow-2xl
-                hover:shadow-gray-950/10
-                sm:w-[360px]
-                sm:p-7
-                lg:min-h-[540px]
-                lg:w-[370px]
-                lg:p-8
-              "
+              className="group relative flex min-h-[520px] w-[82vw] shrink-0 snap-start flex-col overflow-hidden border border-gray-200 bg-gray-50 p-6 transition-all duration-500 ease-out hover:-translate-y-3 hover:border-gray-400 hover:bg-white hover:shadow-2xl hover:shadow-gray-950/10 sm:w-[340px] sm:p-7 lg:min-h-[560px] lg:w-[350px] lg:p-8"
             >
-
-              {/* =================================================
-                  LARGE BACKGROUND NUMBER
-              ================================================== */}
+              {/* LARGE BACKGROUND NUMBER */}
 
               <span
                 aria-hidden="true"
-                className="
-                  pointer-events-none
-                  absolute
-                  -right-5
-                  -top-5
-                  font-[var(--font-primary)]
-                  text-[10rem]
-                  font-semibold
-                  leading-none
-                  tracking-[-0.09em]
-                  text-gray-100
-                  transition-all
-                  duration-500
-                  group-hover:-translate-y-3
-                  group-hover:text-gray-200
-                "
+                className="pointer-events-none absolute -right-4 -top-2 font-[var(--font-primary)] text-[9rem] font-semibold leading-none tracking-[-0.1em] text-gray-100 transition-all duration-500 group-hover:-translate-y-2 group-hover:text-gray-200"
               >
                 {service.number}
               </span>
@@ -514,61 +448,31 @@ export default function ServicesPreview() {
               ================================================== */}
 
               <div className="relative z-10 flex items-start justify-between">
-
                 <div>
-
                   <span className="text-label text-gray-400">
                     {service.number}
                   </span>
 
-                  <p className="mt-2 text-label text-gray-400">
+                  <p className="text-label mt-2 text-gray-400">
                     {service.type}
                   </p>
-
                 </div>
 
-                <div
-                  className="
-                    flex
-                    h-14
-                    w-14
-                    items-center
-                    justify-center
-                    rounded-full
-                    border
-                    border-gray-200
-                    bg-white
-                    text-gray-700
-                    transition-all
-                    duration-500
-                    group-hover:border-gray-950
-                    group-hover:bg-gray-950
-                    group-hover:text-white
-                  "
-                >
+                {/* ICON */}
+
+                <div className="flex h-14 w-14 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-700 transition-all duration-500 group-hover:border-gray-950 group-hover:bg-gray-950 group-hover:text-white">
                   <ServiceIcon number={service.number} />
                 </div>
-
               </div>
 
               {/* =================================================
-                  VISUAL / ARCHITECTURAL AREA
+                  ARCHITECTURAL VISUAL
               ================================================== */}
 
-              <div className="relative z-10 mt-12 flex h-28 items-center justify-center overflow-hidden border-y border-gray-200 bg-white">
-
-                {/* Architectural lines */}
-
+              <div className="relative z-10 mt-12 flex h-32 items-center justify-center overflow-hidden border-y border-gray-200 bg-white">
                 <div
                   aria-hidden="true"
-                  className="
-                    absolute
-                    inset-0
-                    opacity-60
-                    transition-transform
-                    duration-700
-                    group-hover:scale-110
-                  "
+                  className="absolute inset-0 opacity-60 transition-transform duration-700 group-hover:scale-110"
                   style={{
                     backgroundImage: `
                       linear-gradient(
@@ -586,12 +490,9 @@ export default function ServicesPreview() {
                   }}
                 />
 
-                <div className="relative flex h-16 w-16 items-center justify-center rounded-full border border-gray-300 bg-white text-gray-700 transition-transform duration-500 group-hover:scale-110">
-
+                <div className="relative flex h-16 w-16 items-center justify-center rounded-full border border-gray-300 bg-white text-gray-700 transition-all duration-500 group-hover:scale-110 group-hover:border-gray-950">
                   <ServiceIcon number={service.number} />
-
                 </div>
-
               </div>
 
               {/* =================================================
@@ -599,7 +500,6 @@ export default function ServicesPreview() {
               ================================================== */}
 
               <div className="relative z-10 mt-8 flex flex-1 flex-col">
-
                 <h3 className="font-[var(--font-primary)] text-h3 font-semibold tracking-[-0.035em] text-gray-950">
                   {service.title}
                 </h3>
@@ -607,116 +507,65 @@ export default function ServicesPreview() {
                 <p className="text-body-sm mt-4 text-gray-500">
                   {service.description}
                 </p>
-
               </div>
 
               {/* =================================================
-                  BOTTOM
+                  BOTTOM LINK
               ================================================== */}
 
               <div className="relative z-10 mt-8 flex items-center justify-between border-t border-gray-200 pt-5">
-
                 <span className="text-label text-gray-400 transition-colors duration-300 group-hover:text-gray-950">
                   Explore Service
                 </span>
 
-                <span
-                  className="
-                    flex
-                    h-9
-                    w-9
-                    items-center
-                    justify-center
-                    rounded-full
-                    border
-                    border-gray-200
-                    text-gray-500
-                    transition-all
-                    duration-300
-                    group-hover:border-gray-950
-                    group-hover:bg-gray-950
-                    group-hover:text-white
-                  "
-                >
+                <span className="flex h-9 w-9 items-center justify-center rounded-full border border-gray-200 text-gray-500 transition-all duration-300 group-hover:translate-x-1 group-hover:border-gray-950 group-hover:bg-gray-950 group-hover:text-white">
                   <ArrowIcon />
                 </span>
-
               </div>
-
             </article>
           ))}
-
         </div>
 
         {/* =====================================================
-            SLIDER PROGRESS
+            SLIDER INDICATORS
         ====================================================== */}
 
-        <div className="mt-3 flex items-center gap-2">
-
+        <div className="mt-2 flex items-center gap-2">
           {services.map((service, index) => (
             <button
               key={service.number}
               type="button"
               aria-label={`Go to ${service.title}`}
-              onClick={() => setActiveIndex(index)}
+              onClick={() => goToSlide(index)}
               className="group flex h-5 items-center"
             >
               <span
-                className={`
-                  h-px
-                  transition-all
-                  duration-500
-                  ${
-                    index === activeIndex
-                      ? "w-10 bg-gray-950"
-                      : "w-5 bg-gray-300 group-hover:bg-gray-600"
-                  }
-                `}
+                className={`h-px transition-all duration-500 ${
+                  index === activeIndex
+                    ? "w-10 bg-gray-950"
+                    : "w-5 bg-gray-300 group-hover:bg-gray-600"
+                }`}
               />
             </button>
           ))}
-
         </div>
 
         {/* =====================================================
-            VIEW ALL
+            VIEW ALL SERVICES
         ====================================================== */}
 
         <div className="mt-10 flex justify-center">
-
           <Link
             href="/services"
-            className="
-              group
-              inline-flex
-              items-center
-              gap-4
-              rounded-full
-              border
-              border-gray-300
-              px-6
-              py-3
-              text-button
-              text-gray-800
-              transition-all
-              duration-300
-              hover:-translate-y-1
-              hover:border-gray-950
-              hover:bg-gray-950
-              hover:text-white
-            "
+            className="group inline-flex items-center gap-4 rounded-full border border-gray-300 px-6 py-3 font-[var(--font-primary)] text-button text-gray-800 transition-all duration-300 hover:-translate-y-1 hover:border-gray-950 hover:bg-gray-950 hover:text-white"
           >
             <span>View All Services</span>
 
             <span className="transition-transform duration-300 group-hover:translate-x-1">
               <ArrowIcon />
             </span>
-
           </Link>
-
         </div>
-
       </Container>
     </section>
   );
