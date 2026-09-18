@@ -13,7 +13,7 @@ const navigation = [
   { name: "Industries", href: "/industries" },
   { name: "Team", href: "/team" },
   { name: "Awards", href: "/awards" },
-  { name: "Blog", href: "/blog" },
+  
 ];
 
 export default function Header() {

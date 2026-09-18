@@ -6,7 +6,7 @@ import ExpertisePreview from "@/Components/sections/ExpertisePreview";
 import WhyDayaPreview from "../Components/sections/WhyDayaPreview";
 import JourneyPreview from "../Components/sections/JourneyPreview";
 import RecognitionPreview from "../Components/sections/RecognitionPreview";
-import BlogPreview from "../Components/sections/BlogPreview";
+// import BlogPreview from "../Components/sections/BlogPreview";
 import CTAPreview from "../Components/sections/CTAPreview";
 import ContactPreview from "@/Components/sections/ContactPreview";
 
@@ -21,7 +21,7 @@ export default function Home() {
       <WhyDayaPreview />
       <JourneyPreview />
       <RecognitionPreview />
-      <BlogPreview />
+      {/* <BlogPreview /> */}
       <CTAPreview />
       <ContactPreview />
     </main>
