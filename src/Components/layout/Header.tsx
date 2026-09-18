@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import Container from "../ui/Container";
 
@@ -16,6 +17,7 @@ const navigation = [
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
     <header className="sticky top-0 z-50 border-b border-gray-200 bg-white/95 backdrop-blur-md">
@@ -38,23 +40,39 @@ export default function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden items-center gap-7 lg:flex">
-            {navigation.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className="group relative py-2 text-sm font-medium text-gray-600 transition-all duration-300 hover:-translate-y-0.5 hover:text-gray-950"
-              >
-                {item.name}
+            {navigation.map((item) => {
+              const isActive = pathname === item.href;
 
-                <span className="absolute bottom-0 left-0 h-px w-0 bg-gray-950 transition-all duration-300 group-hover:w-full" />
-              </Link>
-            ))}
+              return (
+                <Link
+                  key={item.name}
+                  href={item.href}
+                  className={`group relative py-2 text-sm font-medium transition-all duration-300 hover:-translate-y-0.5 ${
+                    isActive
+                      ? "text-gray-950"
+                      : "text-gray-600 hover:text-gray-950"
+                  }`}
+                >
+                  {item.name}
+
+                  <span
+                    className={`absolute bottom-0 left-0 h-px bg-gray-950 transition-all duration-300 ${
+                      isActive ? "w-full" : "w-0 group-hover:w-full"
+                    }`}
+                  />
+                </Link>
+              );
+            })}
           </nav>
 
           {/* Desktop Contact Button */}
           <Link
             href="/contact"
-            className="hidden items-center rounded-md bg-gray-950 px-5 py-2.5 text-sm font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-gray-800 hover:shadow-md sm:inline-flex"
+            className={`hidden items-center rounded-md px-5 py-2.5 text-sm font-medium transition-all duration-300 hover:-translate-y-0.5 sm:inline-flex ${
+              pathname === "/contact"
+                ? "bg-gray-700 text-white"
+                : "bg-gray-950 text-white hover:bg-gray-800 hover:shadow-md"
+            }`}
           >
             Contact Us
           </Link>
@@ -105,25 +123,43 @@ export default function Header() {
         >
           <nav className="border-t border-gray-200 py-5">
             <div className="flex flex-col">
-              {navigation.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  onClick={() => setIsMenuOpen(false)}
-                  className="group flex items-center justify-between border-b border-gray-100 py-4 text-base font-medium text-gray-700 transition-all duration-300 hover:pl-2 hover:text-gray-950"
-                >
-                  <span>{item.name}</span>
+              {navigation.map((item) => {
+                const isActive = pathname === item.href;
 
-                  <span className="translate-x-0 text-gray-400 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-gray-900">
-                    →
-                  </span>
-                </Link>
-              ))}
+                return (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    onClick={() => setIsMenuOpen(false)}
+                    className={`group flex items-center justify-between border-b py-4 text-base font-medium transition-all duration-300 ${
+                      isActive
+                        ? "border-gray-300 pl-2 text-gray-950"
+                        : "border-gray-100 text-gray-700 hover:pl-2 hover:text-gray-950"
+                    }`}
+                  >
+                    <span>{item.name}</span>
+
+                    <span
+                      className={`transition-all duration-300 ${
+                        isActive
+                          ? "translate-x-1 text-gray-950"
+                          : "translate-x-0 text-gray-400 group-hover:translate-x-1 group-hover:text-gray-900"
+                      }`}
+                    >
+                      →
+                    </span>
+                  </Link>
+                );
+              })}
 
               <Link
                 href="/contact"
                 onClick={() => setIsMenuOpen(false)}
-                className="mt-5 inline-flex items-center justify-center rounded-md bg-gray-950 px-5 py-3 text-sm font-medium text-white transition-all duration-300 hover:bg-gray-800"
+                className={`mt-5 inline-flex items-center justify-center rounded-md px-5 py-3 text-sm font-medium transition-all duration-300 ${
+                  pathname === "/contact"
+                    ? "bg-gray-700 text-white"
+                    : "bg-gray-950 text-white hover:bg-gray-800"
+                }`}
               >
                 Contact Us
               </Link>
