@@ -76,37 +76,61 @@ const approach = [
   },
 ];
 
+function ArrowIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      className="h-4 w-4"
+      aria-hidden="true"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M5 12h14m-6-6 6 6-6 6"
+      />
+    </svg>
+  );
+}
+
+function PlusIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      className="h-4 w-4"
+      aria-hidden="true"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M12 3v18M3 12h18"
+      />
+    </svg>
+  );
+}
+
 export default function AboutPage() {
   return (
     <main className="overflow-hidden bg-white">
       {/* =========================================================
           HERO
       ========================================================== */}
-      <section className="relative min-h-[90vh] overflow-hidden bg-[#f4f4f1]">
-        {/* Blueprint grid */}
+      <section className="relative min-h-[90vh] overflow-hidden bg-white">
+        {/* Architectural grid */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 opacity-40"
-          style={{
-            backgroundImage: `
-              linear-gradient(
-                to right,
-                rgba(17,24,39,0.045) 1px,
-                transparent 1px
-              ),
-              linear-gradient(
-                to bottom,
-                rgba(17,24,39,0.045) 1px,
-                transparent 1px
-              )
-            `,
-            backgroundSize: "72px 72px",
-          }}
+          className="architectural-grid pointer-events-none absolute inset-0 opacity-60"
         />
 
+        {/* Subtle background shape */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute -right-48 top-0 h-[650px] w-[650px] rounded-full bg-white blur-3xl"
+          className="pointer-events-none absolute -right-48 top-0 h-[650px] w-[650px] rounded-full bg-gray-50 blur-3xl"
         />
 
         <Container>
@@ -116,12 +140,12 @@ export default function AboutPage() {
               <div className="mb-7 flex items-center gap-3">
                 <span className="h-px w-10 bg-gray-950" />
 
-                <p className="font-[var(--font-josefin-sans)] text-[11px] font-semibold uppercase tracking-[0.25em] text-gray-500">
+                <p className="font-[var(--font-primary)] text-[11px] font-semibold uppercase tracking-[0.25em] text-gray-500">
                   About Daya
                 </p>
               </div>
 
-              <h1 className="max-w-5xl font-[var(--font-josefin-sans)] text-[3.5rem] font-semibold leading-[0.96] tracking-[-0.05em] text-gray-950 sm:text-6xl lg:text-[6.5rem]">
+              <h1 className="max-w-5xl font-[var(--font-primary)] text-[3.5rem] font-semibold leading-[0.96] tracking-[-0.05em] text-gray-950 sm:text-6xl lg:text-[6.5rem]">
                 Experience
                 <br />
                 <span className="text-gray-500">behind us.</span>
@@ -129,7 +153,7 @@ export default function AboutPage() {
                 Engineering ahead.
               </h1>
 
-              <p className="mt-8 max-w-2xl font-[var(--font-inter)] text-base leading-8 text-gray-600 sm:text-lg">
+              <p className="mt-8 max-w-2xl text-base leading-8 text-gray-600 sm:text-lg">
                 Daya Constructions & Structural Consultants brings together a
                 strong family foundation in construction with structural
                 engineering knowledge and a forward-looking approach to the
@@ -139,32 +163,18 @@ export default function AboutPage() {
               <div className="mt-9 flex flex-wrap gap-3">
                 <Link
                   href="/services"
-                  className="group inline-flex min-h-12 items-center gap-4 rounded-full bg-gray-950 px-6 py-3 font-[var(--font-josefin-sans)] text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-gray-800 hover:shadow-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-950 focus-visible:ring-offset-2"
+                  className="group inline-flex min-h-12 items-center gap-4 rounded-full bg-gray-950 px-6 py-3 font-[var(--font-primary)] text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-gray-800 hover:shadow-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-950 focus-visible:ring-offset-2"
                 >
                   <span>Explore Our Services</span>
 
                   <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white/10 transition-transform duration-300 group-hover:translate-x-1">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                      className="h-4 w-4"
-                      aria-hidden="true"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        d="M5 12h14m-6-6 6 6-6 6"
-                      />
-                    </svg>
+                    <ArrowIcon />
                   </span>
                 </Link>
 
                 <Link
                   href="/contact"
-                  className="inline-flex min-h-12 items-center rounded-full border border-gray-300 bg-white/60 px-6 py-3 font-[var(--font-josefin-sans)] text-sm font-semibold text-gray-700 backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-gray-950 hover:bg-white hover:text-gray-950"
+                  className="inline-flex min-h-12 items-center rounded-full border border-gray-300 bg-white px-6 py-3 font-[var(--font-primary)] text-sm font-semibold text-gray-700 transition-all duration-300 hover:-translate-y-1 hover:border-gray-950 hover:bg-gray-50 hover:text-gray-950"
                 >
                   Start a Conversation
                 </Link>
@@ -183,17 +193,17 @@ export default function AboutPage() {
                 </div>
 
                 {/* Floating experience card */}
-                <div className="absolute -bottom-7 -left-4 z-20 w-64 border border-gray-200 bg-white/95 p-5 shadow-xl backdrop-blur-md sm:-left-8">
-                  <p className="font-[var(--font-josefin-sans)] text-[10px] font-semibold uppercase tracking-[0.2em] text-gray-400">
+                <div className="absolute -bottom-7 -left-4 z-20 w-64 border border-gray-200 bg-white p-5 shadow-xl sm:-left-8">
+                  <p className="font-[var(--font-primary)] text-[10px] font-semibold uppercase tracking-[0.2em] text-gray-400">
                     Experience
                   </p>
 
                   <div className="mt-2 flex items-end gap-2">
-                    <span className="font-[var(--font-josefin-sans)] text-4xl font-semibold tracking-tight text-gray-950">
+                    <span className="font-[var(--font-primary)] text-4xl font-semibold tracking-tight text-gray-950">
                       40+
                     </span>
 
-                    <span className="pb-1 font-[var(--font-inter)] text-xs text-gray-500">
+                    <span className="pb-1 text-xs text-gray-500">
                       Years of
                       <br />
                       construction
@@ -202,7 +212,7 @@ export default function AboutPage() {
 
                   <div className="mt-4 h-px bg-gray-200" />
 
-                  <p className="mt-3 font-[var(--font-inter)] text-[11px] leading-5 text-gray-500">
+                  <p className="mt-3 text-[11px] leading-5 text-gray-500">
                     Practical experience carried forward through engineering,
                     construction and consultancy.
                   </p>
@@ -210,7 +220,7 @@ export default function AboutPage() {
 
                 <span
                   aria-hidden="true"
-                  className="absolute -right-5 top-10 hidden font-[var(--font-josefin-sans)] text-[10px] uppercase tracking-[0.28em] text-gray-400 [writing-mode:vertical-rl] lg:block"
+                  className="absolute -right-5 top-10 hidden font-[var(--font-primary)] text-[10px] uppercase tracking-[0.28em] text-gray-400 [writing-mode:vertical-rl] lg:block"
                 >
                   Built on experience
                 </span>
@@ -226,7 +236,7 @@ export default function AboutPage() {
         >
           <span className="h-px w-8 bg-gray-300" />
 
-          <span className="font-[var(--font-josefin-sans)] text-[9px] font-semibold uppercase tracking-[0.28em] text-gray-400">
+          <span className="font-[var(--font-primary)] text-[9px] font-semibold uppercase tracking-[0.28em] text-gray-400">
             Scroll to explore
           </span>
 
@@ -249,7 +259,7 @@ export default function AboutPage() {
             </div>
 
             <div className="lg:col-span-7 lg:col-start-6">
-              <p className="max-w-3xl font-[var(--font-josefin-sans)] text-3xl font-medium leading-tight tracking-tight text-gray-900 sm:text-4xl lg:text-5xl">
+              <p className="max-w-3xl font-[var(--font-primary)] text-3xl font-medium leading-tight tracking-tight text-gray-900 sm:text-4xl lg:text-5xl">
                 We believe dependable buildings begin with sound decisions,
                 thoughtful engineering and disciplined execution.
               </p>
@@ -258,7 +268,6 @@ export default function AboutPage() {
                 <div className="border-t border-gray-200 pt-5">
                   <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-gray-950 text-white">
                     <svg
-                      xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"
@@ -274,11 +283,11 @@ export default function AboutPage() {
                     </svg>
                   </div>
 
-                  <h3 className="font-[var(--font-josefin-sans)] text-lg font-semibold text-gray-950">
+                  <h3 className="font-[var(--font-primary)] text-lg font-semibold text-gray-950">
                     Dependable
                   </h3>
 
-                  <p className="mt-2 font-[var(--font-inter)] text-sm leading-6 text-gray-500">
+                  <p className="mt-2 text-sm leading-6 text-gray-500">
                     Practical solutions designed around quality,
                     responsibility and long-term performance.
                   </p>
@@ -287,7 +296,6 @@ export default function AboutPage() {
                 <div className="border-t border-gray-200 pt-5">
                   <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-gray-950 text-white">
                     <svg
-                      xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"
@@ -303,11 +311,11 @@ export default function AboutPage() {
                     </svg>
                   </div>
 
-                  <h3 className="font-[var(--font-josefin-sans)] text-lg font-semibold text-gray-950">
+                  <h3 className="font-[var(--font-primary)] text-lg font-semibold text-gray-950">
                     Engineering-led
                   </h3>
 
-                  <p className="mt-2 font-[var(--font-inter)] text-sm leading-6 text-gray-500">
+                  <p className="mt-2 text-sm leading-6 text-gray-500">
                     Structural knowledge integrated into construction
                     thinking and project decisions.
                   </p>
@@ -321,7 +329,7 @@ export default function AboutPage() {
       {/* =========================================================
           HERE'S THE THING
       ========================================================== */}
-      <section className="bg-[#f3f3f0] py-24 sm:py-28 lg:py-32">
+      <section className="bg-gray-50 py-24 sm:py-28 lg:py-32">
         <Container>
           <div className="grid items-center gap-12 lg:grid-cols-12 lg:gap-20">
             <div className="lg:col-span-5">
@@ -335,7 +343,6 @@ export default function AboutPage() {
                 <div className="absolute -bottom-5 -right-5 hidden h-24 w-24 border border-gray-300 bg-white lg:block">
                   <div className="flex h-full items-center justify-center">
                     <svg
-                      xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"
@@ -355,15 +362,15 @@ export default function AboutPage() {
             </div>
 
             <div className="lg:col-span-6 lg:col-start-7">
-              <p className="font-[var(--font-josefin-sans)] text-[10px] font-semibold uppercase tracking-[0.28em] text-gray-400">
+              <p className="font-[var(--font-primary)] text-[10px] font-semibold uppercase tracking-[0.28em] text-gray-400">
                 Here&apos;s the thing
               </p>
 
-              <h2 className="mt-5 font-[var(--font-josefin-sans)] text-4xl font-semibold leading-[1.05] tracking-tight text-gray-950 sm:text-5xl lg:text-6xl">
+              <h2 className="mt-5 font-[var(--font-primary)] text-4xl font-semibold leading-[1.05] tracking-tight text-gray-950 sm:text-5xl lg:text-6xl">
                 Good construction starts long before the first brick.
               </h2>
 
-              <p className="mt-7 max-w-xl font-[var(--font-inter)] text-base leading-8 text-gray-600">
+              <p className="mt-7 max-w-xl text-base leading-8 text-gray-600">
                 Every project carries decisions about structure, materials,
                 execution, cost, durability and future performance. Our role is
                 to bring these considerations together and create a practical
@@ -372,27 +379,13 @@ export default function AboutPage() {
 
               <Link
                 href="/services"
-                className="group mt-8 inline-flex items-center gap-3 font-[var(--font-josefin-sans)] text-sm font-semibold text-gray-950"
+                className="group mt-8 inline-flex items-center gap-3 font-[var(--font-primary)] text-sm font-semibold text-gray-950"
               >
                 <span className="border-b border-gray-950 pb-1">
                   Explore Our Expertise
                 </span>
 
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
-                  aria-hidden="true"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M5 12h14m-6-6 6 6-6 6"
-                  />
-                </svg>
+                <ArrowIcon />
               </Link>
             </div>
           </div>
@@ -413,13 +406,13 @@ export default function AboutPage() {
             </div>
 
             <div className="lg:col-span-7 lg:col-start-6">
-              <p className="font-[var(--font-josefin-sans)] text-2xl font-medium leading-9 text-gray-900 sm:text-3xl">
+              <p className="font-[var(--font-primary)] text-2xl font-medium leading-9 text-gray-900 sm:text-3xl">
                 Daya Constructions & Structural Consultants is a construction
                 and structural consultancy company established in 2026,
                 focused on dependable construction and engineering solutions.
               </p>
 
-              <p className="mt-7 font-[var(--font-inter)] text-base leading-8 text-gray-600">
+              <p className="mt-7 text-base leading-8 text-gray-600">
                 Our approach combines practical construction experience with
                 structural engineering knowledge. From structural design and
                 consultancy to construction, restoration, rehabilitation and
@@ -427,7 +420,7 @@ export default function AboutPage() {
                 responsibility and attention to detail.
               </p>
 
-              <p className="mt-6 font-[var(--font-inter)] text-base leading-8 text-gray-600">
+              <p className="mt-6 text-base leading-8 text-gray-600">
                 We believe that successful projects are built through a
                 combination of sound engineering, quality execution, clear
                 communication and long-term thinking.
@@ -440,7 +433,7 @@ export default function AboutPage() {
       {/* =========================================================
           COMPANY STORY / TIMELINE
       ========================================================== */}
-      <section className="bg-[#f3f3f0] py-24 sm:py-28 lg:py-32">
+      <section className="bg-gray-50 py-24 sm:py-28 lg:py-32">
         <Container>
           <div className="grid gap-14 lg:grid-cols-12 lg:gap-20">
             <div className="lg:col-span-4">
@@ -455,7 +448,7 @@ export default function AboutPage() {
                   <div className="flex items-center gap-3">
                     <span className="h-px w-8 bg-gray-950" />
 
-                    <span className="font-[var(--font-josefin-sans)] text-[10px] font-semibold uppercase tracking-[0.25em] text-gray-400">
+                    <span className="font-[var(--font-primary)] text-[10px] font-semibold uppercase tracking-[0.25em] text-gray-400">
                       Our Journey
                     </span>
                   </div>
@@ -478,22 +471,22 @@ export default function AboutPage() {
                       className="group relative grid grid-cols-[16px_1fr] gap-7 border-b border-gray-300 py-10 first:pt-0 last:border-b-0"
                     >
                       {/* Timeline dot */}
-                      <div className="relative z-10 mt-1.5 flex h-4 w-4 items-center justify-center rounded-full border border-gray-400 bg-[#f3f3f0]">
+                      <div className="relative z-10 mt-1.5 flex h-4 w-4 items-center justify-center rounded-full border border-gray-400 bg-gray-50">
                         <span className="h-1.5 w-1.5 rounded-full bg-gray-950 transition-transform duration-300 group-hover:scale-150" />
                       </div>
 
                       <div>
                         <div className="flex flex-wrap items-baseline gap-x-4 gap-y-2">
-                          <span className="font-[var(--font-josefin-sans)] text-sm font-semibold tracking-[0.12em] text-gray-400">
+                          <span className="font-[var(--font-primary)] text-sm font-semibold tracking-[0.12em] text-gray-400">
                             {item.year}
                           </span>
 
-                          <h2 className="font-[var(--font-josefin-sans)] text-2xl font-semibold tracking-tight text-gray-950 sm:text-3xl">
+                          <h2 className="font-[var(--font-primary)] text-2xl font-semibold tracking-tight text-gray-950 sm:text-3xl">
                             {item.title}
                           </h2>
                         </div>
 
-                        <p className="mt-4 max-w-2xl font-[var(--font-inter)] text-sm leading-7 text-gray-600 sm:text-base">
+                        <p className="mt-4 max-w-2xl text-sm leading-7 text-gray-600 sm:text-base">
                           {item.description}
                         </p>
                       </div>
@@ -538,38 +531,24 @@ export default function AboutPage() {
                     className="group border-b border-gray-300 py-9"
                   >
                     <div className="flex items-start justify-between gap-6">
-                      <span className="font-[var(--font-josefin-sans)] text-xs font-semibold tracking-[0.2em] text-gray-400">
+                      <span className="font-[var(--font-primary)] text-xs font-semibold tracking-[0.2em] text-gray-400">
                         {item.number}
                       </span>
 
                       <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-gray-200 transition-all duration-300 group-hover:border-gray-950 group-hover:bg-gray-950 group-hover:text-white">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="1.5"
-                          className="h-4 w-4"
-                          aria-hidden="true"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M12 3v18M3 12h18"
-                          />
-                        </svg>
+                        <PlusIcon />
                       </div>
                     </div>
 
-                    <p className="mt-8 font-[var(--font-josefin-sans)] text-[10px] font-semibold uppercase tracking-[0.2em] text-gray-400">
+                    <p className="mt-8 font-[var(--font-primary)] text-[10px] font-semibold uppercase tracking-[0.2em] text-gray-400">
                       {item.subtitle}
                     </p>
 
-                    <h2 className="mt-2 font-[var(--font-josefin-sans)] text-2xl font-semibold tracking-tight text-gray-950 sm:text-3xl">
+                    <h2 className="mt-2 font-[var(--font-primary)] text-2xl font-semibold tracking-tight text-gray-950 sm:text-3xl">
                       {item.title}
                     </h2>
 
-                    <p className="mt-4 max-w-2xl font-[var(--font-inter)] text-sm leading-7 text-gray-600 sm:text-base">
+                    <p className="mt-4 max-w-2xl text-sm leading-7 text-gray-600 sm:text-base">
                       {item.description}
                     </p>
                   </article>
@@ -581,30 +560,30 @@ export default function AboutPage() {
       </section>
 
       {/* =========================================================
-          HEART BEHIND WHAT WE DO
+          THE THINKING BEHIND DAYA
       ========================================================== */}
       <section className="bg-gray-950 py-24 text-white sm:py-28 lg:py-32">
         <Container>
           <div className="grid items-center gap-14 lg:grid-cols-12 lg:gap-20">
             <div className="lg:col-span-5">
-              <p className="font-[var(--font-josefin-sans)] text-[10px] font-semibold uppercase tracking-[0.28em] text-gray-500">
+              <p className="font-[var(--font-primary)] text-[10px] font-semibold uppercase tracking-[0.28em] text-gray-500">
                 The Thinking Behind Daya
               </p>
 
-              <h2 className="mt-5 font-[var(--font-josefin-sans)] text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">
+              <h2 className="mt-5 font-[var(--font-primary)] text-4xl font-semibold leading-[1.05] tracking-tight sm:text-5xl lg:text-6xl">
                 Engineering should make construction clearer.
               </h2>
             </div>
 
             <div className="lg:col-span-6 lg:col-start-7">
-              <p className="font-[var(--font-inter)] text-base leading-8 text-gray-400 sm:text-lg">
+              <p className="text-base leading-8 text-gray-400 sm:text-lg">
                 Construction is not only about putting materials together. It
                 is about understanding how decisions affect strength,
                 durability, cost, maintenance and the people who will use the
                 space.
               </p>
 
-              <p className="mt-6 font-[var(--font-inter)] text-base leading-8 text-gray-400 sm:text-lg">
+              <p className="mt-6 text-base leading-8 text-gray-400 sm:text-lg">
                 Daya brings practical construction understanding together with
                 structural engineering knowledge so that design, consultancy
                 and execution can work together rather than existing as
@@ -613,7 +592,7 @@ export default function AboutPage() {
 
               <div className="mt-10 grid gap-4 sm:grid-cols-2">
                 <div className="border border-white/10 p-5">
-                  <p className="font-[var(--font-josefin-sans)] text-2xl font-semibold">
+                  <p className="font-[var(--font-primary)] text-2xl font-semibold">
                     Precision
                   </p>
 
@@ -623,7 +602,7 @@ export default function AboutPage() {
                 </div>
 
                 <div className="border border-white/10 p-5">
-                  <p className="font-[var(--font-josefin-sans)] text-2xl font-semibold">
+                  <p className="font-[var(--font-primary)] text-2xl font-semibold">
                     Responsibility
                   </p>
 
@@ -653,7 +632,7 @@ export default function AboutPage() {
               </div>
 
               <div className="lg:col-span-4 lg:col-start-9">
-                <p className="font-[var(--font-inter)] text-sm leading-7 text-gray-500">
+                <p className="text-sm leading-7 text-gray-500">
                   Every project is different. Our approach gives us a
                   consistent framework while leaving room for the realities of
                   each site, structure and client requirement.
@@ -668,35 +647,21 @@ export default function AboutPage() {
                   className="group relative min-h-[320px] border-b border-gray-200 p-7 md:border-b-0 md:border-r md:p-9 lg:p-10"
                 >
                   <div className="flex items-center justify-between">
-                    <span className="font-[var(--font-josefin-sans)] text-xs font-semibold tracking-[0.2em] text-gray-400">
+                    <span className="font-[var(--font-primary)] text-xs font-semibold tracking-[0.2em] text-gray-400">
                       {item.number}
                     </span>
 
                     <span className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 transition-all duration-300 group-hover:border-gray-950 group-hover:bg-gray-950 group-hover:text-white">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="1.5"
-                        className="h-4 w-4"
-                        aria-hidden="true"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          d="M5 12h14m-6-6 6 6-6 6"
-                        />
-                      </svg>
+                      <ArrowIcon />
                     </span>
                   </div>
 
                   <div className="mt-20">
-                    <h2 className="font-[var(--font-josefin-sans)] text-3xl font-semibold tracking-tight text-gray-950">
+                    <h2 className="font-[var(--font-primary)] text-3xl font-semibold tracking-tight text-gray-950">
                       {item.title}
                     </h2>
 
-                    <p className="mt-4 font-[var(--font-inter)] text-sm leading-7 text-gray-500 sm:text-base">
+                    <p className="mt-4 text-sm leading-7 text-gray-500 sm:text-base">
                       {item.description}
                     </p>
                   </div>
@@ -710,7 +675,7 @@ export default function AboutPage() {
       {/* =========================================================
           VISION
       ========================================================== */}
-      <section className="relative overflow-hidden bg-[#f3f3f0] py-28 sm:py-32 lg:py-40">
+      <section className="relative overflow-hidden bg-gray-50 py-28 sm:py-32 lg:py-40">
         <div
           aria-hidden="true"
           className="pointer-events-none absolute left-1/2 top-1/2 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-white blur-3xl"
@@ -718,15 +683,15 @@ export default function AboutPage() {
 
         <Container>
           <div className="relative mx-auto max-w-5xl text-center">
-            <p className="font-[var(--font-josefin-sans)] text-[10px] font-semibold uppercase tracking-[0.28em] text-gray-400">
+            <p className="font-[var(--font-primary)] text-[10px] font-semibold uppercase tracking-[0.28em] text-gray-400">
               Our Vision
             </p>
 
-            <h2 className="mt-6 font-[var(--font-josefin-sans)] text-4xl font-semibold leading-[1.03] tracking-tight text-gray-950 sm:text-5xl lg:text-7xl">
+            <h2 className="mt-6 font-[var(--font-primary)] text-4xl font-semibold leading-[1.03] tracking-tight text-gray-950 sm:text-5xl lg:text-7xl">
               Building a stronger future through engineering and execution.
             </h2>
 
-            <p className="mx-auto mt-7 max-w-2xl font-[var(--font-inter)] text-base leading-8 text-gray-600 sm:text-lg">
+            <p className="mx-auto mt-7 max-w-2xl text-base leading-8 text-gray-600 sm:text-lg">
               We aim to grow Daya into a trusted name in construction and
               structural consultancy by combining practical experience,
               engineering knowledge, quality and responsible project
@@ -736,25 +701,13 @@ export default function AboutPage() {
             <div className="mt-10 flex justify-center">
               <Link
                 href="/projects"
-                className="group inline-flex items-center gap-3 rounded-full bg-gray-950 px-6 py-3 font-[var(--font-josefin-sans)] text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-gray-800 hover:shadow-xl"
+                className="group inline-flex items-center gap-3 rounded-full bg-gray-950 px-6 py-3 font-[var(--font-primary)] text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-gray-800 hover:shadow-xl"
               >
                 <span>Explore Our Work</span>
 
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
-                  aria-hidden="true"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M5 12h14m-6-6 6 6-6 6"
-                  />
-                </svg>
+                <span className="transition-transform duration-300 group-hover:translate-x-1">
+                  <ArrowIcon />
+                </span>
               </Link>
             </div>
           </div>
