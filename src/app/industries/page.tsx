@@ -68,7 +68,7 @@ export default function IndustriesPage() {
                 different spaces.
               </h1>
 
-              <p className="mt-8 max-w-2xl text-base leading-7 text-gray-600 sm:text-lg">
+              <p className="pt-10 max-w-2xl text-base leading-7 text-gray-600 sm:text-lg">
                 Our construction and structural expertise can support a range
                 of building types and project environments.
               </p>

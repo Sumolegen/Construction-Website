@@ -117,6 +117,9 @@ export default function ProjectsPage() {
 
               {/* Main Heading */}
 
+              {/* Main Heading */}
+              {/* Main Heading */}
+
               <h1 className="text-display max-w-5xl text-gray-950">
                 Built with
                 <br />
@@ -127,7 +130,7 @@ export default function ProjectsPage() {
 
               {/* Description */}
 
-              <p className="text-body-lg mt-8 max-w-2xl text-gray-600">
+              <p className="text-body-lg max-w-2xl pt-10 text-gray-600">
                 A selection of construction, structural and restoration work
                 representing our approach to the built environment.
               </p>
@@ -303,11 +306,10 @@ export default function ProjectsPage() {
               {categories.map((category, index) => (
                 <span
                   key={category}
-                  className={`rounded-full border px-4 py-2 font-[var(--font-primary)] text-xs font-semibold transition-colors duration-300 ${
-                    index === 0
+                  className={`rounded-full border px-4 py-2 font-[var(--font-primary)] text-xs font-semibold transition-colors duration-300 ${index === 0
                       ? "border-gray-950 bg-gray-950 text-white"
                       : "border-gray-300 bg-white text-gray-600 hover:border-gray-950 hover:text-gray-950"
-                  }`}
+                    }`}
                 >
                   {category}
                 </span>
