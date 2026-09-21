@@ -231,6 +231,8 @@ export default function HomeHero() {
                 "
               >
                 <ImagePlaceholder
+                  src="/images/hero.jpg"
+                  alt="Daya construction project"
                   label="Featured Project"
                   title="Daya"
                   aspectRatio="aspect-[4/5] sm:aspect-[4/4.5] lg:aspect-[4/5]"
