@@ -194,12 +194,12 @@ export default function AboutPage() {
 
                 {/* Floating experience card */}
                 <div className="absolute -bottom-7 -left-4 z-20 w-64 border border-gray-200 bg-white p-5 shadow-xl sm:-left-8">
-                  <p className="font-[var(--font-primary)] text-[10px] font-semibold uppercase tracking-[0.2em] text-gray-400">
+                  <p className="font-(--font-primary) text-[10px] font-semibold uppercase tracking-[0.2em] text-gray-400">
                     Experience
                   </p>
 
                   <div className="mt-2 flex items-end gap-2">
-                    <span className="font-[var(--font-primary)] text-4xl font-semibold tracking-tight text-gray-950">
+                    <span className="font-(--font-primary) text-4xl font-semibold tracking-tight text-gray-950">
                       40+
                     </span>
 
@@ -220,7 +220,7 @@ export default function AboutPage() {
 
                 <span
                   aria-hidden="true"
-                  className="absolute -right-5 top-10 hidden font-[var(--font-primary)] text-[10px] uppercase tracking-[0.28em] text-gray-400 [writing-mode:vertical-rl] lg:block"
+                  className="absolute -right-5 top-10 hidden font-(--font-primary) text-[10px] uppercase tracking-[0.28em] text-gray-400 [writing-mode:vertical-rl] lg:block"
                 >
                   Built on experience
                 </span>
