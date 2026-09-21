@@ -24,53 +24,56 @@ const projects = [
   },
 ];
 
+function ArrowIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      className="h-4 w-4"
+      aria-hidden="true"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M5 12h14m-6-6 6 6-6 6"
+      />
+    </svg>
+  );
+}
+
 export default function ProjectsPreview() {
   return (
     <section className="relative overflow-hidden bg-white py-24 sm:py-28 lg:py-32">
-      {/* Subtle Background Detail */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute right-0 top-0 h-[500px] w-[500px] rounded-full bg-gray-50 blur-3xl"
-      />
-
       <Container>
         <div className="relative flex flex-col gap-12 lg:gap-16">
           {/* Section Header */}
-          <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
-            <SectionHeading
-              eyebrow="Selected Projects"
-              title="Built environments shaped with purpose."
-              description="Explore selected projects that reflect our approach to construction, structural thinking and execution."
-            />
+          <div className="grid gap-8 lg:grid-cols-12 lg:items-end lg:gap-16">
+            <div className="lg:col-span-7">
+              <SectionHeading
+                eyebrow="Selected Projects"
+                title="Built environments shaped with purpose."
+                description="Explore selected projects that reflect our approach to construction, structural thinking and execution."
+              />
+            </div>
 
-            <Link
-              href="/projects"
-              className="group inline-flex w-fit shrink-0 items-center gap-3 rounded-full border border-gray-200 bg-white px-5 py-3 font-[var(--font-josefin-sans)] text-sm font-semibold text-gray-700 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-gray-950 hover:bg-gray-950 hover:text-white hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-950 focus-visible:ring-offset-2"
-            >
-              <span>View All Projects</span>
+            <div className="lg:col-span-5 lg:flex lg:justify-end">
+              <Link
+                href="/projects"
+                className="group inline-flex w-fit items-center gap-3 rounded-full border border-gray-200 bg-white px-5 py-3 font-[var(--font-primary)] text-sm font-semibold text-gray-700 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-gray-950 hover:bg-gray-950 hover:text-white hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-950 focus-visible:ring-offset-2"
+              >
+                <span>View All Projects</span>
 
-              <span className="flex h-6 w-6 items-center justify-center rounded-full border border-current transition-transform duration-300 group-hover:translate-x-1">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  className="h-3.5 w-3.5"
-                  aria-hidden="true"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M5 12h14m-6-6 6 6-6 6"
-                  />
-                </svg>
-              </span>
-            </Link>
+                <span className="flex h-6 w-6 items-center justify-center rounded-full border border-current transition-transform duration-300 group-hover:translate-x-1">
+                  <ArrowIcon />
+                </span>
+              </Link>
+            </div>
           </div>
 
-          {/* Projects */}
-          <div className="grid gap-x-8 gap-y-12 lg:grid-cols-2 lg:gap-y-14">
+          {/* Project Cards */}
+          <div className="grid gap-8 md:grid-cols-2 lg:gap-10">
             {projects.map((project, index) => (
               <ProjectCard
                 key={project.number}
@@ -83,17 +86,17 @@ export default function ProjectsPreview() {
             ))}
           </div>
 
-          {/* Bottom Navigation */}
+          {/* Bottom Meta */}
           <div className="flex items-center justify-between border-t border-gray-200 pt-6">
             <div className="flex items-center gap-3">
               <span className="h-px w-8 bg-gray-950" />
 
-              <span className="font-[var(--font-josefin-sans)] text-[10px] font-semibold uppercase tracking-[0.25em] text-gray-400">
+              <span className="font-[var(--font-primary)] text-[10px] font-semibold uppercase tracking-[0.25em] text-gray-400">
                 Selected Work
               </span>
             </div>
 
-            <span className="font-[var(--font-josefin-sans)] text-[10px] font-semibold uppercase tracking-[0.2em] text-gray-400">
+            <span className="font-[var(--font-primary)] text-[10px] font-semibold uppercase tracking-[0.2em] text-gray-400">
               01 — 03
             </span>
           </div>
