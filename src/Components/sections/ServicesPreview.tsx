@@ -5,9 +5,7 @@ import Link from "next/link";
 import {
   useCallback,
   useEffect,
-  useRef,
   useState,
-  type ReactNode,
 } from "react";
 
 import Container from "../ui/Container";
@@ -19,7 +17,7 @@ const services = [
     title: "Structural Design",
     type: "Design",
     description:
-      "Structural design focused on safety, stability, durability and practical construction requirements. We develop structural solutions with careful consideration of loads, materials, site conditions and long-term performance.",
+      "Engineering-focused structural design solutions developed with safety, precision, functionality and long-term performance in mind.",
     image: "/images/1.jpg",
   },
   {
@@ -27,7 +25,7 @@ const services = [
     title: "Structural Consultancy",
     type: "Consultancy",
     description:
-      "Engineering guidance for structural requirements, design decisions, assessments and project-specific challenges. Our approach combines technical understanding with practical construction knowledge.",
+      "Professional technical guidance to support structural decisions, project planning and practical engineering requirements.",
     image: "/images/2.jpg",
   },
   {
@@ -35,7 +33,7 @@ const services = [
     title: "Construction",
     type: "Execution",
     description:
-      "Construction solutions focused on quality execution, coordination and dependable project delivery. We approach construction with attention to detail, materials, workmanship and the requirements of each project.",
+      "Reliable construction execution with attention to quality, coordination, workmanship, durability and project requirements.",
     image: "/images/3.jpg",
   },
   {
@@ -43,7 +41,7 @@ const services = [
     title: "Restoration",
     type: "Restoration",
     description:
-      "Restoration solutions for existing buildings and structures that require repair, improvement or careful intervention. We consider the existing condition while working toward improved performance and service life.",
+      "Careful restoration solutions for existing structures while improving usability, condition and performance.",
     image: "/images/4.jpg",
   },
   {
@@ -51,7 +49,7 @@ const services = [
     title: "Rehabilitation",
     type: "Engineering",
     description:
-      "Rehabilitation of existing structures through appropriate engineering assessment, strengthening and repair strategies. The objective is to improve structural performance while responding to the condition of the existing building.",
+      "Structural rehabilitation solutions focused on improving the condition, strength, functionality and long-term performance of existing buildings.",
     image: "/images/5.jpg",
   },
   {
@@ -59,7 +57,7 @@ const services = [
     title: "Project Management",
     type: "Management",
     description:
-      "Project management support focused on planning, coordination, execution and communication. We help bring together technical requirements and practical project needs for smoother delivery.",
+      "Project management support covering planning, coordination, execution and communication to help maintain quality and project progress.",
     image: "/images/6.jpg",
   },
   {
@@ -67,7 +65,7 @@ const services = [
     title: "Lump Sum Contracts",
     type: "Contracts",
     description:
-      "Lump sum contract solutions for projects with clearly defined scope, requirements and execution expectations. We focus on coordinated planning, quality and responsible project delivery.",
+      "Lump sum contract solutions for clearly defined project requirements, scope, execution and delivery expectations.",
     image: "/images/7.jpg",
   },
   {
@@ -75,21 +73,21 @@ const services = [
     title: "Labour Contracts",
     type: "Workforce",
     description:
-      "Labour contract support for construction projects requiring organised workforce coordination and execution. Our approach focuses on workmanship, site requirements and efficient project progress.",
+      "Labour contract support focused on organised workforce coordination, workmanship, site requirements and efficient project execution.",
     image: "/images/8.jpg",
   },
 ];
 
 function ServiceIcon({ number }: { number: string }) {
-  const icons: Record<string, ReactNode> = {
+  const icons: Record<string, React.ReactNode> = {
     "01": (
       <svg
         viewBox="0 0 24 24"
         fill="none"
         stroke="currentColor"
         strokeWidth="1.5"
-        aria-hidden="true"
         className="h-5 w-5"
+        aria-hidden="true"
       >
         <path d="M4 20h16" />
         <path d="M6 20V8l6-4 6 4v12" />
@@ -104,8 +102,8 @@ function ServiceIcon({ number }: { number: string }) {
         fill="none"
         stroke="currentColor"
         strokeWidth="1.5"
-        aria-hidden="true"
         className="h-5 w-5"
+        aria-hidden="true"
       >
         <circle cx="12" cy="12" r="8" />
         <path d="M12 8v8" />
@@ -119,8 +117,8 @@ function ServiceIcon({ number }: { number: string }) {
         fill="none"
         stroke="currentColor"
         strokeWidth="1.5"
-        aria-hidden="true"
         className="h-5 w-5"
+        aria-hidden="true"
       >
         <path d="M4 20V9l8-5 8 5v11" />
         <path d="M8 20v-5h8v5" />
@@ -134,8 +132,8 @@ function ServiceIcon({ number }: { number: string }) {
         fill="none"
         stroke="currentColor"
         strokeWidth="1.5"
-        aria-hidden="true"
         className="h-5 w-5"
+        aria-hidden="true"
       >
         <path d="M4 20h16" />
         <path d="M6 20V7h12v13" />
@@ -150,8 +148,8 @@ function ServiceIcon({ number }: { number: string }) {
         fill="none"
         stroke="currentColor"
         strokeWidth="1.5"
-        aria-hidden="true"
         className="h-5 w-5"
+        aria-hidden="true"
       >
         <path d="M4 18h16" />
         <path d="M6 18V8l6-4 6 4v10" />
@@ -166,8 +164,8 @@ function ServiceIcon({ number }: { number: string }) {
         fill="none"
         stroke="currentColor"
         strokeWidth="1.5"
-        aria-hidden="true"
         className="h-5 w-5"
+        aria-hidden="true"
       >
         <circle cx="12" cy="12" r="8" />
         <path d="M12 8v4l3 2" />
@@ -180,8 +178,8 @@ function ServiceIcon({ number }: { number: string }) {
         fill="none"
         stroke="currentColor"
         strokeWidth="1.5"
-        aria-hidden="true"
         className="h-5 w-5"
+        aria-hidden="true"
       >
         <rect x="4" y="5" width="16" height="14" rx="1" />
         <path d="M8 9h8M8 13h5" />
@@ -194,8 +192,8 @@ function ServiceIcon({ number }: { number: string }) {
         fill="none"
         stroke="currentColor"
         strokeWidth="1.5"
-        aria-hidden="true"
         className="h-5 w-5"
+        aria-hidden="true"
       >
         <path d="M5 20V9l7-5 7 5v11" />
         <path d="M8 20v-6h8v6" />
@@ -204,18 +202,22 @@ function ServiceIcon({ number }: { number: string }) {
     ),
   };
 
-  return icons[number];
+  return icons[number] ?? icons["01"];
 }
 
-function ArrowIcon({ direction = "right" }: { direction?: "left" | "right" }) {
+function ArrowIcon({
+  direction = "right",
+}: {
+  direction?: "left" | "right";
+}) {
   return (
     <svg
       viewBox="0 0 24 24"
       fill="none"
       stroke="currentColor"
       strokeWidth="1.5"
-      aria-hidden="true"
       className="h-5 w-5"
+      aria-hidden="true"
     >
       {direction === "right" ? (
         <>
@@ -236,121 +238,91 @@ export default function ServicesPreview() {
   const [current, setCurrent] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
 
-  const sliderRef = useRef<HTMLDivElement>(null);
-
-  const totalServices = services.length;
+  const total = services.length;
+  const service = services[current];
 
   const nextSlide = useCallback(() => {
-    setCurrent((prev) => (prev + 1) % totalServices);
-  }, [totalServices]);
+    setCurrent((prev) => (prev + 1) % total);
+  }, [total]);
 
   const previousSlide = useCallback(() => {
-    setCurrent((prev) => (prev - 1 + totalServices) % totalServices);
-  }, [totalServices]);
-
-  const goToSlide = useCallback((index: number) => {
-    setCurrent(index);
-  }, []);
+    setCurrent((prev) => (prev - 1 + total) % total);
+  }, [total]);
 
   useEffect(() => {
     if (isPaused) return;
 
-    const interval = window.setInterval(() => {
+    const timer = window.setInterval(() => {
       nextSlide();
     }, 4000);
 
-    return () => window.clearInterval(interval);
+    return () => window.clearInterval(timer);
   }, [isPaused, nextSlide]);
-
-  useEffect(() => {
-    const slider = sliderRef.current;
-
-    if (!slider) return;
-
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "ArrowRight") {
-        event.preventDefault();
-        nextSlide();
-      }
-
-      if (event.key === "ArrowLeft") {
-        event.preventDefault();
-        previousSlide();
-      }
-    };
-
-    slider.addEventListener("keydown", handleKeyDown);
-
-    return () => {
-      slider.removeEventListener("keydown", handleKeyDown);
-    };
-  }, [nextSlide, previousSlide]);
-
-  const service = services[current];
 
   return (
     <section className="bg-white py-24 sm:py-28 lg:py-32">
       <Container>
         <div className="grid gap-14 lg:grid-cols-12 lg:gap-16">
-          <div className="lg:col-span-5">
+          {/* LEFT */}
+          <div className="lg:col-span-4">
             <SectionHeading
-              eyebrow="Our Services"
+              eyebrow="Services"
               title="Engineering knowledge. Practical execution."
               description="From structural design and consultancy to construction, restoration and project management, we provide solutions shaped around the requirements of each project."
             />
 
-            <div className="mt-10 flex items-center gap-3">
-              <Link
-                href="/services"
-                className="group inline-flex items-center gap-3 border-b border-gray-950 pb-2 text-button text-gray-950"
-              >
-                <span>Explore All Services</span>
+            <Link
+              href="/services"
+              className="group mt-10 inline-flex items-center gap-3 border-b border-gray-950 pb-2 text-button text-gray-950"
+            >
+              <span>Explore All Services</span>
 
-                <span className="transition-transform duration-300 group-hover:translate-x-1">
-                  <ArrowIcon />
-                </span>
-              </Link>
-            </div>
-
-            <div className="mt-12 hidden lg:block">
-              <div className="flex items-center gap-4">
-                <span className="font-[var(--font-primary)] text-sm font-semibold tracking-[0.18em] text-gray-400">
-                  {String(current + 1).padStart(2, "0")}
-                </span>
-
-                <div className="h-px flex-1 bg-gray-200">
-                  <div
-                    className="h-px bg-gray-950 transition-all duration-500"
-                    style={{
-                      width: `${((current + 1) / totalServices) * 100}%`,
-                    }}
-                  />
-                </div>
-
-                <span className="font-[var(--font-primary)] text-sm font-semibold tracking-[0.18em] text-gray-400">
-                  {String(totalServices).padStart(2, "0")}
-                </span>
-              </div>
-            </div>
+              <span className="transition-transform duration-300 group-hover:translate-x-1">
+                <ArrowIcon />
+              </span>
+            </Link>
           </div>
 
+          {/* RIGHT SLIDER */}
           <div
-            ref={sliderRef}
-            tabIndex={0}
-            role="region"
-            aria-label="Our services"
-            className="relative lg:col-span-7"
+            className="lg:col-span-8"
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
             onFocus={() => setIsPaused(true)}
             onBlur={() => setIsPaused(false)}
           >
-            <div className="relative overflow-hidden border border-gray-200 bg-gray-50">
-              <div className="relative min-h-[540px] sm:min-h-[560px]">
-                <div
-                  key={service.number}
-                  className="group absolute inset-0 flex flex-col bg-white p-7 sm:p-9 lg:p-10"
-                >
+            <div className="relative overflow-hidden border border-gray-200 bg-white">
+              <div className="grid min-h-[590px] md:grid-cols-[1fr_1.35fr]">
+                {/* IMAGE */}
+                <div className="relative min-h-[300px] overflow-hidden bg-gray-100 md:min-h-full">
+                  <Image
+                    key={service.image}
+                    src={service.image}
+                    alt={service.title}
+                    fill
+                    sizes="(max-width: 768px) 100vw, 40vw"
+                    className="object-cover grayscale transition-transform duration-700"
+                    priority={current === 0}
+                  />
+
+                  <div
+                    aria-hidden="true"
+                    className="absolute inset-0 bg-black/5"
+                  />
+
+                  <div className="absolute bottom-6 left-6 flex h-12 w-12 items-center justify-center rounded-full border border-white/70 bg-white/90 text-gray-800 shadow-lg backdrop-blur-sm">
+                    <ServiceIcon number={service.number} />
+                  </div>
+
+                  <div className="absolute left-6 top-6">
+                    <p className="text-label text-white drop-shadow-md">
+                      {service.number}
+                    </p>
+                  </div>
+                </div>
+
+                {/* CONTENT */}
+                <div className="flex flex-col p-7 sm:p-9 lg:p-10">
                   <div className="flex items-start justify-between">
                     <div>
                       <p className="text-label text-gray-400">
@@ -358,16 +330,17 @@ export default function ServicesPreview() {
                       </p>
 
                       <p className="mt-3 font-[var(--font-primary)] text-sm font-semibold tracking-[0.12em] text-gray-400">
-                        {service.number}
+                        {service.number} /{" "}
+                        {String(total).padStart(2, "0")}
                       </p>
                     </div>
 
-                    <div className="flex h-11 w-11 items-center justify-center border border-gray-200 text-gray-700 transition-all duration-500 group-hover:border-gray-950 group-hover:bg-gray-950 group-hover:text-white">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-full border border-gray-200 text-gray-700">
                       <ServiceIcon number={service.number} />
                     </div>
                   </div>
 
-                  <div className="mt-7">
+                  <div className="mt-10">
                     <h3 className="text-h3 text-gray-950">
                       {service.title}
                     </h3>
@@ -377,107 +350,48 @@ export default function ServicesPreview() {
                     </p>
                   </div>
 
-                  {/* SERVICE IMAGE */}
-                  <div className="relative z-10 mt-10 overflow-hidden border-y border-gray-200 bg-gray-100">
-                    <div className="relative aspect-[16/9] overflow-hidden">
-                      <Image
-                        src={service.image}
-                        alt={service.title}
-                        fill
-                        sizes="(max-width: 640px) 82vw, (max-width: 1024px) 60vw, 600px"
-                        className="object-cover grayscale transition-transform duration-700 ease-out group-hover:scale-105"
-                        priority={current === 0}
-                      />
+                  <div className="mt-auto border-t border-gray-200 pt-7">
+                    <div className="flex items-center justify-between gap-6">
+                      <Link
+                        href="/services"
+                        className="text-label text-gray-400 transition-colors hover:text-gray-950"
+                      >
+                        Explore Service
+                      </Link>
 
-                      <div
-                        aria-hidden="true"
-                        className="absolute inset-0 bg-black/5 transition-opacity duration-500 group-hover:bg-black/0"
-                      />
+                      <div className="flex items-center gap-2">
+                        <button
+                          type="button"
+                          onClick={previousSlide}
+                          aria-label="Previous service"
+                          className="flex h-11 w-11 items-center justify-center rounded-full border border-gray-200 text-gray-700 transition-all duration-300 hover:border-gray-950 hover:bg-gray-950 hover:text-white"
+                        >
+                          <ArrowIcon direction="left" />
+                        </button>
 
-                      <div className="absolute bottom-4 left-4 flex h-12 w-12 items-center justify-center border border-white/60 bg-white/90 text-gray-800 shadow-lg backdrop-blur-sm transition-all duration-500 group-hover:scale-110 group-hover:bg-gray-950 group-hover:text-white">
-                        <ServiceIcon number={service.number} />
+                        <button
+                          type="button"
+                          onClick={nextSlide}
+                          aria-label="Next service"
+                          className="flex h-11 w-11 items-center justify-center rounded-full bg-gray-950 text-white transition-all duration-300 hover:bg-gray-700"
+                        >
+                          <ArrowIcon />
+                        </button>
                       </div>
                     </div>
                   </div>
-
-                  <div className="mt-auto flex items-end justify-between gap-6 pt-8">
-                    <div>
-                      <p className="text-label text-gray-400">
-                        Daya Constructions
-                      </p>
-
-                      <p className="mt-2 text-body-sm text-gray-500">
-                        Construction & Structural Consultants
-                      </p>
-                    </div>
-
-                    <Link
-                      href="/services"
-                      aria-label={`Learn more about ${service.title}`}
-                      className="group/link flex h-11 w-11 shrink-0 items-center justify-center border border-gray-300 text-gray-700 transition-all duration-300 hover:border-gray-950 hover:bg-gray-950 hover:text-white"
-                    >
-                      <ArrowIcon />
-
-                      <span className="sr-only">
-                        Learn more about {service.title}
-                      </span>
-                    </Link>
-                  </div>
                 </div>
-              </div>
-
-              {/* PREVIOUS / NEXT CONTROLS */}
-              <div className="absolute bottom-7 right-7 z-20 flex items-center gap-2 sm:bottom-9 sm:right-9">
-                <button
-                  type="button"
-                  onClick={previousSlide}
-                  aria-label="Previous service"
-                  className="flex h-11 w-11 items-center justify-center border border-gray-300 bg-white text-gray-700 shadow-sm transition-all duration-300 hover:border-gray-950 hover:bg-gray-950 hover:text-white"
-                >
-                  <ArrowIcon direction="left" />
-                </button>
-
-                <button
-                  type="button"
-                  onClick={nextSlide}
-                  aria-label="Next service"
-                  className="flex h-11 w-11 items-center justify-center border border-gray-300 bg-white text-gray-700 shadow-sm transition-all duration-300 hover:border-gray-950 hover:bg-gray-950 hover:text-white"
-                >
-                  <ArrowIcon direction="right" />
-                </button>
               </div>
             </div>
 
-            {/* MOBILE PROGRESS */}
-            <div className="mt-7 lg:hidden">
-              <div className="flex items-center gap-4">
-                <span className="font-[var(--font-primary)] text-sm font-semibold tracking-[0.18em] text-gray-400">
-                  {String(current + 1).padStart(2, "0")}
-                </span>
-
-                <div className="h-px flex-1 bg-gray-200">
-                  <div
-                    className="h-px bg-gray-950 transition-all duration-500"
-                    style={{
-                      width: `${((current + 1) / totalServices) * 100}%`,
-                    }}
-                  />
-                </div>
-
-                <span className="font-[var(--font-primary)] text-sm font-semibold tracking-[0.18em] text-gray-400">
-                  {String(totalServices).padStart(2, "0")}
-                </span>
-              </div>
-            </div>
-
-            {/* SLIDER DOTS */}
+            {/* DOTS */}
             <div className="mt-6 flex items-center gap-2">
               {services.map((item, index) => (
                 <button
                   key={item.number}
                   type="button"
-                  onClick={() => goToSlide(index)}
-                  aria-label={`Go to ${item.title}`}
+                  onClick={() => setCurrent(index)}
+                  aria-label={`Show ${item.title}`}
                   aria-current={current === index ? "true" : undefined}
                   className={`h-1.5 transition-all duration-300 ${
                     current === index
@@ -486,6 +400,26 @@ export default function ServicesPreview() {
                   }`}
                 />
               ))}
+            </div>
+
+            {/* PROGRESS */}
+            <div className="mt-5 flex items-center gap-4">
+              <span className="font-[var(--font-primary)] text-xs font-semibold tracking-[0.18em] text-gray-400">
+                {String(current + 1).padStart(2, "0")}
+              </span>
+
+              <div className="h-px flex-1 bg-gray-200">
+                <div
+                  className="h-px bg-gray-950 transition-all duration-500"
+                  style={{
+                    width: `${((current + 1) / total) * 100}%`,
+                  }}
+                />
+              </div>
+
+              <span className="font-[var(--font-primary)] text-xs font-semibold tracking-[0.18em] text-gray-400">
+                {String(total).padStart(2, "0")}
+              </span>
             </div>
           </div>
         </div>
