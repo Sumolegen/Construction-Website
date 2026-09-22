@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import Container from "../ui/Container";
 import ImagePlaceholder from "../cards/ImagePlaceholder";
@@ -67,7 +68,7 @@ export default function HomeHero() {
             {/* Buttons */}
 
             <div className="mt-9 flex flex-wrap gap-3">
-              {/* Primary */}
+              {/* Primary Button */}
 
               <Link
                 href="/projects"
@@ -128,7 +129,7 @@ export default function HomeHero() {
                 </span>
               </Link>
 
-              {/* Secondary */}
+              {/* Secondary Button */}
 
               <Link
                 href="/about"
@@ -239,7 +240,7 @@ export default function HomeHero() {
                 />
               </div>
 
-              {/* Architectural corner */}
+              {/* Architectural corner - top left */}
 
               <span
                 aria-hidden="true"
@@ -255,6 +256,8 @@ export default function HomeHero() {
                   border-gray-400
                 "
               />
+
+              {/* Architectural corner - bottom right */}
 
               <span
                 aria-hidden="true"
@@ -355,6 +358,26 @@ export default function HomeHero() {
           </div>
         </div>
       </Container>
+
+      {/* =====================================================
+          ANIMATED CONSTRUCTION WORKER
+          IMAGE: /public/images/14.png
+      ====================================================== */}
+
+      <div
+        className="construction-worker-runner"
+        aria-hidden="true"
+      >
+        <div className="construction-worker-bob">
+          <Image
+            src="/images/14.png"
+            alt=""
+            width={1920}
+            height={1920}
+            draggable={false}
+          />
+        </div>
+      </div>
 
       {/* =====================================================
           SCROLL INDICATOR
