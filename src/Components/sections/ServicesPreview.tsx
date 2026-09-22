@@ -2,11 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import {
-  useCallback,
-  useEffect,
-  useState,
-} from "react";
+import { useCallback, useEffect, useState } from "react";
 
 import Container from "../ui/Container";
 import SectionHeading from "../ui/SectionHeading";
@@ -26,7 +22,7 @@ const services = [
     type: "Consultancy",
     description:
       "Professional technical guidance to support structural decisions, project planning and practical engineering requirements.",
-    image: "/images/9.jpg",
+    image: "/images/2.jpg",
   },
   {
     number: "03",
@@ -301,7 +297,7 @@ export default function ServicesPreview() {
                     alt={service.title}
                     fill
                     sizes="(max-width: 768px) 100vw, 40vw"
-                    className="object-cover grayscale transition-transform duration-700"
+                    className="object-cover transition-transform duration-700"
                     priority={current === 0}
                   />
 
