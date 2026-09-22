@@ -19,7 +19,7 @@ const services = [
     type: "Consultancy",
     description:
       "Professional technical guidance to support structural decisions, project planning and practical engineering requirements.",
-    image: "/images/2.jpg",
+    image: "/images/9.jpg",
   },
   {
     number: "03",
