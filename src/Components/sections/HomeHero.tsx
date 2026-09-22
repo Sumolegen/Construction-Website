@@ -231,7 +231,7 @@ export default function HomeHero() {
                 "
               >
                 <ImagePlaceholder
-                  src="/images/hero.jpg"
+                  src="/images/1.jpg"
                   alt="Daya construction project"
                   label="Featured Project"
                   title="Daya"
