@@ -30,7 +30,7 @@ const services = [
     type: "Execution",
     description:
       "Reliable construction execution with attention to quality, coordination, workmanship, durability and project requirements.",
-    image: "/images/2.jpg",
+    image: "/images/10.jpg",
   },
   {
     number: "04",
