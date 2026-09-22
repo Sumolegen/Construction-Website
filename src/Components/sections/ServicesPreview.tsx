@@ -18,6 +18,7 @@ const services = [
     description:
       "Engineering-focused structural design solutions developed with safety, precision, functionality and long-term performance in mind.",
     type: "Design",
+    image: "/images/2.jpg",
   },
   {
     number: "02",
