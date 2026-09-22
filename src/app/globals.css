@@ -656,3 +656,105 @@ header {
     scroll-behavior: auto !important;
   }
 }
+
+
+/* =========================================================
+   CONSTRUCTION WORKER
+   LEFT → RIGHT HERO ANIMATION
+   ========================================================= */
+
+.construction-worker-runner {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 30;
+
+  width: clamp(100px, 10vw, 165px);
+
+  pointer-events: none;
+  user-select: none;
+
+  animation: construction-worker-move 14s linear infinite;
+}
+
+.construction-worker-bob {
+  animation: construction-worker-bob 0.7s ease-in-out infinite alternate;
+}
+
+.construction-worker-runner img {
+  display: block;
+  width: 100%;
+  height: auto;
+
+  object-fit: contain;
+
+  pointer-events: none;
+  user-select: none;
+}
+
+/* =========================================================
+   LEFT → RIGHT MOVEMENT
+   ========================================================= */
+
+@keyframes construction-worker-move {
+  0% {
+    transform: translateX(-200px);
+  }
+
+  100% {
+    transform: translateX(calc(100vw + 200px));
+  }
+}
+
+/* =========================================================
+   SMALL BOUNCE / WALKING EFFECT
+   ========================================================= */
+
+@keyframes construction-worker-bob {
+  0% {
+    transform: translateY(0) rotate(-1deg);
+  }
+
+  100% {
+    transform: translateY(-7px) rotate(1deg);
+  }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: 640px) {
+  .construction-worker-runner {
+    width: 105px;
+    bottom: 0;
+
+    animation-duration: 11s;
+  }
+
+  @keyframes construction-worker-move {
+    0% {
+      transform: translateX(-130px);
+    }
+
+    100% {
+      transform: translateX(calc(100vw + 130px));
+    }
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .construction-worker-runner {
+    animation: none;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .construction-worker-bob {
+    animation: none;
+  }
+}
