@@ -181,13 +181,13 @@ export default function ServiceCard({
             src={image}
             alt={title}
             fill
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            className="object-cover grayscale transition-transform duration-700 ease-out group-hover:scale-105"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+            className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
           />
 
           <div
             aria-hidden="true"
-            className="absolute inset-0 bg-black/5 transition-opacity duration-500 group-hover:bg-transparent"
+            className="absolute inset-0 bg-black/5 transition-opacity duration-500 group-hover:bg-black/0"
           />
 
           <div className="absolute bottom-4 left-4 flex h-11 w-11 items-center justify-center rounded-full border border-white/70 bg-white/90 text-gray-800 shadow-lg backdrop-blur-sm transition-transform duration-500 group-hover:scale-110">
