@@ -19,7 +19,7 @@ const services = [
     type: "Consultancy",
     description:
       "Professional technical guidance to support structural decisions, project planning and practical engineering requirements.",
-    image: "/images/9.jpg",
+    image: "/images/2.jpg",
   },
   {
     number: "03",
@@ -106,9 +106,7 @@ const capabilities = [
 export default function ServicesPage() {
   return (
     <main className="bg-white">
-      {/* =====================================================
-          HERO
-      ===================================================== */}
+      {/* HERO */}
       <section className="bg-gray-50">
         <Container>
           <div className="grid min-h-[70vh] items-center gap-14 py-20 sm:py-24 lg:grid-cols-12 lg:gap-16 lg:py-28">
@@ -142,9 +140,7 @@ export default function ServicesPage() {
         </Container>
       </section>
 
-      {/* =====================================================
-          SERVICES
-      ===================================================== */}
+      {/* SERVICES */}
       <section className="bg-white py-24 sm:py-28 lg:py-32">
         <Container>
           <SectionHeading
@@ -168,9 +164,7 @@ export default function ServicesPage() {
         </Container>
       </section>
 
-      {/* =====================================================
-          ENGINEERING APPROACH
-      ===================================================== */}
+      {/* ENGINEERING APPROACH */}
       <section className="bg-gray-50 py-24 sm:py-28 lg:py-32">
         <Container>
           <div className="grid gap-14 lg:grid-cols-12 lg:items-center lg:gap-16">
@@ -204,9 +198,7 @@ export default function ServicesPage() {
         </Container>
       </section>
 
-      {/* =====================================================
-          PROCESS
-      ===================================================== */}
+      {/* PROCESS */}
       <section className="bg-white py-24 sm:py-28 lg:py-32">
         <Container>
           <SectionHeading
@@ -240,9 +232,7 @@ export default function ServicesPage() {
         </Container>
       </section>
 
-      {/* =====================================================
-          CAPABILITIES
-      ===================================================== */}
+      {/* CAPABILITIES */}
       <section className="bg-gray-950 py-24 text-white sm:py-28 lg:py-32">
         <Container>
           <div className="grid gap-14 lg:grid-cols-12 lg:gap-16">
@@ -286,9 +276,7 @@ export default function ServicesPage() {
         </Container>
       </section>
 
-      {/* =====================================================
-          FINAL STATEMENT
-      ===================================================== */}
+      {/* FINAL STATEMENT */}
       <section className="bg-white py-24 sm:py-28 lg:py-32">
         <Container>
           <div className="max-w-4xl">
@@ -307,9 +295,6 @@ export default function ServicesPage() {
         </Container>
       </section>
 
-      {/* =====================================================
-          CTA
-      ===================================================== */}
       <CTAPreview />
     </main>
   );
