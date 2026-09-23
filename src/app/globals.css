@@ -1,28 +1,35 @@
 @import "tailwindcss";
 
 /* =========================================================
-   DAYA CONSTRUCTIONS & STRUCTURAL CONSULTANTS
+   DAYA CONSTRUCTIONS
    GLOBAL DESIGN SYSTEM
    ========================================================= */
 
-/* =========================================================
-   ROOT
-   ========================================================= */
-
 :root {
-  /* -------------------------------------------------------
-     FONTS
-     ------------------------------------------------------- */
+  /* =========================================================
+     DAYA BRAND COLORS
+     ========================================================= */
+
+  --brand-primary: #c5a04a;
+  --brand-primary-dark: #a78335;
+  --brand-primary-light: #f7f1e3;
+
+  --brand-secondary: #407d41;
+  --brand-secondary-dark: #326333;
+  --brand-secondary-light: #edf5ed;
+
+  /* =========================================================
+     TYPOGRAPHY
+     ========================================================= */
 
   --font-primary: var(--font-josefin-sans);
   --font-body: var(--font-inter);
 
-  /* -------------------------------------------------------
-     GRAYSCALE PALETTE
-     ------------------------------------------------------- */
+  /* =========================================================
+     NEUTRALS
+     ========================================================= */
 
   --black: #111111;
-
   --gray-950: #171717;
   --gray-900: #1f1f1f;
   --gray-800: #2b2b2b;
@@ -34,37 +41,30 @@
   --gray-200: #e5e5e5;
   --gray-100: #f5f5f5;
   --gray-50: #fafafa;
-
   --white: #ffffff;
-
-  /* -------------------------------------------------------
-     SITE COLORS
-     ------------------------------------------------------- */
 
   --background: var(--white);
   --foreground: var(--gray-950);
 
-  /* -------------------------------------------------------
-     TYPOGRAPHY SCALE
-     ------------------------------------------------------- */
+  /* =========================================================
+     FONT SIZES
+     ========================================================= */
 
-  --font-size-display: clamp(2.75rem, 6vw, 5.25rem);
-  --font-size-h1: clamp(2.5rem, 5vw, 4.25rem);
-  --font-size-h2: clamp(2rem, 3.5vw, 3.25rem);
+  --font-size-display: clamp(3.5rem, 8vw, 6.5rem);
+  --font-size-h1: clamp(3rem, 6vw, 5rem);
+  --font-size-h2: clamp(2.25rem, 4vw, 4rem);
+  --font-size-h3: 2rem;
+  --font-size-h4: 1.5rem;
 
-  --font-size-h3: 1.75rem;
-  --font-size-h4: 1.35rem;
-
-  --font-size-body-lg: 1.05rem;
-  --font-size-body: 0.95rem;
-  --font-size-body-sm: 0.825rem;
-
-  --font-size-label: 0.625rem;
-  --font-size-button: 0.8rem;
+  --font-size-body-lg: 1.125rem;
+  --font-size-body: 1rem;
+  --font-size-body-sm: 0.875rem;
+  --font-size-label: 0.6875rem;
+  --font-size-button: 0.875rem;
 }
 
 /* =========================================================
-   GLOBAL RESET
+   GLOBAL BOX SIZING
    ========================================================= */
 
 *,
@@ -73,38 +73,33 @@
   box-sizing: border-box;
 }
 
+/* =========================================================
+   HTML
+   ========================================================= */
+
 html {
-  margin: 0;
-  padding: 0;
-  background: var(--background);
-  color: var(--foreground);
-
   scroll-behavior: smooth;
-
-  scrollbar-width: thin;
-  scrollbar-color: var(--gray-400) var(--gray-100);
+  background: var(--background);
 }
+
+/* =========================================================
+   BODY
+   ========================================================= */
 
 body {
   margin: 0;
-  padding: 0;
-
-  min-height: 100vh;
-
   background: var(--background);
   color: var(--foreground);
-
   font-family: var(--font-body);
   font-size: var(--font-size-body);
   line-height: 1.75;
-
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 /* =========================================================
-   ELEMENT RESET
+   FORM ELEMENTS
    ========================================================= */
 
 button,
@@ -118,6 +113,10 @@ button {
   cursor: pointer;
 }
 
+/* =========================================================
+   MEDIA
+   ========================================================= */
+
 img,
 svg,
 video,
@@ -130,10 +129,18 @@ img {
   height: auto;
 }
 
+/* =========================================================
+   LINKS
+   ========================================================= */
+
 a {
   color: inherit;
   text-decoration: none;
 }
+
+/* =========================================================
+   TYPOGRAPHY RESET
+   ========================================================= */
 
 p,
 h1,
@@ -153,12 +160,8 @@ ol {
 }
 
 /* =========================================================
-   TYPOGRAPHY
-   ========================================================= */
-
-/* ---------------------------------------------------------
    DISPLAY
-   --------------------------------------------------------- */
+   ========================================================= */
 
 .text-display {
   font-family: var(--font-primary);
@@ -168,9 +171,9 @@ ol {
   letter-spacing: -0.05em;
 }
 
-/* ---------------------------------------------------------
-   H1
-   --------------------------------------------------------- */
+/* =========================================================
+   HEADINGS
+   ========================================================= */
 
 .text-h1 {
   font-family: var(--font-primary);
@@ -180,10 +183,6 @@ ol {
   letter-spacing: -0.04em;
 }
 
-/* ---------------------------------------------------------
-   H2
-   --------------------------------------------------------- */
-
 .text-h2 {
   font-family: var(--font-primary);
   font-size: var(--font-size-h2);
@@ -191,10 +190,6 @@ ol {
   line-height: 1;
   letter-spacing: -0.035em;
 }
-
-/* ---------------------------------------------------------
-   H3
-   --------------------------------------------------------- */
 
 .text-h3 {
   font-family: var(--font-primary);
@@ -204,10 +199,6 @@ ol {
   letter-spacing: -0.025em;
 }
 
-/* ---------------------------------------------------------
-   H4
-   --------------------------------------------------------- */
-
 .text-h4 {
   font-family: var(--font-primary);
   font-size: var(--font-size-h4);
@@ -216,9 +207,9 @@ ol {
   letter-spacing: -0.02em;
 }
 
-/* ---------------------------------------------------------
-   BODY LARGE
-   --------------------------------------------------------- */
+/* =========================================================
+   BODY TEXT
+   ========================================================= */
 
 .text-body-lg {
   font-family: var(--font-body);
@@ -226,19 +217,11 @@ ol {
   line-height: 1.8;
 }
 
-/* ---------------------------------------------------------
-   BODY
-   --------------------------------------------------------- */
-
 .text-body {
   font-family: var(--font-body);
   font-size: var(--font-size-body);
   line-height: 1.75;
 }
-
-/* ---------------------------------------------------------
-   BODY SMALL
-   --------------------------------------------------------- */
 
 .text-body-sm {
   font-family: var(--font-body);
@@ -246,9 +229,9 @@ ol {
   line-height: 1.7;
 }
 
-/* ---------------------------------------------------------
+/* =========================================================
    LABEL
-   --------------------------------------------------------- */
+   ========================================================= */
 
 .text-label {
   font-family: var(--font-primary);
@@ -259,9 +242,9 @@ ol {
   text-transform: uppercase;
 }
 
-/* ---------------------------------------------------------
-   BUTTON
-   --------------------------------------------------------- */
+/* =========================================================
+   BUTTON TEXT
+   ========================================================= */
 
 .text-button {
   font-family: var(--font-primary);
@@ -271,7 +254,7 @@ ol {
 }
 
 /* =========================================================
-   COMMON TEXT COLORS
+   STANDARD TEXT COLORS
    ========================================================= */
 
 .text-primary {
@@ -295,7 +278,27 @@ ol {
 }
 
 /* =========================================================
-   COMMON BACKGROUNDS
+   BRAND TEXT COLORS
+   ========================================================= */
+
+.text-brand-primary {
+  color: var(--brand-primary);
+}
+
+.text-brand-primary-dark {
+  color: var(--brand-primary-dark);
+}
+
+.text-brand-secondary {
+  color: var(--brand-secondary);
+}
+
+.text-brand-secondary-dark {
+  color: var(--brand-secondary-dark);
+}
+
+/* =========================================================
+   BACKGROUNDS
    ========================================================= */
 
 .bg-page {
@@ -319,7 +322,27 @@ ol {
 }
 
 /* =========================================================
-   COMMON BORDERS
+   BRAND BACKGROUNDS
+   ========================================================= */
+
+.bg-brand-primary {
+  background-color: var(--brand-primary);
+}
+
+.bg-brand-primary-light {
+  background-color: var(--brand-primary-light);
+}
+
+.bg-brand-secondary {
+  background-color: var(--brand-secondary);
+}
+
+.bg-brand-secondary-light {
+  background-color: var(--brand-secondary-light);
+}
+
+/* =========================================================
+   BORDERS
    ========================================================= */
 
 .border-default {
@@ -339,21 +362,45 @@ ol {
 }
 
 /* =========================================================
+   BRAND BORDERS
+   ========================================================= */
+
+.border-brand-primary {
+  border-color: var(--brand-primary);
+}
+
+.border-brand-secondary {
+  border-color: var(--brand-secondary);
+}
+
+/* =========================================================
+   BRAND HOVERS
+   ========================================================= */
+
+.brand-primary-hover:hover {
+  background-color: var(--brand-primary-dark);
+}
+
+.brand-secondary-hover:hover {
+  background-color: var(--brand-secondary-dark);
+}
+
+/* =========================================================
    SELECTION
    ========================================================= */
 
 ::selection {
-  background: var(--gray-950);
+  background: var(--brand-primary);
   color: var(--white);
 }
 
 ::-moz-selection {
-  background: var(--gray-950);
+  background: var(--brand-primary);
   color: var(--white);
 }
 
 /* =========================================================
-   FOCUS
+   ACCESSIBILITY FOCUS
    ========================================================= */
 
 :focus {
@@ -361,13 +408,18 @@ ol {
 }
 
 :focus-visible {
-  outline: 2px solid var(--gray-950);
+  outline: 2px solid var(--brand-primary);
   outline-offset: 3px;
 }
 
 /* =========================================================
    SCROLLBAR
    ========================================================= */
+
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--brand-primary) var(--gray-100);
+}
 
 ::-webkit-scrollbar {
   width: 8px;
@@ -379,21 +431,29 @@ ol {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--gray-400);
+  background: var(--brand-primary);
   border-radius: 999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--gray-600);
+  background: var(--brand-primary-dark);
 }
 
 /* =========================================================
-   GLOBAL LINKS & BUTTONS
+   GLOBAL TRANSITIONS
    ========================================================= */
 
 a,
 button {
-  -webkit-tap-highlight-color: transparent;
+  transition-property:
+    color,
+    background-color,
+    border-color,
+    opacity,
+    transform,
+    box-shadow;
+  transition-timing-function: ease;
+  transition-duration: 300ms;
 }
 
 /* =========================================================
@@ -412,58 +472,13 @@ button {
       rgba(17, 17, 17, 0.045) 1px,
       transparent 1px
     );
-
   background-size: 72px 72px;
 }
-
-/* =========================================================
-   DARK ARCHITECTURAL GRID
-   ========================================================= */
-
-.architectural-grid-dark {
-  background-image:
-    linear-gradient(
-      to right,
-      rgba(255, 255, 255, 0.07) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      to bottom,
-      rgba(255, 255, 255, 0.07) 1px,
-      transparent 1px
-    );
-
-  background-size: 72px 72px;
-}
-
-/* =========================================================
-   SMALL ARCHITECTURAL GRID
-   ========================================================= */
 
 .architectural-grid-small {
   background-image:
     linear-gradient(
       to right,
-      rgba(17, 17, 17, 0.05) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      to bottom,
-      rgba(17, 17, 17, 0.05) 1px,
-      transparent 1px
-    );
-
-  background-size: 48px 48px;
-}
-
-/* =========================================================
-   DARK SMALL GRID
-   ========================================================= */
-
-.architectural-grid-small-dark {
-  background-image:
-    linear-gradient(
-      to right,
       rgba(255, 255, 255, 0.08) 1px,
       transparent 1px
     ),
@@ -472,7 +487,6 @@ button {
       rgba(255, 255, 255, 0.08) 1px,
       transparent 1px
     );
-
   background-size: 48px 48px;
 }
 
@@ -500,31 +514,25 @@ button {
 }
 
 /* =========================================================
-   HORIZONTAL LINES
+   LINES
    ========================================================= */
 
 .line {
-  width: 100%;
   height: 1px;
-  background-color: var(--gray-200);
-}
-
-.line-light {
   width: 100%;
-  height: 1px;
-  background-color: var(--gray-100);
-}
-
-.line-medium {
-  width: 100%;
-  height: 1px;
-  background-color: var(--gray-300);
+  background: var(--gray-200);
 }
 
 .line-dark {
-  width: 100%;
   height: 1px;
-  background-color: var(--gray-950);
+  width: 100%;
+  background: var(--gray-950);
+}
+
+.line-brand {
+  height: 1px;
+  width: 100%;
+  background: var(--brand-primary);
 }
 
 /* =========================================================
@@ -546,121 +554,8 @@ button {
 }
 
 /* =========================================================
-   CARD HOVER
-   ========================================================= */
-
-.card-hover {
-  transition:
-    transform 300ms ease,
-    border-color 300ms ease,
-    box-shadow 300ms ease;
-}
-
-.card-hover:hover {
-  transform: translateY(-4px);
-}
-
-/* =========================================================
-   BUTTON HOVER
-   ========================================================= */
-
-.button-hover {
-  transition:
-    transform 300ms ease,
-    background-color 300ms ease,
-    border-color 300ms ease,
-    color 300ms ease,
-    box-shadow 300ms ease;
-}
-
-.button-hover:hover {
-  transform: translateY(-2px);
-}
-
-/* =========================================================
-   ARCHITECTURAL CORNER MARKS
-   ========================================================= */
-
-.corner-mark {
-  position: relative;
-}
-
-.corner-mark::before,
-.corner-mark::after {
-  content: "";
-  position: absolute;
-  width: 24px;
-  height: 24px;
-  pointer-events: none;
-}
-
-.corner-mark::before {
-  top: 16px;
-  left: 16px;
-  border-top: 1px solid var(--gray-300);
-  border-left: 1px solid var(--gray-300);
-}
-
-.corner-mark::after {
-  right: 16px;
-  bottom: 16px;
-  border-right: 1px solid var(--gray-300);
-  border-bottom: 1px solid var(--gray-300);
-}
-
-/* =========================================================
-   STICKY HEADER SUPPORT
-   ========================================================= */
-
-/*
-  Do not add overflow: hidden / auto / scroll to body,
-  html, or the header's parent.
-
-  The Header component uses:
-
-  position: sticky;
-  top: 0;
-  z-index: 100;
-*/
-
-header {
-  isolation: isolate;
-}
-
-/* =========================================================
-   MOBILE
-   ========================================================= */
-
-@media (max-width: 639px) {
-  .section-space {
-    padding-top: 5rem;
-    padding-bottom: 5rem;
-  }
-}
-
-/* =========================================================
-   REDUCED MOTION
-   ========================================================= */
-
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-}
-
-
-/* =========================================================
    CONSTRUCTION WORKER
-   LEFT → RIGHT HERO ANIMATION
+   ORIGINAL IMAGE COLORS ARE PRESERVED
    ========================================================= */
 
 .construction-worker-runner {
@@ -685,15 +580,18 @@ header {
   display: block;
   width: 100%;
   height: auto;
-
   object-fit: contain;
 
   pointer-events: none;
   user-select: none;
+
+  /* IMPORTANT:
+     No grayscale/filter is applied. */
+  filter: none;
 }
 
 /* =========================================================
-   LEFT → RIGHT MOVEMENT
+   WORKER LEFT → RIGHT
    ========================================================= */
 
 @keyframes construction-worker-move {
@@ -707,7 +605,7 @@ header {
 }
 
 /* =========================================================
-   SMALL BOUNCE / WALKING EFFECT
+   WORKER RUNNING / BOUNCING EFFECT
    ========================================================= */
 
 @keyframes construction-worker-bob {
@@ -721,14 +619,13 @@ header {
 }
 
 /* =========================================================
-   MOBILE
+   MOBILE WORKER
    ========================================================= */
 
 @media (max-width: 640px) {
   .construction-worker-runner {
     width: 105px;
     bottom: 0;
-
     animation-duration: 11s;
   }
 
@@ -748,6 +645,19 @@ header {
    ========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
   .construction-worker-runner {
     animation: none;
     left: 50%;
