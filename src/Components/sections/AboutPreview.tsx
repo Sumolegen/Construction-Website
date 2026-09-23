@@ -7,7 +7,6 @@ export default function AboutPreview() {
     <section className="bg-white py-24 sm:py-28 lg:py-32">
       <Container>
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
-          {/* Section heading */}
           <div className="lg:col-span-4">
             <SectionHeading
               eyebrow="About Daya"
@@ -15,7 +14,6 @@ export default function AboutPreview() {
             />
           </div>
 
-          {/* Content */}
           <div className="lg:col-span-7 lg:col-start-6">
             <div className="max-w-2xl">
               <p className="font-[var(--font-primary)] text-2xl font-medium leading-tight tracking-tight text-gray-900 sm:text-3xl">
@@ -33,7 +31,7 @@ export default function AboutPreview() {
 
               <Link
                 href="/about"
-                className="group mt-8 inline-flex items-center gap-2 border-b border-gray-900 pb-1 font-[var(--font-primary)] text-sm font-semibold text-gray-900 transition-all duration-300 hover:border-gray-500 hover:text-gray-600"
+                className="group mt-8 inline-flex items-center gap-2 border-b border-brand-primary pb-1 font-[var(--font-primary)] text-sm font-semibold text-brand-secondary transition-all duration-300 hover:border-brand-secondary hover:text-brand-secondary"
               >
                 <span>Discover Daya</span>
 
