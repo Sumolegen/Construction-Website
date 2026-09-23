@@ -35,13 +35,21 @@ export default function ImagePlaceholder({
             className="architectural-grid absolute inset-0 opacity-60"
           />
 
+          <div
+            aria-hidden="true"
+            className="absolute left-5 top-5 h-12 w-12 border-l border-t border-brand-primary"
+          />
+
+          <div
+            aria-hidden="true"
+            className="absolute bottom-5 right-5 h-12 w-12 border-b border-r border-brand-secondary"
+          />
+
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="text-center">
-              <p className="text-label text-gray-400">
-                {label}
-              </p>
+              <p className="text-label text-brand-primary">{label}</p>
 
-              <p className="mt-3 font-[var(--font-primary)] text-2xl font-semibold tracking-tight text-gray-500">
+              <p className="mt-3 font-[var(--font-primary)] text-2xl font-semibold tracking-tight text-gray-600">
                 {title}
               </p>
             </div>
