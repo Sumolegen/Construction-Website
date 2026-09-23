@@ -40,7 +40,7 @@ export default function HomeHero() {
             {/* Eyebrow */}
 
             <div className="mb-7 flex items-center gap-3">
-              <span className="h-px w-10 bg-gray-950" />
+              <span className="h-px w-10 bg-brand-primary" />
 
               <p className="text-label text-gray-500">
                 Daya Constructions
@@ -52,7 +52,7 @@ export default function HomeHero() {
             <h1 className="text-display max-w-4xl text-gray-950">
               Build with
               <br />
-              <span className="text-gray-500">
+              <span className="text-brand-primary">
                 confidence.
               </span>
             </h1>
@@ -68,7 +68,7 @@ export default function HomeHero() {
             {/* Buttons */}
 
             <div className="mt-9 flex flex-wrap gap-3">
-              {/* Primary Button */}
+              {/* Primary */}
 
               <Link
                 href="/projects"
@@ -79,7 +79,7 @@ export default function HomeHero() {
                   items-center
                   gap-4
                   rounded-full
-                  bg-gray-950
+                  bg-brand-primary
                   px-6
                   py-3
                   text-button
@@ -87,11 +87,11 @@ export default function HomeHero() {
                   transition-all
                   duration-300
                   hover:-translate-y-1
-                  hover:bg-gray-800
+                  brand-primary-hover
                   hover:shadow-xl
                   focus:outline-none
                   focus-visible:ring-2
-                  focus-visible:ring-gray-950
+                  focus-visible:ring-brand-primary
                   focus-visible:ring-offset-2
                 "
               >
@@ -105,7 +105,7 @@ export default function HomeHero() {
                     items-center
                     justify-center
                     rounded-full
-                    bg-white/10
+                    bg-white/15
                     transition-transform
                     duration-300
                     group-hover:translate-x-1
@@ -129,7 +129,7 @@ export default function HomeHero() {
                 </span>
               </Link>
 
-              {/* Secondary Button */}
+              {/* Secondary */}
 
               <Link
                 href="/about"
@@ -149,12 +149,12 @@ export default function HomeHero() {
                   transition-all
                   duration-300
                   hover:-translate-y-1
-                  hover:border-gray-950
-                  hover:text-gray-950
+                  hover:border-brand-secondary
+                  hover:text-brand-secondary
                   hover:shadow-md
                   focus:outline-none
                   focus-visible:ring-2
-                  focus-visible:ring-gray-950
+                  focus-visible:ring-brand-secondary
                   focus-visible:ring-offset-2
                 "
               >
@@ -191,7 +191,7 @@ export default function HomeHero() {
                     5+
                   </p>
 
-                  <p className="text-label mt-2 text-gray-500">
+                  <p className="text-label mt-2 text-brand-primary">
                     Completed Projects
                   </p>
                 </div>
@@ -203,7 +203,7 @@ export default function HomeHero() {
                     40+
                   </p>
 
-                  <p className="text-label mt-2 text-gray-500">
+                  <p className="text-label mt-2 text-brand-secondary">
                     Years Family Legacy
                   </p>
                 </div>
@@ -240,7 +240,7 @@ export default function HomeHero() {
                 />
               </div>
 
-              {/* Architectural corner - top left */}
+              {/* Architectural corner */}
 
               <span
                 aria-hidden="true"
@@ -253,11 +253,9 @@ export default function HomeHero() {
                   w-16
                   border-l
                   border-t
-                  border-gray-400
+                  border-brand-primary
                 "
               />
-
-              {/* Architectural corner - bottom right */}
 
               <span
                 aria-hidden="true"
@@ -270,7 +268,7 @@ export default function HomeHero() {
                   w-16
                   border-b
                   border-r
-                  border-gray-400
+                  border-brand-secondary
                 "
               />
 
@@ -286,7 +284,7 @@ export default function HomeHero() {
                   lg:block
                 "
               >
-                <span className="text-label text-gray-400 [writing-mode:vertical-rl]">
+                <span className="text-label text-brand-primary [writing-mode:vertical-rl]">
                   01 / Featured Project
                 </span>
               </div>
@@ -308,7 +306,7 @@ export default function HomeHero() {
                 "
               >
                 <div className="flex items-center justify-between">
-                  <p className="text-label text-gray-400">
+                  <p className="text-label text-brand-secondary">
                     Engineering
                   </p>
 
@@ -323,7 +321,7 @@ export default function HomeHero() {
                       rounded-full
                       border
                       border-gray-200
-                      text-gray-600
+                      text-brand-primary
                     "
                   >
                     <svg
@@ -361,7 +359,7 @@ export default function HomeHero() {
 
       {/* =====================================================
           ANIMATED CONSTRUCTION WORKER
-          IMAGE: /public/images/14.png
+          ORIGINAL IMAGE: /public/images/14.png
       ====================================================== */}
 
       <div
