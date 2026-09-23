@@ -256,7 +256,18 @@ export default function ServicesPreview() {
   }, [isPaused, nextSlide]);
 
   return (
-    <section className="bg-white py-24 sm:py-28 lg:py-32">
+    <section className="relative overflow-hidden bg-white py-24 sm:py-28 lg:py-32">
+      {/* Decorative brand lines */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute right-0 top-0 h-32 w-32 border-l border-b border-brand-primary/20"
+      />
+
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute bottom-0 left-0 h-32 w-32 border-r border-t border-brand-secondary/20"
+      />
+
       <Container>
         <div className="grid gap-14 lg:grid-cols-12 lg:gap-16">
           {/* LEFT */}
@@ -269,11 +280,11 @@ export default function ServicesPreview() {
 
             <Link
               href="/services"
-              className="group mt-10 inline-flex items-center gap-3 border-b border-gray-950 pb-2 text-button text-gray-950"
+              className="group mt-10 inline-flex items-center gap-3 border-b border-brand-primary pb-2 text-button text-brand-secondary transition-colors duration-300 hover:border-brand-secondary hover:text-brand-primary"
             >
               <span>Explore All Services</span>
 
-              <span className="transition-transform duration-300 group-hover:translate-x-1">
+              <span className="text-brand-primary transition-transform duration-300 group-hover:translate-x-1">
                 <ArrowIcon />
               </span>
             </Link>
@@ -287,7 +298,7 @@ export default function ServicesPreview() {
             onFocus={() => setIsPaused(true)}
             onBlur={() => setIsPaused(false)}
           >
-            <div className="relative overflow-hidden border border-gray-200 bg-white">
+            <div className="relative overflow-hidden border border-brand-primary/20 bg-white shadow-sm">
               <div className="grid min-h-[590px] md:grid-cols-[1fr_1.35fr]">
                 {/* IMAGE */}
                 <div className="relative min-h-[300px] overflow-hidden bg-gray-100 md:min-h-full">
@@ -297,41 +308,56 @@ export default function ServicesPreview() {
                     alt={service.title}
                     fill
                     sizes="(max-width: 768px) 100vw, 40vw"
-                    className="object-cover transition-transform duration-700"
+                    className="object-cover transition-transform duration-700 hover:scale-[1.03]"
                     priority={current === 0}
                   />
 
+                  {/* Very subtle image overlay */}
                   <div
                     aria-hidden="true"
                     className="absolute inset-0 bg-black/5"
                   />
 
-                  <div className="absolute bottom-6 left-6 flex h-12 w-12 items-center justify-center rounded-full border border-white/70 bg-white/90 text-gray-800 shadow-lg backdrop-blur-sm">
+                  {/* Service icon */}
+                  <div className="absolute bottom-6 left-6 flex h-12 w-12 items-center justify-center rounded-full border border-white/70 bg-white/90 text-brand-primary shadow-lg backdrop-blur-sm transition-all duration-300 hover:bg-brand-primary hover:text-white">
                     <ServiceIcon number={service.number} />
                   </div>
 
+                  {/* Number */}
                   <div className="absolute left-6 top-6">
                     <p className="text-label text-white drop-shadow-md">
                       {service.number}
                     </p>
                   </div>
+
+                  {/* Gold corner */}
+                  <span
+                    aria-hidden="true"
+                    className="absolute left-0 top-0 h-16 w-16 border-l-2 border-t-2 border-brand-primary"
+                  />
+
+                  {/* Green corner */}
+                  <span
+                    aria-hidden="true"
+                    className="absolute bottom-0 right-0 h-16 w-16 border-b-2 border-r-2 border-brand-secondary"
+                  />
                 </div>
 
                 {/* CONTENT */}
                 <div className="flex flex-col p-7 sm:p-9 lg:p-10">
                   <div className="flex items-start justify-between">
                     <div>
-                      <p className="text-label text-gray-400">
+                      <p className="text-label text-brand-secondary">
                         {service.type}
                       </p>
 
-                      <p className="mt-3 font-[var(--font-primary)] text-sm font-semibold tracking-[0.12em] text-gray-400">
+                      <p className="mt-3 font-[var(--font-primary)] text-sm font-semibold tracking-[0.12em] text-brand-primary">
                         {service.number} /{" "}
                         {String(total).padStart(2, "0")}
                       </p>
                     </div>
 
-                    <div className="flex h-11 w-11 items-center justify-center rounded-full border border-gray-200 text-gray-700">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-full border border-brand-primary/25 bg-brand-primary-light text-brand-primary">
                       <ServiceIcon number={service.number} />
                     </div>
                   </div>
@@ -341,16 +367,19 @@ export default function ServicesPreview() {
                       {service.title}
                     </h3>
 
+                    <div className="mt-4 h-px w-12 bg-brand-primary" />
+
                     <p className="mt-5 max-w-xl text-body text-gray-600">
                       {service.description}
                     </p>
                   </div>
 
-                  <div className="mt-auto border-t border-gray-200 pt-7">
+                  {/* BOTTOM CONTROLS */}
+                  <div className="mt-auto border-t border-brand-primary/15 pt-7">
                     <div className="flex items-center justify-between gap-6">
                       <Link
                         href="/services"
-                        className="text-label text-gray-400 transition-colors hover:text-gray-950"
+                        className="text-label text-brand-secondary transition-colors hover:text-brand-primary"
                       >
                         Explore Service
                       </Link>
@@ -360,7 +389,7 @@ export default function ServicesPreview() {
                           type="button"
                           onClick={previousSlide}
                           aria-label="Previous service"
-                          className="flex h-11 w-11 items-center justify-center rounded-full border border-gray-200 text-gray-700 transition-all duration-300 hover:border-gray-950 hover:bg-gray-950 hover:text-white"
+                          className="flex h-11 w-11 items-center justify-center rounded-full border border-brand-primary/25 text-brand-primary transition-all duration-300 hover:border-brand-primary hover:bg-brand-primary hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-2"
                         >
                           <ArrowIcon direction="left" />
                         </button>
@@ -369,7 +398,7 @@ export default function ServicesPreview() {
                           type="button"
                           onClick={nextSlide}
                           aria-label="Next service"
-                          className="flex h-11 w-11 items-center justify-center rounded-full bg-gray-950 text-white transition-all duration-300 hover:bg-gray-700"
+                          className="flex h-11 w-11 items-center justify-center rounded-full bg-brand-secondary text-white transition-all duration-300 hover:bg-brand-secondary-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-secondary focus-visible:ring-offset-2"
                         >
                           <ArrowIcon />
                         </button>
@@ -391,8 +420,8 @@ export default function ServicesPreview() {
                   aria-current={current === index ? "true" : undefined}
                   className={`h-1.5 transition-all duration-300 ${
                     current === index
-                      ? "w-8 bg-gray-950"
-                      : "w-3 bg-gray-300 hover:bg-gray-500"
+                      ? "w-8 bg-brand-primary"
+                      : "w-3 bg-brand-secondary/25 hover:bg-brand-secondary"
                   }`}
                 />
               ))}
@@ -400,20 +429,20 @@ export default function ServicesPreview() {
 
             {/* PROGRESS */}
             <div className="mt-5 flex items-center gap-4">
-              <span className="font-[var(--font-primary)] text-xs font-semibold tracking-[0.18em] text-gray-400">
+              <span className="font-[var(--font-primary)] text-xs font-semibold tracking-[0.18em] text-brand-primary">
                 {String(current + 1).padStart(2, "0")}
               </span>
 
-              <div className="h-px flex-1 bg-gray-200">
+              <div className="h-px flex-1 bg-brand-secondary/15">
                 <div
-                  className="h-px bg-gray-950 transition-all duration-500"
+                  className="h-px bg-brand-primary transition-all duration-500"
                   style={{
                     width: `${((current + 1) / total) * 100}%`,
                   }}
                 />
               </div>
 
-              <span className="font-[var(--font-primary)] text-xs font-semibold tracking-[0.18em] text-gray-400">
+              <span className="font-[var(--font-primary)] text-xs font-semibold tracking-[0.18em] text-brand-secondary">
                 {String(total).padStart(2, "0")}
               </span>
             </div>
