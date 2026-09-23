@@ -1,33 +1,8 @@
 @import "tailwindcss";
 
-/* =========================================================
-   DAYA CONSTRUCTIONS
-   GLOBAL DESIGN SYSTEM
-   ========================================================= */
-
 :root {
-  /* =========================================================
-     DAYA BRAND COLORS
-     ========================================================= */
-
-  --brand-primary: #c5a04a;
-  --brand-primary-dark: #a78335;
-  --brand-primary-light: #f7f1e3;
-
-  --brand-secondary: #407d41;
-  --brand-secondary-dark: #326333;
-  --brand-secondary-light: #edf5ed;
-
-  /* =========================================================
-     TYPOGRAPHY
-     ========================================================= */
-
   --font-primary: var(--font-josefin-sans);
   --font-body: var(--font-inter);
-
-  /* =========================================================
-     NEUTRALS
-     ========================================================= */
 
   --black: #111111;
   --gray-950: #171717;
@@ -43,12 +18,17 @@
   --gray-50: #fafafa;
   --white: #ffffff;
 
+  /* Daya Brand Colors */
+  --brand-primary: #c5a04a;
+  --brand-primary-dark: #a78335;
+  --brand-primary-light: #f7f1e3;
+
+  --brand-secondary: #407d41;
+  --brand-secondary-dark: #326333;
+  --brand-secondary-light: #edf5ed;
+
   --background: var(--white);
   --foreground: var(--gray-950);
-
-  /* =========================================================
-     FONT SIZES
-     ========================================================= */
 
   --font-size-display: clamp(3.5rem, 8vw, 6.5rem);
   --font-size-h1: clamp(3rem, 6vw, 5rem);
@@ -63,223 +43,98 @@
   --font-size-button: 0.875rem;
 }
 
-/* =========================================================
-   GLOBAL BOX SIZING
-   ========================================================= */
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-/* =========================================================
-   HTML
-   ========================================================= */
-
 html {
   scroll-behavior: smooth;
-  background: var(--background);
 }
-
-/* =========================================================
-   BODY
-   ========================================================= */
 
 body {
   margin: 0;
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-body);
-  font-size: var(--font-size-body);
-  line-height: 1.75;
-  text-rendering: optimizeLegibility;
+  font-family: var(--font-body), sans-serif;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
-/* =========================================================
-   FORM ELEMENTS
-   ========================================================= */
-
-button,
-input,
-textarea,
-select {
-  font: inherit;
+* {
+  box-sizing: border-box;
 }
 
-button {
-  cursor: pointer;
+::selection {
+  background: var(--brand-primary);
+  color: var(--white);
 }
 
-/* =========================================================
-   MEDIA
-   ========================================================= */
-
-img,
-svg,
-video,
-canvas {
-  display: block;
-  max-width: 100%;
-}
-
-img {
-  height: auto;
-}
-
-/* =========================================================
-   LINKS
-   ========================================================= */
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-/* =========================================================
-   TYPOGRAPHY RESET
-   ========================================================= */
-
-p,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  margin: 0;
-}
-
-ul,
-ol {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-/* =========================================================
-   DISPLAY
-   ========================================================= */
+/* -------------------------------------------------------
+   Typography
+------------------------------------------------------- */
 
 .text-display {
-  font-family: var(--font-primary);
+  font-family: var(--font-primary), sans-serif;
   font-size: var(--font-size-display);
   font-weight: 600;
   line-height: 0.95;
-  letter-spacing: -0.05em;
+  letter-spacing: -0.055em;
 }
 
-/* =========================================================
-   HEADINGS
-   ========================================================= */
-
 .text-h1 {
-  font-family: var(--font-primary);
+  font-family: var(--font-primary), sans-serif;
   font-size: var(--font-size-h1);
   font-weight: 600;
   line-height: 0.98;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.045em;
 }
 
 .text-h2 {
-  font-family: var(--font-primary);
+  font-family: var(--font-primary), sans-serif;
   font-size: var(--font-size-h2);
   font-weight: 600;
   line-height: 1;
-  letter-spacing: -0.035em;
+  letter-spacing: -0.04em;
 }
 
 .text-h3 {
-  font-family: var(--font-primary);
+  font-family: var(--font-primary), sans-serif;
   font-size: var(--font-size-h3);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+
+.text-h4 {
+  font-family: var(--font-primary), sans-serif;
+  font-size: var(--font-size-h4);
   font-weight: 600;
   line-height: 1.1;
   letter-spacing: -0.025em;
 }
 
-.text-h4 {
-  font-family: var(--font-primary);
-  font-size: var(--font-size-h4);
-  font-weight: 600;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
-}
-
-/* =========================================================
-   BODY TEXT
-   ========================================================= */
-
 .text-body-lg {
-  font-family: var(--font-body);
   font-size: var(--font-size-body-lg);
-  line-height: 1.8;
-}
-
-.text-body {
-  font-family: var(--font-body);
-  font-size: var(--font-size-body);
   line-height: 1.75;
 }
 
-.text-body-sm {
-  font-family: var(--font-body);
-  font-size: var(--font-size-body-sm);
+.text-body {
+  font-size: var(--font-size-body);
   line-height: 1.7;
 }
 
-/* =========================================================
-   LABEL
-   ========================================================= */
+.text-body-sm {
+  font-size: var(--font-size-body-sm);
+  line-height: 1.65;
+}
 
 .text-label {
-  font-family: var(--font-primary);
   font-size: var(--font-size-label);
   font-weight: 600;
-  line-height: 1;
-  letter-spacing: 0.22em;
+  line-height: 1.3;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
 }
 
-/* =========================================================
-   BUTTON TEXT
-   ========================================================= */
-
-.text-button {
-  font-family: var(--font-primary);
-  font-size: var(--font-size-button);
-  font-weight: 600;
-  line-height: 1;
-}
-
-/* =========================================================
-   STANDARD TEXT COLORS
-   ========================================================= */
-
-.text-primary {
-  color: var(--gray-950);
-}
-
-.text-secondary {
-  color: var(--gray-600);
-}
-
-.text-muted {
-  color: var(--gray-500);
-}
-
-.text-subtle {
-  color: var(--gray-400);
-}
-
-.text-white {
-  color: var(--white);
-}
-
-/* =========================================================
-   BRAND TEXT COLORS
-   ========================================================= */
+/* -------------------------------------------------------
+   Brand Utilities
+------------------------------------------------------- */
 
 .text-brand-primary {
   color: var(--brand-primary);
@@ -297,34 +152,6 @@ ol {
   color: var(--brand-secondary-dark);
 }
 
-/* =========================================================
-   BACKGROUNDS
-   ========================================================= */
-
-.bg-page {
-  background-color: var(--white);
-}
-
-.bg-soft {
-  background-color: var(--gray-50);
-}
-
-.bg-light {
-  background-color: var(--gray-100);
-}
-
-.bg-dark {
-  background-color: var(--gray-950);
-}
-
-.bg-black {
-  background-color: var(--black);
-}
-
-/* =========================================================
-   BRAND BACKGROUNDS
-   ========================================================= */
-
 .bg-brand-primary {
   background-color: var(--brand-primary);
 }
@@ -341,30 +168,6 @@ ol {
   background-color: var(--brand-secondary-light);
 }
 
-/* =========================================================
-   BORDERS
-   ========================================================= */
-
-.border-default {
-  border-color: var(--gray-200);
-}
-
-.border-light {
-  border-color: var(--gray-100);
-}
-
-.border-medium {
-  border-color: var(--gray-300);
-}
-
-.border-dark {
-  border-color: var(--gray-950);
-}
-
-/* =========================================================
-   BRAND BORDERS
-   ========================================================= */
-
 .border-brand-primary {
   border-color: var(--brand-primary);
 }
@@ -372,10 +175,6 @@ ol {
 .border-brand-secondary {
   border-color: var(--brand-secondary);
 }
-
-/* =========================================================
-   BRAND HOVERS
-   ========================================================= */
 
 .brand-primary-hover:hover {
   background-color: var(--brand-primary-dark);
@@ -385,45 +184,54 @@ ol {
   background-color: var(--brand-secondary-dark);
 }
 
-/* =========================================================
-   SELECTION
-   ========================================================= */
+/* -------------------------------------------------------
+   Architectural Grid
+------------------------------------------------------- */
 
-::selection {
-  background: var(--brand-primary);
-  color: var(--white);
+.architectural-grid {
+  background-image:
+    linear-gradient(
+      to right,
+      rgba(197, 160, 74, 0.13) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(64, 125, 65, 0.1) 1px,
+      transparent 1px
+    );
+  background-size: 48px 48px;
 }
 
-::-moz-selection {
-  background: var(--brand-primary);
-  color: var(--white);
+/* -------------------------------------------------------
+   Image Hover
+------------------------------------------------------- */
+
+.image-hover img {
+  transition:
+    transform 700ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 500ms ease;
 }
 
-/* =========================================================
-   ACCESSIBILITY FOCUS
-   ========================================================= */
-
-:focus {
-  outline: none;
+.image-hover:hover img {
+  transform: scale(1.04);
 }
+
+/* -------------------------------------------------------
+   Focus
+------------------------------------------------------- */
 
 :focus-visible {
   outline: 2px solid var(--brand-primary);
   outline-offset: 3px;
 }
 
-/* =========================================================
-   SCROLLBAR
-   ========================================================= */
-
-html {
-  scrollbar-width: thin;
-  scrollbar-color: var(--brand-primary) var(--gray-100);
-}
+/* -------------------------------------------------------
+   Scrollbar
+------------------------------------------------------- */
 
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 10px;
 }
 
 ::-webkit-scrollbar-track {
@@ -436,139 +244,21 @@ html {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--brand-primary-dark);
+  background: var(--brand-secondary);
 }
 
-/* =========================================================
-   GLOBAL TRANSITIONS
-   ========================================================= */
-
-a,
-button {
-  transition-property:
-    color,
-    background-color,
-    border-color,
-    opacity,
-    transform,
-    box-shadow;
-  transition-timing-function: ease;
-  transition-duration: 300ms;
-}
-
-/* =========================================================
-   ARCHITECTURAL GRID
-   ========================================================= */
-
-.architectural-grid {
-  background-image:
-    linear-gradient(
-      to right,
-      rgba(17, 17, 17, 0.045) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      to bottom,
-      rgba(17, 17, 17, 0.045) 1px,
-      transparent 1px
-    );
-  background-size: 72px 72px;
-}
-
-.architectural-grid-small {
-  background-image:
-    linear-gradient(
-      to right,
-      rgba(255, 255, 255, 0.08) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      to bottom,
-      rgba(255, 255, 255, 0.08) 1px,
-      transparent 1px
-    );
-  background-size: 48px 48px;
-}
-
-/* =========================================================
-   SECTION SPACING
-   ========================================================= */
-
-.section-space {
-  padding-top: 6rem;
-  padding-bottom: 6rem;
-}
-
-@media (min-width: 640px) {
-  .section-space {
-    padding-top: 7rem;
-    padding-bottom: 7rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .section-space {
-    padding-top: 8rem;
-    padding-bottom: 8rem;
-  }
-}
-
-/* =========================================================
-   LINES
-   ========================================================= */
-
-.line {
-  height: 1px;
-  width: 100%;
-  background: var(--gray-200);
-}
-
-.line-dark {
-  height: 1px;
-  width: 100%;
-  background: var(--gray-950);
-}
-
-.line-brand {
-  height: 1px;
-  width: 100%;
-  background: var(--brand-primary);
-}
-
-/* =========================================================
-   IMAGE HOVER
-   ========================================================= */
-
-.image-hover {
-  overflow: hidden;
-}
-
-.image-hover img {
-  transition:
-    transform 700ms cubic-bezier(0.2, 0.65, 0.25, 1),
-    filter 700ms ease;
-}
-
-.image-hover:hover img {
-  transform: scale(1.04);
-}
-
-/* =========================================================
-   CONSTRUCTION WORKER
-   ORIGINAL IMAGE COLORS ARE PRESERVED
-   ========================================================= */
+/* -------------------------------------------------------
+   Construction Worker Animation
+------------------------------------------------------- */
 
 .construction-worker-runner {
   position: absolute;
   left: 0;
   bottom: 0;
   z-index: 30;
-
   width: clamp(100px, 10vw, 165px);
-
   pointer-events: none;
   user-select: none;
-
   animation: construction-worker-move 14s linear infinite;
 }
 
@@ -581,18 +271,10 @@ button {
   width: 100%;
   height: auto;
   object-fit: contain;
-
   pointer-events: none;
   user-select: none;
-
-  /* IMPORTANT:
-     No grayscale/filter is applied. */
   filter: none;
 }
-
-/* =========================================================
-   WORKER LEFT → RIGHT
-   ========================================================= */
 
 @keyframes construction-worker-move {
   0% {
@@ -604,10 +286,6 @@ button {
   }
 }
 
-/* =========================================================
-   WORKER RUNNING / BOUNCING EFFECT
-   ========================================================= */
-
 @keyframes construction-worker-bob {
   0% {
     transform: translateY(0) rotate(-1deg);
@@ -618,9 +296,9 @@ button {
   }
 }
 
-/* =========================================================
-   MOBILE WORKER
-   ========================================================= */
+/* -------------------------------------------------------
+   Responsive Worker
+------------------------------------------------------- */
 
 @media (max-width: 640px) {
   .construction-worker-runner {
@@ -640,9 +318,9 @@ button {
   }
 }
 
-/* =========================================================
-   REDUCED MOTION
-   ========================================================= */
+/* -------------------------------------------------------
+   Reduced Motion
+------------------------------------------------------- */
 
 @media (prefers-reduced-motion: reduce) {
   html {
