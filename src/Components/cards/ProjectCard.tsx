@@ -1,76 +1,88 @@
 import Link from "next/link";
 import ImagePlaceholder from "./ImagePlaceholder";
 
-interface ProjectCardProps {
+type ProjectCardProps = {
   number: string;
   title: string;
   category: string;
   location: string;
+  label?: string;
+  image?: string;
+  href?: string;
   featured?: boolean;
-}
-
-function ArrowIcon() {
-  return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      className="h-4 w-4"
-      aria-hidden="true"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M5 12h14m-6-6 6 6-6 6"
-      />
-    </svg>
-  );
-}
+};
 
 export default function ProjectCard({
   number,
   title,
   category,
   location,
+  label = "Project",
+  image,
+  href = "/projects",
   featured = false,
 }: ProjectCardProps) {
   return (
-    <article className="group">
-      <Link
-        href="/contact"
-        className="block focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-950 focus-visible:ring-offset-4"
-      >
-        <div
-          className={`relative overflow-hidden border border-gray-200 bg-gray-50 ${
-            featured ? "aspect-[16/9]" : "aspect-[4/3]"
-          }`}
-        >
+    <Link
+      href={href}
+      className={`group block ${
+        featured ? "lg:col-span-2" : ""
+      }`}
+    >
+      <article>
+        <div className="relative overflow-hidden border border-gray-200 bg-gray-100 transition-all duration-500 group-hover:-translate-y-1 group-hover:border-brand-primary/50 group-hover:shadow-xl">
           <ImagePlaceholder
-            label={category}
+            src={image}
+            alt={title}
+            label={label}
             title={title}
-            aspectRatio="h-full w-full"
+            aspectRatio={featured ? "aspect-[16/9]" : "aspect-[4/3]"}
           />
 
-          <span className="absolute left-5 top-5 flex h-9 w-9 items-center justify-center border border-gray-300 bg-white/95 font-[var(--font-primary)] text-[10px] font-semibold text-gray-700 backdrop-blur-sm">
+          <div className="absolute left-4 top-4 flex h-10 w-10 items-center justify-center rounded-full border border-white/60 bg-white/90 text-label text-brand-primary shadow-lg backdrop-blur-sm">
             {number}
-          </span>
+          </div>
 
-          <span className="absolute bottom-5 right-5 flex h-10 w-10 items-center justify-center rounded-full border border-gray-300 bg-white text-gray-700 shadow-sm transition-all duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:bg-gray-950 group-hover:text-white">
-            <ArrowIcon />
-          </span>
+          <div className="absolute bottom-4 right-4 flex h-11 w-11 items-center justify-center rounded-full border border-white/60 bg-white/90 text-gray-900 shadow-lg transition-all duration-300 group-hover:bg-brand-primary group-hover:text-white">
+            <svg
+              width="15"
+              height="15"
+              viewBox="0 0 15 15"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M3 12L12 3M5 3H12V10"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </div>
         </div>
 
-        <div className="mt-5">
-          <p className="font-[var(--font-primary)] text-[10px] font-semibold uppercase tracking-[0.22em] text-gray-400">
-            {category} · {location}
-          </p>
+        <div className="mt-5 flex items-start justify-between gap-5">
+          <div>
+            <p className="text-label text-brand-secondary">
+              {category}
+            </p>
 
-          <h3 className="mt-2 font-[var(--font-primary)] text-2xl font-semibold leading-tight tracking-tight text-gray-950 sm:text-3xl">
-            {title}
-          </h3>
+            <h3 className="mt-2 font-[var(--font-primary)] text-h4 text-gray-950 transition-colors duration-300 group-hover:text-brand-primary">
+              {title}
+            </h3>
+
+            <p className="text-body-sm mt-2 text-gray-500">
+              {location}
+            </p>
+          </div>
+
+          <span
+            aria-hidden="true"
+            className="mt-1 h-px w-10 shrink-0 bg-brand-primary transition-all duration-300 group-hover:w-16"
+          />
         </div>
-      </Link>
-    </article>
+      </article>
+    </Link>
   );
 }

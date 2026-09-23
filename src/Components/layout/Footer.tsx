@@ -15,16 +15,17 @@ const footerLinks = [
 
 export default function Footer() {
   return (
-    <footer className="border-t border-gray-200 bg-gray-950 text-gray-300">
+    <footer className="border-t border-brand-primary/30 bg-gray-950 text-gray-300">
       <Container>
         <div className="grid gap-12 py-16 md:grid-cols-2 lg:grid-cols-4">
+          {/* BRAND */}
           <div className="lg:col-span-2">
             <Link href="/" className="inline-flex flex-col">
-              <span className="text-xl font-semibold tracking-tight text-white">
+              <span className="font-[var(--font-primary)] text-2xl font-semibold tracking-tight text-white">
                 DAYA
               </span>
 
-              <span className="text-xs tracking-[0.18em] text-gray-500">
+              <span className="text-label mt-1 text-brand-primary">
                 CONSTRUCTIONS
               </span>
             </Link>
@@ -34,10 +35,13 @@ export default function Footer() {
               construction, structural design, consultancy, restoration,
               rehabilitation and project management services.
             </p>
+
+            <div className="mt-7 h-px w-20 bg-brand-primary" />
           </div>
 
+          {/* NAVIGATION */}
           <div>
-            <h2 className="text-sm font-semibold uppercase tracking-[0.15em] text-white">
+            <h2 className="text-label text-brand-primary">
               Navigation
             </h2>
 
@@ -46,20 +50,22 @@ export default function Footer() {
                 <Link
                   key={link.name}
                   href={link.href}
-                  className="text-sm text-gray-400 transition-colors duration-200 hover:text-white"
+                  className="group flex items-center gap-2 text-sm text-gray-400 transition-colors duration-200 hover:text-white"
                 >
+                  <span className="h-px w-0 bg-brand-primary transition-all duration-300 group-hover:w-4" />
                   {link.name}
                 </Link>
               ))}
             </nav>
           </div>
 
+          {/* CONTACT */}
           <div>
-            <h2 className="text-sm font-semibold uppercase tracking-[0.15em] text-white">
+            <h2 className="text-label text-brand-secondary">
               Contact
             </h2>
 
-            <div className="mt-5 space-y-3 text-sm leading-6 text-gray-400">
+            <div className="mt-5 space-y-4 text-sm leading-6 text-gray-400">
               <p>
                 Uralpatti, Udumalpet,
                 <br />
@@ -67,17 +73,34 @@ export default function Footer() {
               </p>
 
               <p>India</p>
+
+              <Link
+                href="tel:6382765593"
+                className="block transition-colors hover:text-brand-primary"
+              >
+                6382765593
+              </Link>
+
+              <Link
+                href="mailto:dayaconstructions22@gmail.com"
+                className="block break-all transition-colors hover:text-brand-secondary"
+              >
+                dayaconstructions22@gmail.com
+              </Link>
             </div>
           </div>
         </div>
 
-        <div className="flex flex-col gap-4 border-t border-gray-800 py-6 text-sm text-gray-500 sm:flex-row sm:items-center sm:justify-between">
+        {/* BOTTOM */}
+        <div className="flex flex-col gap-4 border-t border-brand-secondary/30 py-6 text-sm text-gray-500 sm:flex-row sm:items-center sm:justify-between">
           <p>
             © {new Date().getFullYear()} Daya Constructions & Structural
             Consultants. All rights reserved.
           </p>
 
-          <p>Building with strength. Designing with confidence.</p>
+          <p className="text-brand-primary">
+            Building with strength. Designing with confidence.
+          </p>
         </div>
       </Container>
     </footer>
