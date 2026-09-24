@@ -91,7 +91,6 @@ function ServiceIcon({ number }: { number: string }) {
         <path d="M9 9h.01M12 9h.01M15 9h.01" />
       </svg>
     ),
-
     "02": (
       <svg
         viewBox="0 0 24 24"
@@ -102,11 +101,9 @@ function ServiceIcon({ number }: { number: string }) {
         aria-hidden="true"
       >
         <circle cx="12" cy="12" r="8" />
-        <path d="M12 8v8" />
-        <path d="M8 12h8" />
+        <path d="M12 8v8M8 12h8" />
       </svg>
     ),
-
     "03": (
       <svg
         viewBox="0 0 24 24"
@@ -121,7 +118,6 @@ function ServiceIcon({ number }: { number: string }) {
         <path d="M8 9h.01M12 9h.01M16 9h.01" />
       </svg>
     ),
-
     "04": (
       <svg
         viewBox="0 0 24 24"
@@ -137,7 +133,6 @@ function ServiceIcon({ number }: { number: string }) {
         <path d="M9 11h6M9 15h6" />
       </svg>
     ),
-
     "05": (
       <svg
         viewBox="0 0 24 24"
@@ -153,7 +148,6 @@ function ServiceIcon({ number }: { number: string }) {
         <path d="M9 9h6" />
       </svg>
     ),
-
     "06": (
       <svg
         viewBox="0 0 24 24"
@@ -167,7 +161,6 @@ function ServiceIcon({ number }: { number: string }) {
         <path d="M12 8v4l3 2" />
       </svg>
     ),
-
     "07": (
       <svg
         viewBox="0 0 24 24"
@@ -181,7 +174,6 @@ function ServiceIcon({ number }: { number: string }) {
         <path d="M8 9h8M8 13h5" />
       </svg>
     ),
-
     "08": (
       <svg
         viewBox="0 0 24 24"
@@ -248,140 +240,142 @@ export default function ServicesPreview() {
   useEffect(() => {
     if (isPaused) return;
 
-    const timer = window.setInterval(() => {
-      nextSlide();
-    }, 4000);
+    const timer = window.setInterval(nextSlide, 5000);
 
     return () => window.clearInterval(timer);
   }, [isPaused, nextSlide]);
 
   return (
-    <section className="relative overflow-hidden bg-white py-24 sm:py-28 lg:py-32">
-      {/* Decorative brand lines */}
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute right-0 top-0 h-32 w-32 border-l border-b border-brand-primary/20"
-      />
-
-      <div
-        aria-hidden="true"
-        className="pointer-events-none absolute bottom-0 left-0 h-32 w-32 border-r border-t border-brand-secondary/20"
-      />
-
+    <section className="relative overflow-hidden bg-[#fafaf8] py-20 sm:py-24 lg:py-32">
       <Container>
-        <div className="grid gap-14 lg:grid-cols-12 lg:gap-16">
-          {/* LEFT */}
-          <div className="lg:col-span-4">
+        <div className="grid items-start gap-12 lg:grid-cols-12 lg:gap-16 xl:gap-20">
+          {/* LEFT CONTENT */}
+          <div className="flex flex-col items-start lg:col-span-4 lg:pt-5">
             <SectionHeading
-              eyebrow="Services"
+              eyebrow="Our Services"
               title="Engineering knowledge. Practical execution."
               description="From structural design and consultancy to construction, restoration and project management, we provide solutions shaped around the requirements of each project."
             />
 
             <Link
               href="/services"
-              className="group mt-10 inline-flex items-center gap-3 border-b border-brand-primary pb-2 text-button text-brand-secondary transition-colors duration-300 hover:border-brand-secondary hover:text-brand-primary"
+              className="group mt-8 inline-flex items-center gap-3 border-b border-brand-primary pb-3 text-sm font-semibold text-brand-secondary transition-colors duration-300 hover:border-brand-secondary hover:text-brand-primary sm:mt-10"
             >
               <span>Explore All Services</span>
 
-              <span className="text-brand-primary transition-transform duration-300 group-hover:translate-x-1">
+              <span className="transition-transform duration-300 group-hover:translate-x-1">
                 <ArrowIcon />
               </span>
             </Link>
+
+            {/* Small brand detail */}
+            <div className="mt-12 hidden items-center gap-4 lg:flex">
+              <span className="h-1.5 w-1.5 rounded-full bg-brand-primary" />
+              <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-gray-500">
+                Design · Engineering · Execution
+              </span>
+            </div>
           </div>
 
           {/* RIGHT SLIDER */}
           <div
-            className="lg:col-span-8"
+            className="min-w-0 lg:col-span-8"
             onMouseEnter={() => setIsPaused(true)}
             onMouseLeave={() => setIsPaused(false)}
             onFocus={() => setIsPaused(true)}
-            onBlur={() => setIsPaused(false)}
+            onBlur={(event) => {
+              if (!event.currentTarget.contains(event.relatedTarget)) {
+                setIsPaused(false);
+              }
+            }}
           >
-            <div className="relative overflow-hidden border border-brand-primary/20 bg-white shadow-sm">
-              <div className="grid min-h-[590px] md:grid-cols-[1fr_1.35fr]">
+            {/* MAIN CARD */}
+            <div className="overflow-hidden rounded-2xl border border-gray-200/80 bg-white shadow-[0_12px_50px_rgba(0,0,0,0.045)] transition-shadow duration-500 hover:shadow-[0_18px_60px_rgba(0,0,0,0.075)]">
+              <div className="grid md:grid-cols-[0.95fr_1.05fr]">
                 {/* IMAGE */}
-                <div className="relative min-h-[300px] overflow-hidden bg-gray-100 md:min-h-full">
+                <div className="relative min-h-[300px] overflow-hidden bg-gray-100 md:min-h-[500px]">
                   <Image
                     key={service.image}
                     src={service.image}
                     alt={service.title}
                     fill
                     sizes="(max-width: 768px) 100vw, 40vw"
-                    className="object-cover transition-transform duration-700 hover:scale-[1.03]"
+                    className="object-cover transition-transform duration-700 ease-out"
                     priority={current === 0}
                   />
 
-                  {/* Very subtle image overlay */}
+                  {/* Subtle image gradient */}
                   <div
                     aria-hidden="true"
-                    className="absolute inset-0 bg-black/5"
+                    className="absolute inset-0 bg-gradient-to-t from-black/45 via-transparent to-black/10"
                   />
 
-                  {/* Service icon */}
-                  <div className="absolute bottom-6 left-6 flex h-12 w-12 items-center justify-center rounded-full border border-white/70 bg-white/90 text-brand-primary shadow-lg backdrop-blur-sm transition-all duration-300 hover:bg-brand-primary hover:text-white">
-                    <ServiceIcon number={service.number} />
+                  {/* Image number */}
+                  <div className="absolute left-6 top-6 flex items-center gap-3 sm:left-8 sm:top-8">
+                    <span className="h-px w-8 bg-brand-primary" />
+                    <span className="text-xs font-semibold tracking-[0.2em] text-white">
+                      {service.number}
+                    </span>
                   </div>
 
-                  {/* Number */}
-                  <div className="absolute left-6 top-6">
-                    <p className="text-label text-white drop-shadow-md">
-                      {service.number}
+                  {/* Image caption */}
+                  <div className="absolute bottom-6 left-6 right-6 sm:bottom-8 sm:left-8 sm:right-8">
+                    <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-white/75">
+                      Daya Constructions
+                    </p>
+                    <p className="mt-2 max-w-xs font-[var(--font-primary)] text-2xl font-semibold leading-tight text-white sm:text-3xl">
+                      {service.title}
                     </p>
                   </div>
 
-                  {/* Gold corner */}
-                  <span
-                    aria-hidden="true"
-                    className="absolute left-0 top-0 h-16 w-16 border-l-2 border-t-2 border-brand-primary"
-                  />
-
-                  {/* Green corner */}
-                  <span
-                    aria-hidden="true"
-                    className="absolute bottom-0 right-0 h-16 w-16 border-b-2 border-r-2 border-brand-secondary"
-                  />
+                  {/* Gold accent */}
+                  <div className="absolute bottom-0 left-0 h-1 w-24 bg-brand-primary" />
                 </div>
 
                 {/* CONTENT */}
-                <div className="flex flex-col p-7 sm:p-9 lg:p-10">
-                  <div className="flex items-start justify-between">
-                    <div>
-                      <p className="text-label text-brand-secondary">
-                        {service.type}
-                      </p>
+                <div className="flex min-h-[420px] flex-col p-6 sm:p-9 lg:min-h-[500px] lg:p-10 xl:p-12">
+                  {/* Top row */}
+                  <div className="flex items-center justify-between gap-4">
+                    <span className="inline-flex items-center rounded-full bg-brand-secondary-light px-4 py-2 text-[10px] font-semibold uppercase tracking-[0.15em] text-brand-secondary">
+                      {service.type}
+                    </span>
 
-                      <p className="mt-3 font-[var(--font-primary)] text-sm font-semibold tracking-[0.12em] text-brand-primary">
-                        {service.number} /{" "}
-                        {String(total).padStart(2, "0")}
-                      </p>
-                    </div>
-
-                    <div className="flex h-11 w-11 items-center justify-center rounded-full border border-brand-primary/25 bg-brand-primary-light text-brand-primary">
-                      <ServiceIcon number={service.number} />
-                    </div>
+                    <span className="font-[var(--font-primary)] text-sm font-semibold tracking-[0.12em] text-gray-400">
+                      {service.number}
+                      <span className="mx-2 text-brand-primary">/</span>
+                      {String(total).padStart(2, "0")}
+                    </span>
                   </div>
 
-                  <div className="mt-10">
-                    <h3 className="text-h3 text-gray-950">
+                  {/* Icon */}
+                  <div className="mt-9 flex h-14 w-14 items-center justify-center rounded-2xl bg-brand-primary-light text-brand-primary sm:mt-12">
+                    <ServiceIcon number={service.number} />
+                  </div>
+
+                  {/* Text */}
+                  <div className="mt-7">
+                    <h3 className="font-[var(--font-primary)] text-3xl font-semibold leading-[1.12] tracking-[-0.035em] text-gray-950 sm:text-4xl">
                       {service.title}
                     </h3>
 
-                    <div className="mt-4 h-px w-12 bg-brand-primary" />
+                    <div className="mt-6 h-1 w-12 rounded-full bg-brand-primary" />
 
-                    <p className="mt-5 max-w-xl text-body text-gray-600">
+                    <p className="mt-6 max-w-lg text-[15px] leading-7 text-gray-600 sm:text-base sm:leading-8">
                       {service.description}
                     </p>
                   </div>
 
-                  {/* BOTTOM CONTROLS */}
-                  <div className="mt-auto border-t border-brand-primary/15 pt-7">
-                    <div className="flex items-center justify-between gap-6">
+                  {/* Bottom action */}
+                  <div className="mt-auto pt-9">
+                    <div className="flex items-center justify-between gap-4">
                       <Link
                         href="/services"
-                        className="text-label text-brand-secondary transition-colors hover:text-brand-primary"
+                        className="group inline-flex items-center gap-3 text-sm font-semibold text-brand-secondary transition-colors duration-300 hover:text-brand-primary"
                       >
                         Explore Service
+                        <span className="transition-transform duration-300 group-hover:translate-x-1">
+                          <ArrowIcon />
+                        </span>
                       </Link>
 
                       <div className="flex items-center gap-2">
@@ -389,7 +383,7 @@ export default function ServicesPreview() {
                           type="button"
                           onClick={previousSlide}
                           aria-label="Previous service"
-                          className="flex h-11 w-11 items-center justify-center rounded-full border border-brand-primary/25 text-brand-primary transition-all duration-300 hover:border-brand-primary hover:bg-brand-primary hover:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-2"
+                          className="flex h-11 w-11 items-center justify-center rounded-full border border-gray-200 text-gray-700 transition-all duration-300 hover:border-brand-primary hover:bg-brand-primary hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-2"
                         >
                           <ArrowIcon direction="left" />
                         </button>
@@ -398,7 +392,7 @@ export default function ServicesPreview() {
                           type="button"
                           onClick={nextSlide}
                           aria-label="Next service"
-                          className="flex h-11 w-11 items-center justify-center rounded-full bg-brand-secondary text-white transition-all duration-300 hover:bg-brand-secondary-dark focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-secondary focus-visible:ring-offset-2"
+                          className="flex h-11 w-11 items-center justify-center rounded-full bg-brand-secondary text-white transition-all duration-300 hover:bg-brand-secondary-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-secondary focus-visible:ring-offset-2"
                         >
                           <ArrowIcon />
                         </button>
@@ -409,42 +403,45 @@ export default function ServicesPreview() {
               </div>
             </div>
 
-            {/* DOTS */}
-            <div className="mt-6 flex items-center gap-2">
-              {services.map((item, index) => (
-                <button
-                  key={item.number}
-                  type="button"
-                  onClick={() => setCurrent(index)}
-                  aria-label={`Show ${item.title}`}
-                  aria-current={current === index ? "true" : undefined}
-                  className={`h-1.5 transition-all duration-300 ${
-                    current === index
-                      ? "w-8 bg-brand-primary"
-                      : "w-3 bg-brand-secondary/25 hover:bg-brand-secondary"
-                  }`}
-                />
-              ))}
-            </div>
-
-            {/* PROGRESS */}
-            <div className="mt-5 flex items-center gap-4">
-              <span className="font-[var(--font-primary)] text-xs font-semibold tracking-[0.18em] text-brand-primary">
-                {String(current + 1).padStart(2, "0")}
-              </span>
-
-              <div className="h-px flex-1 bg-brand-secondary/15">
-                <div
-                  className="h-px bg-brand-primary transition-all duration-500"
-                  style={{
-                    width: `${((current + 1) / total) * 100}%`,
-                  }}
-                />
+            {/* SLIDER FOOTER */}
+            <div className="mt-7 flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+              {/* DOTS */}
+              <div className="flex items-center gap-2">
+                {services.map((item, index) => (
+                  <button
+                    key={item.number}
+                    type="button"
+                    onClick={() => setCurrent(index)}
+                    aria-label={`Show ${item.title}`}
+                    aria-current={current === index ? "true" : undefined}
+                    className={`h-1.5 rounded-full transition-all duration-300 ${
+                      current === index
+                        ? "w-9 bg-brand-primary"
+                        : "w-3 bg-gray-300 hover:bg-brand-secondary"
+                    }`}
+                  />
+                ))}
               </div>
 
-              <span className="font-[var(--font-primary)] text-xs font-semibold tracking-[0.18em] text-brand-secondary">
-                {String(total).padStart(2, "0")}
-              </span>
+              {/* PROGRESS */}
+              <div className="flex min-w-0 items-center gap-4 sm:w-1/2 sm:max-w-xs">
+                <span className="font-[var(--font-primary)] text-xs font-semibold tracking-[0.16em] text-brand-primary">
+                  {String(current + 1).padStart(2, "0")}
+                </span>
+
+                <div className="h-1 flex-1 overflow-hidden rounded-full bg-gray-200">
+                  <div
+                    className="h-full rounded-full bg-brand-primary transition-all duration-500"
+                    style={{
+                      width: `${((current + 1) / total) * 100}%`,
+                    }}
+                  />
+                </div>
+
+                <span className="font-[var(--font-primary)] text-xs font-semibold tracking-[0.16em] text-gray-400">
+                  {String(total).padStart(2, "0")}
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -452,4 +449,3 @@ export default function ServicesPreview() {
     </section>
   );
 }
-

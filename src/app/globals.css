@@ -197,12 +197,16 @@ body {
 
 .architectural-grid {
   background-image:
-    linear-gradient(to right,
+    linear-gradient(
+      to right,
       rgba(197, 160, 74, 0.13) 1px,
-      transparent 1px),
-    linear-gradient(to bottom,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
       rgba(64, 125, 65, 0.1) 1px,
-      transparent 1px);
+      transparent 1px
+    );
   background-size: 48px 48px;
 }
 
