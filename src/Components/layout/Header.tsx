@@ -38,21 +38,18 @@ function MenuIcon({ open }: { open: boolean }) {
   return (
     <span aria-hidden="true" className="relative block h-5 w-5">
       <span
-        className={`absolute left-0 top-1/2 h-px w-5 bg-brand-primary transition-all duration-300 ${
-          open ? "rotate-45" : "-translate-y-2"
-        }`}
+        className={`absolute left-0 top-1/2 h-px w-5 bg-brand-primary transition-all duration-300 ${open ? "rotate-45" : "-translate-y-2"
+          }`}
       />
 
       <span
-        className={`absolute left-0 top-1/2 h-px w-5 bg-brand-primary transition-all duration-300 ${
-          open ? "opacity-0" : "opacity-100"
-        }`}
+        className={`absolute left-0 top-1/2 h-px w-5 bg-brand-primary transition-all duration-300 ${open ? "opacity-0" : "opacity-100"
+          }`}
       />
 
       <span
-        className={`absolute left-0 top-1/2 h-px w-5 bg-brand-primary transition-all duration-300 ${
-          open ? "-rotate-45" : "translate-y-2"
-        }`}
+        className={`absolute left-0 top-1/2 h-px w-5 bg-brand-primary transition-all duration-300 ${open ? "-rotate-45" : "translate-y-2"
+          }`}
       />
     </span>
   );
@@ -81,30 +78,14 @@ export default function Header() {
           {/* LOGO */}
           <Link
             href="/"
-            onClick={closeMenu}
-            aria-label="Daya Constructions home"
-            className="group flex shrink-0 items-center gap-3"
+            className="flex h-20 w-auto items-center"
+            aria-label="Daya Constructions & Structural Consultants home"
           >
-            <span
-              aria-hidden="true"
-              className="relative flex h-10 w-10 shrink-0 items-center justify-center border border-gray-950"
-            >
-              <span className="absolute left-2 top-2 h-3 w-3 border-l border-t border-brand-primary transition-all duration-300 group-hover:h-4 group-hover:w-4" />
-
-              <span className="absolute bottom-2 right-2 h-3 w-3 border-b border-r border-brand-secondary transition-all duration-300 group-hover:h-4 group-hover:w-4" />
-
-              <span className="h-px w-4 bg-brand-primary transition-all duration-300 group-hover:w-5" />
-            </span>
-
-            <span className="flex flex-col">
-              <span className="font-[var(--font-primary)] text-h4 font-semibold leading-none tracking-[-0.04em] text-gray-950">
-                DAYA
-              </span>
-
-              <span className="text-label mt-1 text-brand-secondary">
-                CONSTRUCTIONS
-              </span>
-            </span>
+            <img
+              src="/images/logo.png"
+              alt="Daya Constructions & Structural Consultants"
+              className="h-16 w-auto object-contain sm:h-20 lg:h-24"
+            />
           </Link>
 
           {/* DESKTOP NAVIGATION */}
@@ -120,21 +101,19 @@ export default function Header() {
                   <Link
                     key={item.name}
                     href={item.href}
-                    className={`group relative whitespace-nowrap px-3 py-3 font-[var(--font-primary)] text-button transition-colors duration-300 ${
-                      active
-                        ? "text-gray-950"
-                        : "text-gray-500 hover:text-brand-secondary"
-                    }`}
+                    className={`group relative whitespace-nowrap px-3 py-3 font-[var(--font-primary)] text-button transition-colors duration-300 ${active
+                      ? "text-gray-950"
+                      : "text-gray-500 hover:text-brand-secondary"
+                      }`}
                   >
                     {item.name}
 
                     <span
                       aria-hidden="true"
-                      className={`absolute bottom-1 left-3 right-3 h-px origin-center bg-brand-primary transition-transform duration-300 ${
-                        active
-                          ? "scale-x-100"
-                          : "scale-x-0 group-hover:scale-x-100"
-                      }`}
+                      className={`absolute bottom-1 left-3 right-3 h-px origin-center bg-brand-primary transition-transform duration-300 ${active
+                        ? "scale-x-100"
+                        : "scale-x-0 group-hover:scale-x-100"
+                        }`}
                     />
                   </Link>
                 );
@@ -170,11 +149,10 @@ export default function Header() {
         {/* MOBILE NAVIGATION */}
         <div
           id="mobile-navigation"
-          className={`grid transition-all duration-300 lg:hidden ${
-            menuOpen
-              ? "grid-rows-[1fr] opacity-100"
-              : "grid-rows-[0fr] opacity-0"
-          }`}
+          className={`grid transition-all duration-300 lg:hidden ${menuOpen
+            ? "grid-rows-[1fr] opacity-100"
+            : "grid-rows-[0fr] opacity-0"
+            }`}
         >
           <div className="min-h-0 overflow-hidden">
             <nav
@@ -190,11 +168,10 @@ export default function Header() {
                       key={item.name}
                       href={item.href}
                       onClick={closeMenu}
-                      className={`group flex min-h-14 items-center justify-between border-b py-4 font-[var(--font-primary)] text-button transition-all duration-300 ${
-                        active
-                          ? "border-brand-primary/30 text-gray-950"
-                          : "border-gray-100 text-gray-600 hover:pl-2 hover:text-brand-secondary"
-                      }`}
+                      className={`group flex min-h-14 items-center justify-between border-b py-4 font-[var(--font-primary)] text-button transition-all duration-300 ${active
+                        ? "border-brand-primary/30 text-gray-950"
+                        : "border-gray-100 text-gray-600 hover:pl-2 hover:text-brand-secondary"
+                        }`}
                     >
                       <span className="flex items-center gap-4">
                         <span className="text-label text-brand-primary">
@@ -205,11 +182,10 @@ export default function Header() {
                       </span>
 
                       <span
-                        className={`flex h-8 w-8 items-center justify-center rounded-full border transition-all duration-300 ${
-                          active
-                            ? "border-brand-primary bg-brand-primary text-white"
-                            : "border-brand-primary/20 text-gray-400 group-hover:translate-x-1 group-hover:border-brand-secondary group-hover:text-brand-secondary"
-                        }`}
+                        className={`flex h-8 w-8 items-center justify-center rounded-full border transition-all duration-300 ${active
+                          ? "border-brand-primary bg-brand-primary text-white"
+                          : "border-brand-primary/20 text-gray-400 group-hover:translate-x-1 group-hover:border-brand-secondary group-hover:text-brand-secondary"
+                          }`}
                       >
                         <ArrowIcon />
                       </span>
