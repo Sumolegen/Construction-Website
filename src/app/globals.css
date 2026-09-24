@@ -4,6 +4,7 @@
   --font-primary: var(--font-josefin-sans);
   --font-body: var(--font-inter);
 
+  /* Neutral Colors */
   --black: #111111;
   --gray-950: #171717;
   --gray-900: #1f1f1f;
@@ -18,7 +19,7 @@
   --gray-50: #fafafa;
   --white: #ffffff;
 
-  /* Daya Brand Colors */
+  /* Brand Colors */
   --brand-primary: #c5a04a;
   --brand-primary-dark: #a78335;
   --brand-primary-light: #f7f1e3;
@@ -27,9 +28,11 @@
   --brand-secondary-dark: #326333;
   --brand-secondary-light: #edf5ed;
 
+  /* Theme */
   --background: var(--white);
   --foreground: var(--gray-950);
 
+  /* Typography */
   --font-size-display: clamp(3.5rem, 8vw, 6.5rem);
   --font-size-h1: clamp(3rem, 6vw, 5rem);
   --font-size-h2: clamp(2.25rem, 4vw, 4rem);
@@ -42,6 +45,10 @@
   --font-size-label: 0.6875rem;
   --font-size-button: 0.875rem;
 }
+
+/* =========================================================
+   BASE STYLES
+========================================================= */
 
 html {
   scroll-behavior: smooth;
@@ -65,9 +72,9 @@ body {
   color: var(--white);
 }
 
-/* -------------------------------------------------------
-   Typography
-------------------------------------------------------- */
+/* =========================================================
+   TYPOGRAPHY
+========================================================= */
 
 .text-display {
   font-family: var(--font-primary), sans-serif;
@@ -132,9 +139,9 @@ body {
   text-transform: uppercase;
 }
 
-/* -------------------------------------------------------
-   Brand Utilities
-------------------------------------------------------- */
+/* =========================================================
+   BRAND COLOR UTILITIES
+========================================================= */
 
 .text-brand-primary {
   color: var(--brand-primary);
@@ -184,28 +191,25 @@ body {
   background-color: var(--brand-secondary-dark);
 }
 
-/* -------------------------------------------------------
-   Architectural Grid
-------------------------------------------------------- */
+/* =========================================================
+   ARCHITECTURAL GRID
+========================================================= */
 
 .architectural-grid {
   background-image:
-    linear-gradient(
-      to right,
+    linear-gradient(to right,
       rgba(197, 160, 74, 0.13) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      to bottom,
+      transparent 1px),
+    linear-gradient(to bottom,
       rgba(64, 125, 65, 0.1) 1px,
-      transparent 1px
-    );
+      transparent 1px);
   background-size: 48px 48px;
 }
 
-/* -------------------------------------------------------
-   Image Hover
-------------------------------------------------------- */
+/* =========================================================
+   IMAGE HOVER EFFECTS
+   Images retain their original colors.
+========================================================= */
 
 .image-hover img {
   transition:
@@ -217,18 +221,18 @@ body {
   transform: scale(1.04);
 }
 
-/* -------------------------------------------------------
-   Focus
-------------------------------------------------------- */
+/* =========================================================
+   ACCESSIBILITY & FOCUS STATES
+========================================================= */
 
 :focus-visible {
   outline: 2px solid var(--brand-primary);
   outline-offset: 3px;
 }
 
-/* -------------------------------------------------------
-   Scrollbar
-------------------------------------------------------- */
+/* =========================================================
+   CUSTOM SCROLLBAR
+========================================================= */
 
 ::-webkit-scrollbar {
   width: 10px;
@@ -247,80 +251,9 @@ body {
   background: var(--brand-secondary);
 }
 
-/* -------------------------------------------------------
-   Construction Worker Animation
-------------------------------------------------------- */
-
-.construction-worker-runner {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  z-index: 30;
-  width: clamp(100px, 10vw, 165px);
-  pointer-events: none;
-  user-select: none;
-  animation: construction-worker-move 14s linear infinite;
-}
-
-.construction-worker-bob {
-  animation: construction-worker-bob 0.7s ease-in-out infinite alternate;
-}
-
-.construction-worker-runner img {
-  display: block;
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-  pointer-events: none;
-  user-select: none;
-  filter: none;
-}
-
-@keyframes construction-worker-move {
-  0% {
-    transform: translateX(-200px);
-  }
-
-  100% {
-    transform: translateX(calc(100vw + 200px));
-  }
-}
-
-@keyframes construction-worker-bob {
-  0% {
-    transform: translateY(0) rotate(-1deg);
-  }
-
-  100% {
-    transform: translateY(-7px) rotate(1deg);
-  }
-}
-
-/* -------------------------------------------------------
-   Responsive Worker
-------------------------------------------------------- */
-
-@media (max-width: 640px) {
-  .construction-worker-runner {
-    width: 105px;
-    bottom: 0;
-    animation-duration: 11s;
-  }
-
-  @keyframes construction-worker-move {
-    0% {
-      transform: translateX(-130px);
-    }
-
-    100% {
-      transform: translateX(calc(100vw + 130px));
-    }
-  }
-}
-
-/* -------------------------------------------------------
-   Reduced Motion
-------------------------------------------------------- */
+/* =========================================================
+   REDUCED MOTION
+========================================================= */
 
 @media (prefers-reduced-motion: reduce) {
   html {
@@ -334,15 +267,5 @@ body {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
-  }
-
-  .construction-worker-runner {
-    animation: none;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-  .construction-worker-bob {
-    animation: none;
   }
 }
