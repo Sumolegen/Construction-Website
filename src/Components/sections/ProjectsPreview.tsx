@@ -1,8 +1,41 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 import Container from "../ui/Container";
 import SectionHeading from "../ui/SectionHeading";
 
+const projectCategories = [
+  {
+    name: "Construction",
+    image: "/images/15.jpg",
+    alt: "Residential construction project",
+    number: "01",
+    title: "Residential Construction",
+    location: "Tamil Nadu",
+  },
+  {
+    name: "Structural Design",
+    image: "/images/14.jpg",
+    alt: "Structural design project",
+    number: "02",
+    title: "Structural Design Project",
+    location: "Tamil Nadu",
+  },
+  {
+    name: "Restoration",
+    image: "/images/16.jpg",
+    alt: "Building restoration project",
+    number: "03",
+    title: "Building Restoration",
+    location: "Tamil Nadu",
+  },
+];
+
 export default function ProjectsPreview() {
+  const [activeProject, setActiveProject] = useState(0);
+  const project = projectCategories[activeProject];
+
   return (
     <section className="relative overflow-hidden bg-[#f7f7f5] py-20 sm:py-24 lg:py-28">
       <Container>
@@ -39,22 +72,27 @@ export default function ProjectsPreview() {
               </svg>
             </Link>
 
-            {/* Project Categories */}
+            {/* Interactive Project Categories */}
             <div className="mt-10 flex flex-wrap gap-3">
-              {["Construction", "Structural Design", "Restoration"].map(
-                (category) => (
-                  <span
-                    key={category}
-                    className="rounded-full border border-brand-primary/25 bg-white/80 px-4 py-2 text-xs font-medium text-gray-700 transition-colors duration-300 hover:border-brand-secondary/40 hover:text-brand-secondary sm:text-sm"
-                  >
-                    {category}
-                  </span>
-                )
-              )}
+              {projectCategories.map((category, index) => (
+                <button
+                  key={category.name}
+                  type="button"
+                  onClick={() => setActiveProject(index)}
+                  aria-pressed={activeProject === index}
+                  className={`rounded-full border px-5 py-3 text-sm font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-4 ${
+                    activeProject === index
+                      ? "border-brand-secondary bg-brand-secondary text-white shadow-md"
+                      : "border-gray-300 bg-white/80 text-gray-700 hover:border-brand-primary hover:text-brand-secondary"
+                  }`}
+                >
+                  {category.name}
+                </button>
+              ))}
             </div>
           </div>
 
-          {/* Right: Featured Image */}
+          {/* Right: Dynamic Featured Image */}
           <div className="relative mx-auto flex w-full max-w-lg items-center justify-center lg:ml-auto">
             {/* Organic Brand Shape */}
             <div
@@ -70,8 +108,9 @@ export default function ProjectsPreview() {
             {/* Image Frame */}
             <div className="relative z-10 h-[340px] w-[78%] overflow-hidden rounded-2xl border border-white/60 bg-gray-200 shadow-xl sm:h-[420px]">
               <img
-                src="/images/15.jpg"
-                alt="Featured Daya construction project"
+                key={project.image}
+                src={project.image}
+                alt={project.alt}
                 className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
               />
             </div>
