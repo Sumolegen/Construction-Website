@@ -3,7 +3,7 @@ import AboutPreview from "../Components/sections/AboutPreview";
 import ServicesPreview from "@/Components/sections/ServicesPreview";
 import ProjectsPreview from "@/Components/sections/ProjectsPreview";
 import TestimonialsPreview from "@/Components/sections/TestimonialsPreview";
-import ExpertisePreview from "@/Components/sections/ExpertisePreview";
+// import ExpertisePreview from "@/Components/sections/ExpertisePreview";
 import WhyDayaPreview from "../Components/sections/WhyDayaPreview";
 import JourneyPreview from "../Components/sections/JourneyPreview";
 import RecognitionPreview from "../Components/sections/RecognitionPreview";
@@ -19,7 +19,7 @@ export default function Home() {
       <ServicesPreview />
       <ProjectsPreview />
       <TestimonialsPreview />
-      <ExpertisePreview />
+      {/* <ExpertisePreview /> */}
       <WhyDayaPreview />
       <JourneyPreview />
       <RecognitionPreview />
