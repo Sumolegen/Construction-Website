@@ -183,7 +183,9 @@ export default function WhyDayaPreview() {
             </div>
 
             <h3 className="font-[var(--font-primary)] text-4xl font-bold leading-[1.12] tracking-tight text-gray-950 sm:text-5xl lg:text-6xl">
-              The values behind
+              <span className="text-brand-primary">
+                The values behind
+              </span>
               <br />
               <span className="text-brand-secondary">every project.</span>
             </h3>
