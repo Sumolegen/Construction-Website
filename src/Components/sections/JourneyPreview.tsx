@@ -56,17 +56,15 @@ function JourneyPin({
 }) {
   return (
     <div
-      className={`relative flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-4 border-white shadow-lg transition-all duration-300 ${
-        active
+      className={`relative flex h-12 w-12 shrink-0 items-center justify-center rounded-full border-4 border-white shadow-lg transition-all duration-300 ${active
           ? "scale-110 bg-brand-primary text-gray-950"
           : "bg-brand-secondary text-white"
-      }`}
+        }`}
     >
       <span className="text-xs font-bold">{number}</span>
       <span
-        className={`absolute -inset-2 rounded-full border transition-all duration-300 ${
-          active ? "border-brand-primary/50" : "border-brand-secondary/20"
-        }`}
+        className={`absolute -inset-2 rounded-full border transition-all duration-300 ${active ? "border-brand-primary/50" : "border-brand-secondary/20"
+          }`}
       />
     </div>
   );
@@ -80,12 +78,24 @@ export default function JourneyPreview() {
       <Container>
         {/* Section Heading */}
         <div className="mx-auto max-w-3xl text-center">
-          <SectionHeading
-            eyebrow="Our Journey"
-            title="Experience carried forward. A new chapter begins."
-            description="From decades of construction experience to a new engineering-led vision, explore the milestones that shape the journey of Daya."
-            align="center"
-          />
+          <p className="mb-4 text-sm font-semibold uppercase tracking-[0.2em] text-brand-secondary">
+            Our Journey
+          </p>
+
+          <h2 className="font-[var(--font-primary)] text-4xl font-bold leading-tight tracking-tight text-gray-950 sm:text-5xl">
+            <span className="text-brand-primary">
+              Experience carried forward.
+            </span>
+            <br />
+            <span className="text-brand-secondary">
+              A new chapter begins.
+            </span>
+          </h2>
+
+          <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-gray-600 sm:text-base">
+            Daya builds on a family foundation in construction while bringing a new
+            engineering-led approach to the built environment.
+          </p>
         </div>
 
         {/* Journey Route */}
@@ -170,11 +180,10 @@ export default function JourneyPreview() {
                 number="01"
               />
               <div
-                className={`mt-5 w-52 rounded-2xl border p-5 shadow-md transition-all duration-300 ${
-                  activeJourney === 0
+                className={`mt-5 w-52 rounded-2xl border p-5 shadow-md transition-all duration-300 ${activeJourney === 0
                     ? "border-brand-primary bg-white shadow-xl"
                     : "border-gray-200 bg-white/90"
-                }`}
+                  }`}
               >
                 <span className="text-xs font-bold uppercase tracking-[0.15em] text-brand-primary">
                   40+ Years
@@ -200,11 +209,10 @@ export default function JourneyPreview() {
                 number="02"
               />
               <div
-                className={`mt-5 w-52 rounded-2xl border p-5 shadow-md transition-all duration-300 ${
-                  activeJourney === 1
+                className={`mt-5 w-52 rounded-2xl border p-5 shadow-md transition-all duration-300 ${activeJourney === 1
                     ? "border-brand-primary bg-white shadow-xl"
                     : "border-gray-200 bg-white/90"
-                }`}
+                  }`}
               >
                 <span className="text-xs font-bold uppercase tracking-[0.15em] text-brand-primary">
                   Kerala & Tamil Nadu
@@ -230,11 +238,10 @@ export default function JourneyPreview() {
                 number="03"
               />
               <div
-                className={`mt-5 w-52 rounded-2xl border p-5 shadow-md transition-all duration-300 ${
-                  activeJourney === 2
+                className={`mt-5 w-52 rounded-2xl border p-5 shadow-md transition-all duration-300 ${activeJourney === 2
                     ? "border-brand-primary bg-white shadow-xl"
                     : "border-gray-200 bg-white/90"
-                }`}
+                  }`}
               >
                 <span className="text-xs font-bold uppercase tracking-[0.15em] text-brand-primary">
                   2026
@@ -260,11 +267,10 @@ export default function JourneyPreview() {
                 number="04"
               />
               <div
-                className={`mt-5 w-52 rounded-2xl border p-5 shadow-md transition-all duration-300 ${
-                  activeJourney === 3
+                className={`mt-5 w-52 rounded-2xl border p-5 shadow-md transition-all duration-300 ${activeJourney === 3
                     ? "border-brand-primary bg-white shadow-xl"
                     : "border-gray-200 bg-white/90"
-                }`}
+                  }`}
               >
                 <span className="text-xs font-bold uppercase tracking-[0.15em] text-brand-primary">
                   The Future
@@ -292,11 +298,10 @@ export default function JourneyPreview() {
                   key={item.id}
                   type="button"
                   onClick={() => setActiveJourney(index)}
-                  className={`relative flex w-full gap-5 rounded-2xl border p-5 text-left transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-secondary sm:gap-6 sm:p-6 ${
-                    activeJourney === index
+                  className={`relative flex w-full gap-5 rounded-2xl border p-5 text-left transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-secondary sm:gap-6 sm:p-6 ${activeJourney === index
                       ? "border-brand-primary bg-brand-primary/5 shadow-lg"
                       : "border-gray-200 bg-white"
-                  }`}
+                    }`}
                 >
                   <div className="relative z-10 mt-1">
                     <JourneyPin
