@@ -1,120 +1,123 @@
 import Link from "next/link";
+import Container from "../ui/Container";
+
+const YOUTUBE_VIDEO_ID = "dnBIUC5w0F0";
 
 export default function HomeHero() {
   return (
-    <section className="relative isolate min-h-[calc(100svh-80px)] overflow-hidden bg-black">
-      {/* Full Background Video */}
-      <video
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="auto"
+    <section className="relative isolate flex min-h-[calc(100vh-80px)] items-center overflow-hidden bg-gray-950">
+      {/* YouTube Background Video */}
+      <div
         aria-hidden="true"
-        className="absolute inset-0 -z-30 h-full w-full object-cover object-center"
+        className="pointer-events-none absolute inset-0 overflow-hidden"
       >
-        <source src="/videos/home-hero.mp4" type="video/mp4" />
-      </video>
+        <iframe
+          className="absolute left-1/2 top-1/2 h-[56.25vw] min-h-full w-[177.78vh] min-w-full -translate-x-1/2 -translate-y-1/2"
+          src={`https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}?autoplay=1&mute=1&loop=1&playlist=${YOUTUBE_VIDEO_ID}&controls=0&playsinline=1&rel=0`}
+          title="Daya Constructions background video"
+          allow="autoplay; encrypted-media; picture-in-picture"
+          referrerPolicy="strict-origin-when-cross-origin"
+          tabIndex={-1}
+        />
+      </div>
 
       {/* Dark Overlay */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 -z-20 bg-black/50"
+        className="absolute inset-0 bg-gray-950/65"
       />
 
-      {/* Gradient Overlay */}
+      {/* Brand Accent Overlay */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 -z-10 bg-gradient-to-r from-black/80 via-black/45 to-transparent"
+        className="absolute inset-0 bg-gradient-to-r from-gray-950/90 via-gray-950/55 to-transparent"
       />
 
-      {/* Brand Gradient */}
       <div
         aria-hidden="true"
-        className="absolute inset-0 -z-10 bg-gradient-to-br from-[#407D41]/10 via-transparent to-[#C5A04A]/10"
+        className="pointer-events-none absolute inset-0 opacity-20"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px)",
+          backgroundSize: "80px 80px",
+        }}
       />
 
-      {/* Bottom Fade */}
-      <div
-        aria-hidden="true"
-        className="absolute inset-x-0 bottom-0 -z-10 h-48 bg-gradient-to-t from-black/70 to-transparent"
-      />
-
-      {/* Main Content */}
-      <div className="relative z-10 mx-auto flex min-h-[calc(100svh-80px)] max-w-7xl items-center px-5 py-24 sm:px-6 lg:px-8">
-        <div className="w-full max-w-4xl">
-          <div className="mb-7 flex items-center gap-4 sm:mb-8">
-            <span className="h-px w-12 bg-[#C5A04A]" />
-            <p className="text-label text-white">Daya Constructions</p>
+      {/* Hero Content */}
+      <Container>
+        <div className="relative z-10 max-w-4xl py-20 sm:py-24 lg:py-28">
+          <div className="mb-7 flex items-center gap-4">
+            <span className="h-px w-12 bg-brand-primary" />
+            <p className="text-label uppercase tracking-[0.22em] text-brand-primary">
+              Daya Constructions &amp; Structural Consultants
+            </p>
           </div>
 
-          <h1 className="text-h1 max-w-4xl text-white">
-            Build with
-            <br />
-            <span className="text-[#C5A04A]">confidence.</span>
+          <h1 className="max-w-4xl font-[var(--font-primary)] text-5xl font-bold leading-[1.08] tracking-tight text-white sm:text-6xl lg:text-7xl xl:text-8xl">
+            Daya Constructions
+            <span className="mt-3 block font-medium text-brand-primary">
+              Build with confidence.
+            </span>
           </h1>
 
-          <p className="mt-8 max-w-2xl text-body-lg text-white/85 sm:mt-10">
-            Construction and structural expertise built on engineering
-            precision, practical experience and trust.
+          <p className="mt-8 max-w-2xl text-base leading-7 text-white/80 sm:text-lg sm:leading-8">
+            Construction and structural engineering solutions built on
+            experience, precision and a commitment to lasting quality.
           </p>
 
-          {/* Buttons */}
-          <div className="mt-10 flex flex-col gap-3 sm:mt-12 sm:flex-row">
+          {/* CTA Buttons */}
+          <div className="mt-10 flex flex-col gap-4 sm:flex-row">
             <Link
               href="/projects"
-              className="inline-flex items-center justify-center gap-3 rounded-md bg-[#C5A04A] px-6 py-3.5 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#a78335] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C5A04A] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+              className="group inline-flex items-center justify-center gap-3 rounded-md bg-brand-primary px-7 py-4 font-[var(--font-primary)] text-sm font-semibold text-gray-950 transition-all duration-300 hover:-translate-y-1 hover:bg-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-4 focus-visible:ring-offset-gray-950"
             >
-              Explore Projects
-              <span aria-hidden="true">→</span>
+              <span>Explore Projects</span>
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.8"
+                className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
+                aria-hidden="true"
+              >
+                <path
+                  d="M5 12h14m-6-6 6 6-6 6"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
             </Link>
 
             <Link
               href="/about"
-              className="inline-flex items-center justify-center gap-3 rounded-md border border-white/40 bg-black/20 px-6 py-3.5 text-sm font-semibold text-white backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-[#407D41] hover:bg-[#407D41]/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C5A04A] focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+              className="inline-flex items-center justify-center rounded-md border border-white/50 bg-white/5 px-7 py-4 font-[var(--font-primary)] text-sm font-semibold text-white backdrop-blur-sm transition-all duration-300 hover:border-brand-primary hover:bg-brand-primary hover:text-gray-950 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-4 focus-visible:ring-offset-gray-950"
             >
               Our Story
-              <span aria-hidden="true">→</span>
             </Link>
           </div>
 
           {/* Stats */}
-          <div className="mt-14 grid max-w-2xl grid-cols-1 divide-y divide-white/15 border-t border-white/15 sm:mt-16 sm:grid-cols-2 sm:divide-x sm:divide-y-0 sm:border-b">
-            <div className="py-5 sm:pr-8">
-              <div className="flex items-baseline gap-3">
-                <span className="font-[var(--font-primary)] text-3xl font-semibold tracking-tight text-[#C5A04A]">
-                  5+
-                </span>
-                <span className="text-xs font-semibold uppercase tracking-[0.16em] text-white/80">
-                  Completed Projects
-                </span>
-              </div>
+          <div className="mt-14 grid max-w-lg grid-cols-2 gap-8 border-t border-white/20 pt-8 sm:mt-16">
+            <div>
+              <p className="font-[var(--font-primary)] text-4xl font-bold tracking-tight text-brand-primary sm:text-5xl">
+                5<span className="text-white">+</span>
+              </p>
+              <p className="mt-3 text-sm text-white/75 sm:text-base">
+                Project Categories
+              </p>
             </div>
 
-            <div className="py-5 sm:pl-8">
-              <div className="flex items-baseline gap-3">
-                <span className="font-[var(--font-primary)] text-3xl font-semibold tracking-tight text-[#407D41]">
-                  40+
-                </span>
-                <span className="text-xs font-semibold uppercase tracking-[0.16em] text-white/80">
-                  Years Family Legacy
-                </span>
-              </div>
+            <div className="border-l border-white/20 pl-8">
+              <p className="font-[var(--font-primary)] text-4xl font-bold tracking-tight text-brand-primary sm:text-5xl">
+                40<span className="text-white">+</span>
+              </p>
+              <p className="mt-3 text-sm text-white/75 sm:text-base">
+                Years of Construction Experience
+              </p>
             </div>
           </div>
         </div>
-      </div>
-
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-6 right-6 z-20 hidden items-center gap-3 text-white/70 sm:flex lg:right-10">
-        <span className="text-[10px] font-semibold uppercase tracking-[0.2em]">
-          Scroll
-        </span>
-        <span
-          aria-hidden="true"
-          className="h-10 w-px bg-gradient-to-b from-[#C5A04A] to-transparent"
-        />
-      </div>
+      </Container>
     </section>
   );
 }
