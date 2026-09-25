@@ -34,7 +34,6 @@ const projectCategories = [
 
 export default function ProjectsPreview() {
   const [activeProject, setActiveProject] = useState(0);
-  const project = projectCategories[activeProject];
 
   return (
     <section className="relative overflow-hidden bg-[#f7f7f5] py-20 sm:py-24 lg:py-28">
@@ -92,34 +91,101 @@ export default function ProjectsPreview() {
             </div>
           </div>
 
-          {/* Right: Dynamic Featured Image */}
+          {/* Right: Three Interactive Overlapping Images */}
           <div className="relative mx-auto flex w-full max-w-lg items-center justify-center lg:ml-auto">
-            {/* Organic Brand Shape */}
-            <div
-              aria-hidden="true"
-              className="absolute inset-x-0 top-1/2 h-[85%] -translate-y-1/2 rounded-[42%_58%_52%_48%/35%_35%_65%_65%] bg-brand-secondary"
-            />
+            <div className="relative h-[400px] w-full sm:h-[500px]">
+              {projectCategories.map((category, index) => {
+                const position =
+                  (index - activeProject + projectCategories.length) %
+                  projectCategories.length;
 
-            <div
-              aria-hidden="true"
-              className="absolute -right-3 top-8 h-24 w-24 rounded-full bg-brand-primary/20 blur-2xl sm:-right-6"
-            />
+                const isActive = position === 0;
 
-            {/* Image Frame */}
-            <div className="relative z-10 h-[340px] w-[78%] overflow-hidden rounded-2xl border border-white/60 bg-gray-200 shadow-xl sm:h-[420px]">
-              <img
-                key={project.image}
-                src={project.image}
-                alt={project.alt}
-                className="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
-              />
+                const positionStyles = [
+                  {
+                    left: "50%",
+                    transform: "translate(-50%, -50%) scale(1)",
+                  },
+                  {
+                    left: "80%",
+                    transform: "translate(-50%, -45%) scale(0.78)",
+                  },
+                  {
+                    left: "20%",
+                    transform: "translate(-50%, -45%) scale(0.78)",
+                  },
+                ];
+
+                return (
+                  <button
+                    key={category.name}
+                    type="button"
+                    onClick={() => setActiveProject(index)}
+                    aria-label={`Bring ${category.title} to the center`}
+                    aria-pressed={isActive}
+                    className={`absolute top-1/2 block aspect-[3/4] w-[58%] max-w-[290px] overflow-hidden rounded-2xl border border-white/80 bg-white shadow-2xl transition-all duration-700 ease-in-out focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-4 sm:rounded-3xl ${
+                      isActive
+                        ? "cursor-default"
+                        : "cursor-pointer hover:brightness-105"
+                    }`}
+                    style={{
+                      ...positionStyles[position],
+                      zIndex: isActive ? 30 : position === 1 ? 20 : 10,
+                    }}
+                  >
+                    <img
+                      src={category.image}
+                      alt={category.alt}
+                      className="absolute inset-0 h-full w-full object-cover"
+                    />
+
+                    {/* Image Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
+
+                    {/* Project Information */}
+                    <div className="absolute inset-x-0 bottom-0 p-4 text-left sm:p-6">
+                      <div className="mb-3 flex items-center gap-2 sm:gap-3">
+                        <span className="flex h-8 w-8 items-center justify-center rounded-full bg-brand-primary text-xs font-bold text-gray-950 sm:h-9 sm:w-9">
+                          {category.number}
+                        </span>
+
+                        <span className="text-[10px] font-semibold uppercase tracking-[0.12em] text-white/80 sm:text-xs sm:tracking-[0.16em]">
+                          {category.name}
+                        </span>
+                      </div>
+
+                      <h3 className="font-[var(--font-primary)] text-base font-bold leading-snug text-white sm:text-xl">
+                        {category.title}
+                      </h3>
+
+                      <p className="mt-2 text-xs text-white/75">
+                        {category.location}
+                      </p>
+                    </div>
+
+                    {/* Active Image Accent */}
+                    {isActive && (
+                      <div className="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-full bg-brand-primary text-gray-950 shadow-lg sm:right-5 sm:top-5 sm:h-10 sm:w-10">
+                        <svg
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          className="h-5 w-5"
+                          aria-hidden="true"
+                        >
+                          <path
+                            d="M5 12h14m-6-6 6 6-6 6"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </div>
+                    )}
+                  </button>
+                );
+              })}
             </div>
-
-            {/* Decorative Brand Accent */}
-            <div
-              aria-hidden="true"
-              className="absolute -bottom-5 right-8 z-0 h-20 w-20 rounded-full border-[10px] border-brand-primary/25"
-            />
           </div>
         </div>
       </Container>
