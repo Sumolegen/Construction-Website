@@ -2,6 +2,7 @@ import HomeHero from "../Components/sections/HomeHero";
 import AboutPreview from "../Components/sections/AboutPreview";
 import ServicesPreview from "@/Components/sections/ServicesPreview";
 import ProjectsPreview from "@/Components/sections/ProjectsPreview";
+import TestimonialsPreview from "@/Components/sections/TestimonialsPreview";
 import ExpertisePreview from "@/Components/sections/ExpertisePreview";
 import WhyDayaPreview from "../Components/sections/WhyDayaPreview";
 import JourneyPreview from "../Components/sections/JourneyPreview";
@@ -17,6 +18,7 @@ export default function Home() {
       <AboutPreview />
       <ServicesPreview />
       <ProjectsPreview />
+      <TestimonialsPreview />
       <ExpertisePreview />
       <WhyDayaPreview />
       <JourneyPreview />
